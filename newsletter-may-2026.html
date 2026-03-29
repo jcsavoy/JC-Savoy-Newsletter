@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+  <title>JC Savoy Newsletter</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Lato:wght@300;400;700&display=swap');
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { margin: 0; padding: 0; background-color: #f0eaf4; font-family: 'Lato', Georgia, serif; -webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; }
+    table { border-collapse: collapse; mso-table-lspace: 0pt; mso-table-rspace: 0pt; }
+    img { border: 0; outline: none; text-decoration: none; display: block; -ms-interpolation-mode: bicubic; }
+    a { text-decoration: none; }
+
+    .email-wrapper { background-color: #f0eaf4; padding: 32px 16px; }
+    .email-container { max-width: 620px; margin: 0 auto; background-color: #fdfaff; border-radius: 2px; overflow: hidden; box-shadow: 0 4px 32px rgba(160,120,180,0.12); }
+
+    /* HEADER */
+    .header { background: linear-gradient(160deg, #4a2d4e 0%, #3a2240 100%); padding: 36px 48px 28px; text-align: center; }
+    .header-diamond { display: inline-block; width: 10px; height: 10px; background-color: #e8a8c0; transform: rotate(45deg); margin-bottom: 14px; }
+    .header-tagline { font-family: 'Lato', sans-serif; font-size: 10px; font-weight: 300; letter-spacing: 3px; text-transform: uppercase; color: #e8a8c0; margin-bottom: 10px; }
+    .header-title { font-family: 'Cormorant Garamond', serif; font-size: 42px; font-weight: 300; color: #fdfaff; letter-spacing: 2px; line-height: 1; }
+    .header-title em { font-style: italic; color: #f2c4d8; }
+    .header-subtitle { font-family: 'Cormorant Garamond', serif; font-size: 14px; font-style: italic; color: rgba(253,250,255,0.5); margin-top: 8px; }
+    .header-rule { width: 60px; height: 1px; background: linear-gradient(to right, transparent, #e8a8c0, transparent); margin: 18px auto 0; }
+
+    /* TOC */
+    .toc-band { background-color: #fdf0f5; padding: 18px 48px; border-bottom: 1px solid #f0d0e0; }
+    .toc-label { font-family: 'Lato', sans-serif; font-size: 9px; font-weight: 700; letter-spacing: 2.5px; text-transform: uppercase; color: #b06080; margin-bottom: 8px; }
+    .toc-item { font-family: 'Lato', sans-serif; font-size: 12px; font-weight: 300; color: #5a3a50; line-height: 2.1; }
+    .toc-item::before { content: "✦  "; color: #e8a8c0; font-size: 8px; }
+
+    /* GREETING */
+    .greeting-band { background-color: #fdf0f5; padding: 22px 48px; text-align: center; border-bottom: 1px solid #f0d0e0; }
+    .greeting-band p { font-family: 'Cormorant Garamond', serif; font-size: 17px; font-style: italic; color: #7a4a5e; line-height: 1.7; }
+
+    /* SECTION LABEL */
+    .section-label { text-align: center; padding: 28px 48px 6px; }
+    .section-label span { display: inline-block; font-family: 'Lato', sans-serif; font-size: 9px; font-weight: 700; letter-spacing: 3.5px; text-transform: uppercase; color: #b06080; border-bottom: 1px solid #e0b8cc; padding-bottom: 6px; }
+
+    /* CLIFFHAVEN GAZETTE */
+    .gazette { padding: 16px 48px 30px; }
+    .gazette-inner { background: linear-gradient(135deg, #f0f7ff 0%, #e8f2fa 100%); border: 1px solid #b8d4e8; border-radius: 2px; overflow: hidden; }
+    .gazette-masthead { background: linear-gradient(to right, #2e6080, #1e4860); padding: 10px 20px; }
+    .gazette-name { font-family: 'Cormorant Garamond', serif; font-size: 19px; font-weight: 600; color: #fdfaff; letter-spacing: 3px; text-transform: uppercase; display: inline; }
+    .gazette-date { font-family: 'Lato', sans-serif; font-size: 9px; font-weight: 300; color: rgba(253,250,255,0.6); letter-spacing: 1px; float: right; line-height: 2.4; }
+    .gazette-rule { height: 1px; background: linear-gradient(to right, #2e6080, #a8c8e0, #2e6080); }
+    .gazette-body { padding: 16px 20px 14px; }
+    .gazette-headline { font-family: 'Cormorant Garamond', serif; font-size: 17px; font-weight: 600; color: #1e4060; margin-bottom: 8px; line-height: 1.35; }
+    .gazette-headline em { font-style: italic; }
+    .gazette-text { font-family: 'Lato', sans-serif; font-size: 13px; font-weight: 300; color: #3a4a5a; line-height: 1.8; }
+    .gazette-byline { font-family: 'Cormorant Garamond', serif; font-size: 11px; font-style: italic; color: #7090a8; margin-top: 10px; }
+
+    /* COMEDY CORNER */
+    .comedy { padding: 16px 48px 30px; }
+    .comedy-inner { border: 2px dashed #f2c4d8; border-radius: 4px; padding: 24px; text-align: center; background: #fffafc; }
+    .comedy-warning { display: inline-block; background-color: #e05070; color: white; font-family: 'Lato', sans-serif; font-size: 9px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; padding: 5px 14px; border-radius: 2px; margin-bottom: 16px; }
+    .comedy-setup { font-family: 'Lato', sans-serif; font-size: 15px; font-weight: 400; color: #4a3050; line-height: 1.6; margin-bottom: 10px; }
+    .comedy-punchline { font-family: 'Cormorant Garamond', serif; font-size: 22px; font-style: italic; font-weight: 600; color: #a04060; line-height: 1.4; }
+    .comedy-footer { font-family: 'Lato', sans-serif; font-size: 10px; color: #c0a0b0; margin-top: 12px; }
+
+    /* RECIPE CORNER */
+    .recipe { padding: 16px 48px 30px; }
+    .recipe-inner { background: linear-gradient(135deg, #f5faf0 0%, #edf5e8 100%); border: 1px solid #b8d4a8; border-radius: 2px; padding: 24px; }
+    .recipe-emoji { font-size: 28px; text-align: center; margin-bottom: 10px; }
+    .recipe-title { font-family: 'Cormorant Garamond', serif; font-size: 24px; font-weight: 500; color: #2e4a28; text-align: center; margin-bottom: 4px; }
+    .recipe-subtitle { font-family: 'Lato', sans-serif; font-size: 10px; font-weight: 300; color: #7a9a70; text-align: center; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 14px; }
+    .recipe-rule { width: 40px; height: 1px; background: linear-gradient(to right, transparent, #a0c890, transparent); margin: 0 auto 14px; }
+    .recipe-body { font-family: 'Lato', sans-serif; font-size: 13px; font-weight: 300; color: #3e5038; line-height: 1.85; }
+    .recipe-section-head { font-family: 'Lato', sans-serif; font-size: 9px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: #527040; display: block; margin: 12px 0 5px; }
+    .recipe-note { font-family: 'Cormorant Garamond', serif; font-size: 14px; font-style: italic; color: #7a9a70; margin-top: 14px; border-left: 2px solid #b0d0a0; padding-left: 12px; line-height: 1.6; }
+
+    /* JC'S CURRENT OBSESSION */
+    .obsession { padding: 0 48px 28px; }
+    .obsession-inner { border: 1px solid #ddd0ec; border-radius: 2px; padding: 18px 20px; background: #fdf8ff; display: table; width: 100%; }
+    .obsession-icon-cell { display: table-cell; width: 44px; vertical-align: middle; font-size: 30px; }
+    .obsession-text-cell { display: table-cell; vertical-align: middle; padding-left: 14px; }
+    .obsession-label { font-family: 'Lato', sans-serif; font-size: 9px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; color: #8a60a0; margin-bottom: 5px; }
+    .obsession-text { font-family: 'Cormorant Garamond', serif; font-size: 17px; font-style: italic; color: #4a3060; line-height: 1.6; }
+
+    /* NEW RELEASE */
+    .spotlight { padding: 16px 48px 30px; }
+    .spotlight-inner { border: 1px solid #e8d0dc; border-radius: 2px; overflow: hidden; }
+    .spotlight-badge { background: linear-gradient(to right, #c4688a, #a05878); text-align: center; padding: 9px; font-family: 'Lato', sans-serif; font-size: 9px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; color: #fdfaff; }
+    .spotlight-content { padding: 28px 28px 24px; }
+    .spotlight-cover-wrap { text-align: center; margin-bottom: 22px; }
+    .spotlight-cover { max-width: 180px; margin: 0 auto; border-radius: 2px; box-shadow: 0 8px 28px rgba(160,80,120,0.18); }
+    .spotlight-series { font-family: 'Lato', sans-serif; font-size: 9px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; color: #b06080; text-align: center; margin-bottom: 6px; }
+    .spotlight-title { font-family: 'Cormorant Garamond', serif; font-size: 30px; font-weight: 400; color: #3a2240; text-align: center; line-height: 1.15; margin-bottom: 4px; }
+    .spotlight-title em { font-style: italic; }
+    .spotlight-booknum { font-family: 'Cormorant Garamond', serif; font-size: 13px; font-style: italic; color: #9a7888; text-align: center; margin-bottom: 18px; }
+    .spotlight-divider { width: 40px; height: 1px; background: linear-gradient(to right, transparent, #e8a8c0, transparent); margin: 0 auto 18px; }
+    .spotlight-blurb { font-family: 'Lato', sans-serif; font-size: 14px; font-weight: 300; color: #4a3050; line-height: 1.8; text-align: center; margin-bottom: 22px; }
+    .btn-center { text-align: center; }
+    .btn-primary { display: inline-block; background: linear-gradient(to right, #c4688a, #a05878); color: #fdfaff !important; font-family: 'Lato', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 2.5px; text-transform: uppercase; padding: 14px 32px; border-radius: 1px; }
+
+    /* COMING SOON */
+    .upcoming { padding: 0 48px 30px; }
+    .upcoming-grid { display: table; width: 100%; }
+    .upcoming-book { display: table-cell; width: 33.33%; padding: 0 10px; vertical-align: top; text-align: center; }
+    .upcoming-book:first-child { padding-left: 0; }
+    .upcoming-book:last-child { padding-right: 0; }
+    .upcoming-cover { width: 100%; max-width: 130px; margin: 0 auto 10px; border-radius: 2px; box-shadow: 0 4px 14px rgba(160,80,120,0.14); }
+    .upcoming-series { font-family: 'Lato', sans-serif; font-size: 8px; font-weight: 700; letter-spacing: 2.5px; text-transform: uppercase; color: #7a9a7a; margin-bottom: 4px; }
+    .upcoming-title { font-family: 'Cormorant Garamond', serif; font-size: 15px; font-weight: 500; color: #3a2240; line-height: 1.2; margin-bottom: 4px; }
+    .upcoming-date { font-family: 'Lato', sans-serif; font-size: 11px; font-weight: 300; color: #9a7888; font-style: italic; margin-bottom: 10px; }
+    .btn-small { display: inline-block; border: 1px solid #7a9a7a; color: #527052 !important; font-family: 'Lato', sans-serif; font-size: 9px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; padding: 8px 16px; border-radius: 1px; }
+
+    /* SERIES SPOTLIGHT */
+    .series-spot { padding: 0 48px 30px; }
+    .series-spot-inner { background: linear-gradient(135deg, #eef5ee 0%, #e4f0e8 100%); border: 1px solid #c0d8b8; border-radius: 2px; padding: 26px; text-align: center; }
+    .series-spot-icon { font-size: 28px; margin-bottom: 10px; }
+    .series-spot-label { font-family: 'Lato', sans-serif; font-size: 9px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; color: #527052; margin-bottom: 6px; }
+    .series-spot-name { font-family: 'Cormorant Garamond', serif; font-size: 26px; font-weight: 400; color: #2e4030; margin-bottom: 10px; line-height: 1.2; }
+    .series-spot-desc { font-family: 'Lato', sans-serif; font-size: 13px; font-weight: 300; color: #3e503e; line-height: 1.8; margin-bottom: 20px; }
+    .btn-outline-green { display: inline-block; border: 1px solid #527052; color: #3e5a3e !important; font-family: 'Lato', sans-serif; font-size: 10px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; padding: 10px 24px; border-radius: 1px; }
+
+    /* READER VOTE */
+    .vote { padding: 0 48px 30px; }
+    .vote-inner { background: linear-gradient(135deg, #fdf0f5, #f8e8f2); border: 1px solid #e0b8d0; border-radius: 2px; padding: 24px; text-align: center; }
+    .vote-label { font-family: 'Lato', sans-serif; font-size: 9px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; color: #b06080; margin-bottom: 8px; }
+    .vote-question { font-family: 'Cormorant Garamond', serif; font-size: 22px; font-weight: 500; color: #3a2240; margin-bottom: 8px; line-height: 1.3; }
+    .vote-sub { font-family: 'Lato', sans-serif; font-size: 12px; font-weight: 300; color: #7a5870; line-height: 1.7; margin-bottom: 18px; }
+    .btn-vote { display: inline-block; background: linear-gradient(to right, #9b6fba, #7a4a98); color: #fdfaff !important; font-family: 'Lato', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 2.5px; text-transform: uppercase; padding: 14px 32px; border-radius: 1px; }
+
+    /* PERSONAL NOTE */
+    .personal-note { padding: 0 48px 30px; }
+    .personal-note-inner { border-left: 3px solid #a8c4d8; padding: 6px 0 6px 22px; background: linear-gradient(to right, #f0f6fa 0%, transparent 80%); }
+    .note-label { font-family: 'Lato', sans-serif; font-size: 9px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; color: #5a7a98; margin-bottom: 10px; }
+    .note-text { font-family: 'Cormorant Garamond', serif; font-size: 18px; font-style: italic; color: #3a4e60; line-height: 1.75; margin-bottom: 12px; }
+    .note-sig { font-family: 'Cormorant Garamond', serif; font-size: 15px; font-style: italic; color: #7a9aaa; }
+
+    /* ORNAMENT */
+    .ornament-divider { text-align: center; padding: 6px 48px; }
+    .ornament-divider-inner { display: inline-flex; align-items: center; gap: 12px; }
+    .ornament-line { width: 80px; height: 1px; background: linear-gradient(to right, transparent, #e0b8cc); }
+    .ornament-line.r { background: linear-gradient(to left, transparent, #e0b8cc); }
+    .ornament-diamond { width: 6px; height: 6px; background-color: #e8a8c0; transform: rotate(45deg); flex-shrink: 0; }
+
+    /* FOOTER */
+    .flower-footer { background-color: #4a2d4e; padding: 0; line-height: 0; }
+    .flower-footer svg { display: block; width: 100%; }
+    .footer-content { background-color: #4a2d4e; padding: 20px 48px 32px; text-align: center; }
+    .footer-title { font-family: 'Cormorant Garamond', serif; font-size: 20px; font-weight: 300; color: #fdfaff; letter-spacing: 2px; margin-bottom: 6px; }
+    .footer-title em { font-style: italic; color: #f2c4d8; }
+    .footer-tagline { font-family: 'Cormorant Garamond', serif; font-size: 13px; font-style: italic; color: rgba(253,250,255,0.45); margin-bottom: 18px; }
+    .footer-links { margin-bottom: 18px; }
+    .footer-links a { font-family: 'Lato', sans-serif; font-size: 10px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: #e8a8c0 !important; margin: 0 12px; }
+    .footer-rule { width: 40px; height: 1px; background: linear-gradient(to right, transparent, rgba(232,168,192,0.4), transparent); margin: 0 auto 14px; }
+    .footer-legal { font-family: 'Lato', sans-serif; font-size: 10px; font-weight: 300; color: rgba(253,250,255,0.30); line-height: 1.7; }
+    .footer-legal a { color: rgba(232,168,192,0.6) !important; }
+
+    @media only screen and (max-width: 480px) {
+      .header, .toc-band, .greeting-band, .section-label, .gazette, .comedy, .recipe,
+      .obsession, .spotlight, .upcoming, .series-spot, .vote, .personal-note { padding-left: 20px; padding-right: 20px; }
+      .header-title { font-size: 32px; }
+      .upcoming-grid { display: block; }
+      .upcoming-book { display: block; width: 100%; padding: 0 0 20px; }
+      .obsession-inner { display: block; }
+      .obsession-icon-cell { display: block; text-align: center; padding-bottom: 8px; }
+      .obsession-text-cell { display: block; padding: 0; }
+      .footer-content { padding: 16px 20px 24px; }
+    }
+  </style>
+</head>
+<body>
+<div class="email-wrapper">
+<div class="email-container">
+
+
+<!-- ════════════════════════════════════
+     HEADER
+════════════════════════════════════ -->
+<div class="header">
+  <div class="header-diamond"></div>
+  <p class="header-tagline">Sweet &amp; Clean Romance</p>
+  <h1 class="header-title">JC <em>Savoy</em></h1>
+  <p class="header-subtitle">Cowboys · Billionaires · Happily Ever Afters</p>
+  <div class="header-rule"></div>
+</div>
+
+
+<!-- ════════════════════════════════════
+     TABLE OF CONTENTS
+════════════════════════════════════ -->
+<div class="toc-band">
+  <table role="presentation" width="100%"><tr>
+    <td width="50%" valign="top" style="padding-right:16px;">
+      <p class="toc-label">Fun Stuff</p>
+      <p class="toc-item">🗞️ &nbsp;Cliffhaven Gazette</p>
+      <p class="toc-item">😄 &nbsp;Comedy Corner</p>
+      <p class="toc-item">🍴 &nbsp;Recipe Corner</p>
+      <p class="toc-item">📺 &nbsp;JC's Current Obsession</p>
+    </td>
+    <td width="50%" valign="top" style="padding-left:16px;">
+      <p class="toc-label">Books &amp; More</p>
+      <p class="toc-item">📖 &nbsp;New Release</p>
+      <p class="toc-item">📅 &nbsp;Coming Soon</p>
+      <p class="toc-item">🔍 &nbsp;Series Spotlight</p>
+      <p class="toc-item">🗳️ &nbsp;Reader Vote</p>
+    </td>
+  </tr></table>
+</div>
+
+
+<!-- ════════════════════════════════════
+     GREETING
+════════════════════════════════════ -->
+<div class="greeting-band">
+  <p>Another month, another excuse to sit down together — even if we're miles apart. I've been writing, baking badly, and collecting small moments worth sharing. Consider this your invitation to slow down for five minutes. The rest of the world can wait.</p>
+</div>
+
+
+<!-- ════════════════════════════════════
+     CLIFFHAVEN GAZETTE
+════════════════════════════════════ -->
+<div class="section-label"><span>🗞️ &nbsp; The Cliffhaven Gazette &nbsp; 🗞️</span></div>
+<div class="gazette">
+  <div class="gazette-inner">
+    <div class="gazette-masthead">
+      <span class="gazette-name">The Cliffhaven Gazette</span>
+      <!-- EDITABLE: month/year -->
+      <span class="gazette-date">April 2026 &nbsp;·&nbsp; Est. Always</span>
+    </div>
+    <div class="gazette-rule"></div>
+    <div class="gazette-body">
+      <!-- EDITABLE: headline + 2-4 sentences of small-town absurdity. New story each issue. -->
+      <p class="gazette-headline"><em>Bette Marsh — Flour & Everafter Bakery
+Recipe Corner
+Bette's Blueberry Scones (The Ones People Drive From Portland For)
+Bette says she wasn't going to share this recipe. Then she changed her mind. Then she changed it back. We're printing it anyway because she left the card on the counter and walked away, and we're choosing to interpret that as consent.
+"Don't overbake them," she says. "And don't use frozen blueberries. And don't substitute anything. And if you do all that wrong and they come out terrible, don't tell me."
+We love her.</em></p>
+      <p class="gazette-text">Cliffhaven's self-appointed romantic authority, Harbormaster Stu, announced this week that the harbor "has a feeling" about several unnamed local singles and their upcoming summers. "The tides don't lie," Stu reportedly declared to three tourists and a seagull on Tuesday. By Wednesday morning, Pete had already written the names on a chalkboard behind the bar and was accepting wagers at two-to-one odds. Residents are advised to proceed with their hearts as usual — and perhaps avoid eye contact with either man.</p>
+      <p class="gazette-byline">— Your Correspondent on the Cliffhaven Docks</p>
+    </div>
+  </div>
+</div>
+
+<div class="ornament-divider"><div class="ornament-divider-inner">
+  <div class="ornament-line"></div><div class="ornament-diamond"></div><div class="ornament-line r"></div>
+</div></div>
+
+
+<!-- ════════════════════════════════════
+     COMEDY CORNER
+════════════════════════════════════ -->
+<div class="section-label"><span>😄 &nbsp; Comedy Corner &nbsp; 😄</span></div>
+<div class="comedy">
+  <div class="comedy-inner">
+    <div class="comedy-warning">⚠️ &nbsp; Warning: Bad Dad Joke &nbsp; ⚠️</div>
+    <!-- EDITABLE: setup + punchline -->
+    <p class="comedy-setup">Q: Why did the romance novelist break up with her calendar?</p>
+    <p class="comedy-punchline">A: It had too many dates and none of them worked out.</p>
+    <p class="comedy-footer">You're welcome. (Or I'm sorry. Possibly both.)</p>
+  </div>
+</div>
+
+<div class="ornament-divider"><div class="ornament-divider-inner">
+  <div class="ornament-line"></div><div class="ornament-diamond"></div><div class="ornament-line r"></div>
+</div></div>
+
+
+<!-- ════════════════════════════════════
+     RECIPE CORNER
+════════════════════════════════════ -->
+<div class="section-label"><span>🍴 &nbsp; Recipe Corner &nbsp; 🍴</span></div>
+<div class="recipe">
+  <div class="recipe-inner">
+    <div class="recipe-emoji">☕</div>
+    <!-- EDITABLE: recipe name, subtitle, body -->
+    <h3 class="recipe-title">SOUTHERN CORNBREAD: </h3>
+    <p class="recipe-subtitle">A Kingsley Family Favorite</p>
+    <div class="recipe-rule"></div>
+    <div class="recipe-body">Ingredients 1 cup yellow cornmeal 1/2 cup all-purpose flour 1 tsp. salt 1 Tbsp. baking powder 1 cup buttermilk 1/2 cup milk 1 egg 1/2 tsp. baking soda 1/4 cup plus 2 tablespoons butter or shortening, divided
+
+Directions
+
+1.Preheat the oven to 450°F. In a bowl, combine the cornmeal, flour, salt, and baking powder. Stir together.
+2.Measure the buttermilk and milk in a measuring cup and add the egg. Stir together with a fork. Add the baking soda and stir. Pour the milk mixture into the dry ingredients. Stir with a fork until combined. 
+3.In a small bowl, melt 1/4 butter or shortening. Slowly add to the batter, stirring until just combined. In an iron skillet, melt the remaining 2 tablespoons butter or shortening over medium heat. Pour the batter into the hot skillet. Spread to even out the surface. (Batter should sizzle.)
+4.Cook on stovetop for 1 minute, then bake until golden brown, 20 to 25 minutes. Edges should be crispy!</div>
+    <!-- EDITABLE: tie to a book character for personality -->
+    <p class="recipe-note">This is the cake Zane Kingsley keeps finding on his porch every Sunday morning. He suspects Raven. He's not wrong. (Optional: Fold in 1½ cups of blueberries for an extra treat!)</p>
+  </div>
+</div>
+
+<div class="ornament-divider"><div class="ornament-divider-inner">
+  <div class="ornament-line"></div><div class="ornament-diamond"></div><div class="ornament-line r"></div>
+</div></div>
+
+
+<!-- ════════════════════════════════════
+     JC'S CURRENT OBSESSION
+════════════════════════════════════ -->
+<div class="section-label"><span>📺 &nbsp; JC's Current Obsession &nbsp; 📺</span></div>
+<div class="obsession">
+  <table class="obsession-inner" role="presentation"><tr>
+    <td class="obsession-icon-cell">📺</td>
+    <td class="obsession-text-cell">
+      <p class="obsession-label">What JC Can't Stop Watching / Doing / Eating</p>
+      <!-- EDITABLE: one honest sentence — show, podcast, hobby, food, anything -->
+      <p class="obsession-text">I'm learning to play frisbee golf and drag my husband out to play every day</p>
+    </td>
+  </tr></table>
+</div>
+
+<div class="ornament-divider"><div class="ornament-divider-inner">
+  <div class="ornament-line"></div><div class="ornament-diamond"></div><div class="ornament-line r"></div>
+</div></div>
+
+
+<!-- ════════════════════════════════════
+     NEW RELEASE
+════════════════════════════════════ -->
+<div class="section-label"><span>📖 &nbsp; New Release &nbsp; 📖</span></div>
+<div class="spotlight">
+  <div class="spotlight-inner">
+    <div class="spotlight-badge">✨ &nbsp; Available Now &nbsp; ✨</div>
+    <div class="spotlight-content">
+      <!-- EDITABLE: cover image URL, series, title, book number, blurb, Amazon link -->
+      <div class="spotlight-cover-wrap">
+        <img class="spotlight-cover" src="https://jcsavoy.com/media/newsletter-images/the-great-christmas-disaster.jpg" alt="Walk With Me Cowboy" width="180"/>
+      </div>
+      <p class="spotlight-series">The Legacy Billionaires:</p>
+      <h2 class="spotlight-title"><em>The Great Christmas Disaster</em></h2>
+      <p class="spotlight-booknum">Book 7 in the Series</p>
+      <div class="spotlight-divider"></div>
+      <p class="spotlight-blurb">She came back to Cottonwood Ridge to sell the ranch and leave. He's the one person who makes her want to stay. Hunter Kingsley never planned on a second chance — but love has a way of showing up right when you've stopped looking for it.</p>
+      <div class="btn-center"><a href="https://amzn.to/4lC4RWH" class="btn-primary">Read It Now →</a></div>
+    </div>
+  </div>
+</div>
+
+<div class="ornament-divider"><div class="ornament-divider-inner">
+  <div class="ornament-line"></div><div class="ornament-diamond"></div><div class="ornament-line r"></div>
+</div></div>
+
+
+<!-- ════════════════════════════════════
+     COMING SOON
+════════════════════════════════════ -->
+<div class="section-label"><span>📅 &nbsp; Coming Soon &nbsp; 📅</span></div>
+<div class="upcoming">
+  <table class="upcoming-grid" role="presentation"><tr>
+    <tr><td class="upcoming-book">
+      <img class="upcoming-cover" src="https://jcsavoy.com/media/newsletter-images/borrowed-hearts.jpg" alt="Borrowed Hearts" width="130"/>
+      <p class="upcoming-series"></p>
+      <p class="upcoming-title">Borrowed Hearts</p>
+      <p class="upcoming-date">Coming May 2026</p>
+      <a href="https://amzn.to/47Em9wq" class="btn-small">Pre-Order</a>
+    </td><td class="upcoming-book">
+      <img class="upcoming-cover" src="https://jcsavoy.com/media/newsletter-images/tidal-rivals.jpg" alt="Tidal Rivals" width="130"/>
+      <p class="upcoming-series"></p>
+      <p class="upcoming-title">Tidal Rivals</p>
+      <p class="upcoming-date">Coming June 2026</p>
+      <a href="https://amzn.to/4sFdp1K" class="btn-small">Pre-Order</a>
+    </td><td class="upcoming-book">
+      <img class="upcoming-cover" src="https://jcsavoy.com/media/newsletter-images/high-tide-high-jinks.jpg" alt="High Tide High Jinks" width="130"/>
+      <p class="upcoming-series"></p>
+      <p class="upcoming-title">High Tide High Jinks</p>
+      <p class="upcoming-date">Coming July 2026</p>
+      <a href="https://amzn.to/4bEUWMJ" class="btn-small">Pre-Order</a>
+    </td></tr></table>
+</div>
+
+<div class="ornament-divider"><div class="ornament-divider-inner">
+  <div class="ornament-line"></div><div class="ornament-diamond"></div><div class="ornament-line r"></div>
+</div></div>
+
+
+<!-- ════════════════════════════════════
+     SERIES SPOTLIGHT
+════════════════════════════════════ -->
+<div class="section-label"><span>🔍 &nbsp; Series Spotlight &nbsp; 🔍</span></div>
+<div class="series-spot">
+  <div class="series-spot-inner">
+    <!-- EDITABLE: icon, series name, description, link — rotate each issue -->
+    <div class="series-spot-icon">🔍</div>
+    <p class="series-spot-label">Have You Discovered This Series?</p>
+    <h3 class="series-spot-name">Legacy Billionaires</h3>
+    <p class="series-spot-desc">Wealthy men with guarded hearts and the extraordinary women who break through their walls. Big money, bigger feelings.</p>
+    <a href="https://jcsavoy.com/legacy-billionaires-series-page.html" class="btn-outline-green">Explore the Series →</a>
+  </div>
+</div>
+
+<div class="ornament-divider"><div class="ornament-divider-inner">
+  <div class="ornament-line"></div><div class="ornament-diamond"></div><div class="ornament-line r"></div>
+</div></div>
+
+
+<!-- ════════════════════════════════════
+     READER VOTE
+════════════════════════════════════ -->
+<div class="section-label"><span>🗳️ &nbsp; Reader Vote &nbsp; 🗳️</span></div>
+<div class="vote">
+  <div class="vote-inner">
+    <p class="vote-label">Your Opinion Matters!</p>
+    <!-- EDITABLE: question, sub-text, Google Form link -->
+    <p class="vote-question">Where do you do most of your reading? — In bed / On the couch / Outside / Wherever I can steal five minutes</p>
+    <p class="vote-sub">I'm taking notes. This is important research. (It may or may not affect what I write next.) One click, ten seconds — that's it!</p>
+    <a href="https://forms.gle/tYkCDN2Xy5S7h6SZA" class="btn-vote">Cast Your Vote →</a>
+  </div>
+</div>
+
+<div class="ornament-divider"><div class="ornament-divider-inner">
+  <div class="ornament-line"></div><div class="ornament-diamond"></div><div class="ornament-line r"></div>
+</div></div>
+
+
+<!-- ════════════════════════════════════
+     PERSONAL NOTE
+════════════════════════════════════ -->
+<div class="section-label"><span>💌 &nbsp; A Note from JC &nbsp; 💌</span></div>
+<div class="personal-note">
+  <div class="personal-note-inner">
+    <p class="note-label">From My Desk to Yours</p>
+    <!-- EDITABLE each issue -->
+    <p class="note-text">"This month has been full of cowboys, cozy mysteries, and late nights with very good coffee. Thank you for being along for the ride — you're the reason I show up at the keyboard every morning. Now go fall in love with someone who tips his hat."</p>
+    <p class="note-sig">— JC 🤍</p>
+  </div>
+</div>
+
+
+<!-- ════════════════════════════════════
+     WILDFLOWER FOOTER
+════════════════════════════════════ -->
+<div class="flower-footer">
+  <svg viewBox="0 0 620 160" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+    <defs>
+      <linearGradient id="skyG" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stop-color="#f0eaf4"/><stop offset="100%" stop-color="#e8ddf0"/>
+      </linearGradient>
+      <linearGradient id="gndG" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stop-color="#4a2d4e"/><stop offset="100%" stop-color="#3a2240"/>
+      </linearGradient>
+    </defs>
+    <rect width="620" height="160" fill="url(#skyG)"/>
+    <path d="M0,90 Q80,70 160,85 Q240,100 310,82 Q380,64 460,80 Q540,96 620,78 L620,160 L0,160 Z" fill="url(#gndG)"/>
+    <path d="M0,100 Q90,82 170,95 Q250,108 320,90 Q390,72 470,88 Q550,104 620,88 L620,160 L0,160 Z" fill="#4a2d4e" opacity="0.8"/>
+    <g stroke="#7a4a7a" stroke-width="1.2" fill="none">
+      <line x1="18" y1="90" x2="12" y2="72"/><line x1="22" y1="90" x2="28" y2="70"/><line x1="48" y1="88" x2="44" y2="68"/><line x1="52" y1="88" x2="58" y2="72"/>
+      <line x1="90" y1="86" x2="86" y2="66"/><line x1="95" y1="86" x2="101" y2="70"/><line x1="130" y1="88" x2="126" y2="68"/><line x1="165" y1="87" x2="171" y2="71"/>
+      <line x1="200" y1="85" x2="196" y2="65"/><line x1="205" y1="85" x2="211" y2="69"/><line x1="240" y1="86" x2="236" y2="66"/><line x1="280" y1="84" x2="276" y2="64"/>
+      <line x1="285" y1="84" x2="291" y2="68"/><line x1="320" y1="83" x2="316" y2="63"/><line x1="325" y1="83" x2="331" y2="67"/><line x1="360" y1="84" x2="356" y2="64"/>
+      <line x1="400" y1="82" x2="396" y2="62"/><line x1="405" y1="82" x2="411" y2="66"/><line x1="440" y1="81" x2="436" y2="61"/><line x1="470" y1="82" x2="466" y2="62"/>
+      <line x1="510" y1="83" x2="506" y2="63"/><line x1="550" y1="82" x2="546" y2="62"/><line x1="580" y1="80" x2="576" y2="60"/><line x1="608" y1="79" x2="604" y2="59"/>
+    </g>
+    <g stroke="#7a5a8a" stroke-width="1.5" fill="none">
+      <line x1="35" y1="90" x2="35" y2="56"/><line x1="68" y1="88" x2="66" y2="48"/><line x1="108" y1="86" x2="108" y2="50"/>
+      <line x1="148" y1="88" x2="146" y2="52"/><line x1="183" y1="86" x2="185" y2="46"/><line x1="222" y1="85" x2="220" y2="52"/>
+      <line x1="260" y1="84" x2="262" y2="44"/><line x1="300" y1="83" x2="300" y2="50"/><line x1="340" y1="82" x2="338" y2="48"/>
+      <line x1="378" y1="83" x2="380" y2="46"/><line x1="418" y1="81" x2="416" y2="50"/><line x1="458" y1="82" x2="460" y2="44"/>
+      <line x1="496" y1="81" x2="494" y2="52"/><line x1="534" y1="80" x2="536" y2="48"/><line x1="572" y1="80" x2="570" y2="50"/><line x1="600" y1="79" x2="602" y2="46"/>
+    </g>
+    <g fill="#6a8a6a" opacity="0.7">
+      <ellipse cx="31" cy="73" rx="7" ry="3" transform="rotate(-30 31 73)"/><ellipse cx="39" cy="73" rx="7" ry="3" transform="rotate(30 39 73)"/>
+      <ellipse cx="63" cy="66" rx="7" ry="3" transform="rotate(-30 63 66)"/><ellipse cx="71" cy="66" rx="7" ry="3" transform="rotate(30 71 66)"/>
+      <ellipse cx="104" cy="68" rx="7" ry="3" transform="rotate(-30 104 68)"/><ellipse cx="112" cy="68" rx="7" ry="3" transform="rotate(30 112 68)"/>
+      <ellipse cx="143" cy="70" rx="6" ry="3" transform="rotate(-30 143 70)"/><ellipse cx="150" cy="70" rx="6" ry="3" transform="rotate(30 150 70)"/>
+      <ellipse cx="181" cy="62" rx="7" ry="3" transform="rotate(-30 181 62)"/><ellipse cx="189" cy="62" rx="7" ry="3" transform="rotate(30 189 62)"/>
+      <ellipse cx="216" cy="68" rx="6" ry="3" transform="rotate(-30 216 68)"/><ellipse cx="224" cy="68" rx="6" ry="3" transform="rotate(30 224 68)"/>
+      <ellipse cx="258" cy="60" rx="7" ry="3" transform="rotate(-30 258 60)"/><ellipse cx="266" cy="60" rx="7" ry="3" transform="rotate(30 266 60)"/>
+      <ellipse cx="296" cy="66" rx="6" ry="3" transform="rotate(-30 296 66)"/><ellipse cx="304" cy="66" rx="6" ry="3" transform="rotate(30 304 66)"/>
+      <ellipse cx="334" cy="64" rx="6" ry="3" transform="rotate(-30 334 64)"/><ellipse cx="342" cy="64" rx="6" ry="3" transform="rotate(30 342 64)"/>
+      <ellipse cx="376" cy="62" rx="7" ry="3" transform="rotate(-30 376 62)"/><ellipse cx="384" cy="62" rx="7" ry="3" transform="rotate(30 384 62)"/>
+      <ellipse cx="456" cy="58" rx="7" ry="3" transform="rotate(-30 456 58)"/><ellipse cx="464" cy="58" rx="7" ry="3" transform="rotate(30 464 58)"/>
+      <ellipse cx="490" cy="68" rx="6" ry="3" transform="rotate(-30 490 68)"/><ellipse cx="498" cy="68" rx="6" ry="3" transform="rotate(30 498 68)"/>
+      <ellipse cx="568" cy="66" rx="6" ry="3" transform="rotate(-30 568 66)"/><ellipse cx="576" cy="66" rx="6" ry="3" transform="rotate(30 576 66)"/>
+    </g>
+    <!-- Daisies -->
+    <circle cx="35" cy="50" r="5" fill="#f5c842"/>
+    <ellipse cx="35" cy="43" rx="3" ry="5" fill="white" opacity="0.9"/><ellipse cx="35" cy="57" rx="3" ry="5" fill="white" opacity="0.9"/>
+    <ellipse cx="28" cy="50" rx="5" ry="3" fill="white" opacity="0.9"/><ellipse cx="42" cy="50" rx="5" ry="3" fill="white" opacity="0.9"/>
+    <ellipse cx="30" cy="45" rx="3" ry="5" fill="white" opacity="0.8" transform="rotate(-45 30 45)"/><ellipse cx="40" cy="45" rx="3" ry="5" fill="white" opacity="0.8" transform="rotate(45 40 45)"/>
+    <circle cx="300" cy="44" r="5" fill="#f5c842"/>
+    <ellipse cx="300" cy="37" rx="3" ry="5" fill="white" opacity="0.9"/><ellipse cx="300" cy="51" rx="3" ry="5" fill="white" opacity="0.9"/>
+    <ellipse cx="293" cy="44" rx="5" ry="3" fill="white" opacity="0.9"/><ellipse cx="307" cy="44" rx="5" ry="3" fill="white" opacity="0.9"/>
+    <!-- Lavender -->
+    <g fill="#c4a2d4" opacity="0.85">
+      <ellipse cx="64" cy="44" rx="4" ry="7"/><ellipse cx="68" cy="43" rx="4" ry="7" transform="rotate(20 68 43)"/><ellipse cx="60" cy="43" rx="4" ry="7" transform="rotate(-20 60 43)"/><circle cx="66" cy="46" r="4" fill="#9b6fba"/>
+      <ellipse cx="458" cy="40" rx="4" ry="7"/><ellipse cx="462" cy="39" rx="4" ry="7" transform="rotate(20 462 39)"/><ellipse cx="454" cy="39" rx="4" ry="7" transform="rotate(-20 454 39)"/><circle cx="459" cy="42" r="4" fill="#9b6fba"/>
+      <ellipse cx="572" cy="46" rx="4" ry="7"/><ellipse cx="576" cy="45" rx="4" ry="7" transform="rotate(20 576 45)"/><ellipse cx="568" cy="45" rx="4" ry="7" transform="rotate(-20 568 45)"/><circle cx="572" cy="48" r="4" fill="#9b6fba"/>
+    </g>
+    <!-- Pink roses -->
+    <circle cx="108" cy="44" r="10" fill="#e8a8a0" opacity="0.6"/><circle cx="108" cy="44" r="7" fill="#d4827a" opacity="0.7"/><circle cx="108" cy="44" r="4" fill="#c06060" opacity="0.8"/><circle cx="108" cy="44" r="2" fill="#a04040"/>
+    <circle cx="340" cy="42" r="10" fill="#e8a8a0" opacity="0.6"/><circle cx="340" cy="42" r="7" fill="#d4827a" opacity="0.7"/><circle cx="340" cy="42" r="4" fill="#c06060" opacity="0.8"/><circle cx="340" cy="42" r="2" fill="#a04040"/>
+    <circle cx="534" cy="43" r="9" fill="#e8a8a0" opacity="0.6"/><circle cx="534" cy="43" r="6" fill="#d4827a" opacity="0.7"/><circle cx="534" cy="43" r="3.5" fill="#c06060" opacity="0.8"/>
+    <!-- Cornflowers -->
+    <g fill="#7ab4e0" opacity="0.8">
+      <ellipse cx="146" cy="46" rx="3" ry="6" transform="rotate(-30 146 46)"/><ellipse cx="150" cy="46" rx="3" ry="6" transform="rotate(30 150 46)"/><ellipse cx="144" cy="50" rx="3" ry="6" transform="rotate(-10 144 50)"/><ellipse cx="152" cy="50" rx="3" ry="6" transform="rotate(10 152 50)"/><circle cx="148" cy="48" r="3" fill="#4a84b0"/>
+      <ellipse cx="380" cy="40" rx="3" ry="6" transform="rotate(-30 380 40)"/><ellipse cx="384" cy="40" rx="3" ry="6" transform="rotate(30 384 40)"/><ellipse cx="378" cy="44" rx="3" ry="6" transform="rotate(-10 378 44)"/><ellipse cx="386" cy="44" rx="3" ry="6" transform="rotate(10 386 44)"/><circle cx="382" cy="42" r="3" fill="#4a84b0"/>
+    </g>
+    <!-- Sunflowers -->
+    <circle cx="185" cy="40" r="9" fill="#f5c842" opacity="0.5"/><circle cx="185" cy="40" r="6" fill="#e8b020" opacity="0.8"/><circle cx="185" cy="40" r="3.5" fill="#7a4a10"/>
+    <ellipse cx="185" cy="31" rx="2.5" ry="4.5" fill="#f5c842" opacity="0.9"/><ellipse cx="185" cy="49" rx="2.5" ry="4.5" fill="#f5c842" opacity="0.9"/>
+    <ellipse cx="176" cy="40" rx="4.5" ry="2.5" fill="#f5c842" opacity="0.9"/><ellipse cx="194" cy="40" rx="4.5" ry="2.5" fill="#f5c842" opacity="0.9"/>
+    <circle cx="416" cy="44" r="8" fill="#f5c842" opacity="0.5"/><circle cx="416" cy="44" r="5.5" fill="#e8b020" opacity="0.8"/><circle cx="416" cy="44" r="3" fill="#7a4a10"/>
+    <ellipse cx="416" cy="36" rx="2" ry="4" fill="#f5c842" opacity="0.9"/><ellipse cx="416" cy="52" rx="2" ry="4" fill="#f5c842" opacity="0.9"/>
+    <ellipse cx="408" cy="44" rx="4" ry="2" fill="#f5c842" opacity="0.9"/><ellipse cx="424" cy="44" rx="4" ry="2" fill="#f5c842" opacity="0.9"/>
+    <!-- Queen Anne's lace -->
+    <g fill="white" opacity="0.75">
+      <circle cx="262" cy="38" r="2.5"/><circle cx="256" cy="35" r="2"/><circle cx="268" cy="35" r="2"/><circle cx="258" cy="41" r="2"/><circle cx="266" cy="41" r="2"/><circle cx="262" cy="30" r="1.5"/>
+      <circle cx="494" cy="46" r="2.5"/><circle cx="488" cy="43" r="2"/><circle cx="500" cy="43" r="2"/><circle cx="490" cy="49" r="2"/><circle cx="498" cy="49" r="2"/>
+    </g>
+    <!-- Tiny scattered -->
+    <g opacity="0.7">
+      <circle cx="78" cy="58" r="3" fill="#f5c842"/><circle cx="120" cy="56" r="2.5" fill="#e8a8a0"/>
+      <circle cx="170" cy="58" r="3" fill="#c4a2d4"/><circle cx="210" cy="56" r="2.5" fill="#7ab4e0"/>
+      <circle cx="248" cy="58" r="3" fill="#f5c842"/><circle cx="315" cy="60" r="2.5" fill="#e8a8a0"/>
+      <circle cx="358" cy="58" r="3" fill="#c4a2d4"/><circle cx="398" cy="56" r="2.5" fill="#7ab4e0"/>
+      <circle cx="436" cy="58" r="3" fill="#f5c842"/><circle cx="476" cy="56" r="2.5" fill="#e8a8a0"/>
+      <circle cx="516" cy="58" r="3" fill="#c4a2d4"/><circle cx="556" cy="56" r="2.5" fill="#7ab4e0"/>
+    </g>
+    <!-- Butterflies -->
+    <g opacity="0.65">
+      <ellipse cx="78" cy="38" rx="8" ry="5" fill="#f5c842" transform="rotate(-20 78 38)"/>
+      <ellipse cx="66" cy="36" rx="6" ry="4" fill="#e8b020" opacity="0.8" transform="rotate(20 66 36)"/>
+      <ellipse cx="80" cy="44" rx="5" ry="3.5" fill="#f5c842" transform="rotate(15 80 44)"/>
+      <ellipse cx="68" cy="42" rx="4" ry="3" fill="#e8b020" opacity="0.8" transform="rotate(-15 68 42)"/>
+      <line x1="73" y1="36" x2="71" y2="30" stroke="#7a4a8a" stroke-width="0.8"/>
+      <line x1="75" y1="36" x2="77" y2="30" stroke="#7a4a8a" stroke-width="0.8"/>
+      <ellipse cx="322" cy="32" rx="7" ry="4.5" fill="#c4a2d4" transform="rotate(-20 322 32)"/>
+      <ellipse cx="312" cy="30" rx="5.5" ry="3.5" fill="#9b6fba" opacity="0.8" transform="rotate(20 312 30)"/>
+      <ellipse cx="324" cy="38" rx="4.5" ry="3" fill="#c4a2d4" transform="rotate(15 324 38)"/>
+      <ellipse cx="314" cy="36" rx="3.5" ry="2.5" fill="#9b6fba" opacity="0.8" transform="rotate(-15 314 36)"/>
+      <line x1="317" y1="30" x2="315" y2="24" stroke="#7a4a8a" stroke-width="0.8"/>
+      <line x1="319" y1="30" x2="321" y2="24" stroke="#7a4a8a" stroke-width="0.8"/>
+    </g>
+  </svg>
+</div>
+<div class="footer-content">
+  <p class="footer-title">JC <em>Savoy</em></p>
+  <p class="footer-tagline">Where every story ends with love</p>
+  <div class="footer-links">
+    <a href="https://www.amazon.com/stores/JC-Savoy/author/B0D2V26K3W">Amazon</a>
+    <a href="https://www.bookbub.com/authors/jc-savoy">BookBub</a>
+    <a href="https://jcsavoy.com">Website</a>
+  </div>
+  <div class="footer-rule"></div>
+  <p class="footer-legal">
+    © 2026 JC Savoy · Escape With Love Publishing<br/>
+    You're receiving this because you signed up at jcsavoy.com<br/>
+    <a href="{$unsubscribe}">Unsubscribe</a> &nbsp;·&nbsp; <a href="{$webversion}">View in browser</a>
+  </p>
+</div>
+
+
+</div><!-- /email-container -->
+</div><!-- /email-wrapper -->
+</body>
+</html>
