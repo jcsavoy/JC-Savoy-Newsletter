@@ -1,0 +1,125 @@
+{
+  "name": "JC Savoy Subscriber Management",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "subscribe",
+        "options": {}
+      },
+      "id": "webhook-subscribe",
+      "name": "Webhook: Subscribe",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [0, 0]
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "value": "18KYRnngYNcLaCpivRS5dXPm9Ryk7pngfvz5PoEhA44E",
+          "mode": "id"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "Subscribers",
+          "mode": "name"
+        },
+        "columns": {
+          "mappingMode": "manual",
+          "value": {
+            "Subscriber email": "={{ $json.body.email }}",
+            "Location": "={{ $json.body.location || \"Website\" }}",
+            "Date joined": "={{ $now.format(\"yyyy-MM-dd\") }}"
+          }
+        },
+        "options": {}
+      },
+      "id": "gsheets-subscribe",
+      "name": "Google Sheets: Add Subscriber",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.2,
+      "position": [250, 0]
+    },
+    {
+      "parameters": {
+        "path": "unsubscribe",
+        "options": {}
+      },
+      "id": "webhook-unsubscribe",
+      "name": "Webhook: Unsubscribe",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [0, 200]
+    },
+    {
+      "parameters": {
+        "operation": "delete",
+        "documentId": {
+          "__rl": true,
+          "value": "18KYRnngYNcLaCpivRS5dXPm9Ryk7pngfvz5PoEhA44E",
+          "mode": "id"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "Subscribers",
+          "mode": "name"
+        },
+        "filters": {
+          "conditions": [
+            {
+              "leftHandSide": "Subscriber email",
+              "operator": "equal",
+              "rightHandSide": "={{ $json.query.email }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "gsheets-unsubscribe",
+      "name": "Google Sheets: Remove Subscriber",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.2,
+      "position": [250, 200]
+    },
+    {
+      "parameters": {
+        "options": {
+          "redirectUrl": "https://jcsavoy.com/thank-you.html"
+        }
+      },
+      "id": "respond-subscribe",
+      "name": "Redirect to Thank You",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1,
+      "position": [500, 0]
+    },
+    {
+      "parameters": {
+        "options": {
+          "redirectUrl": "https://jcsavoy.com/unsubscribed.html"
+        }
+      },
+      "id": "respond-unsubscribe",
+      "name": "Redirect to Unsubscribed",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1,
+      "position": [500, 200]
+    }
+  ],
+  "connections": {
+    "Webhook: Subscribe": {
+      "main": [[{ "node": "Google Sheets: Add Subscriber", "type": "main", "index": 0 }]]
+    },
+    "Google Sheets: Add Subscriber": {
+      "main": [[{ "node": "Redirect to Thank You", "type": "main", "index": 0 }]]
+    },
+    "Webhook: Unsubscribe": {
+      "main": [[{ "node": "Google Sheets: Remove Subscriber", "type": "main", "index": 0 }]]
+    },
+    "Google Sheets: Remove Subscriber": {
+      "main": [[{ "node": "Redirect to Unsubscribed", "type": "main", "index": 0 }]]
+    }
+  }
+}

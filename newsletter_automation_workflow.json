@@ -1,0 +1,245 @@
+{
+  "name": "JC Savoy Newsletter Automation",
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "1",
+      "name": "Manual Trigger",
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        0,
+        0
+      ]
+    },
+    {
+      "parameters": {
+        "values": {
+          "string": [
+            {
+              "name": "newsletterUrl",
+              "value": "https://raw.githubusercontent.com/jcsavoy/JC-Savoy-Newsletter/main/newsletter-march-2026.html"
+            },
+            {
+              "name": "emailSubject",
+              "value": "JC Savoy Newsletter - Cozy Cowboy Coffee Cake Recipe Inside!"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "2",
+      "name": "Edit Settings Here",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.2,
+      "position": [
+        200,
+        0
+      ]
+    },
+    {
+      "parameters": {
+        "url": "={{ $json.newsletterUrl }}",
+        "options": {}
+      },
+      "id": "3",
+      "name": "Fetch HTML from GitHub",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        400,
+        0
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "read",
+        "documentId": {
+          "__rl": true,
+          "value": "18KYRnngYNcLaCpivRS5dXPm9Ryk7pngfvz5PoEhA44E",
+          "mode": "id"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "Subscribers",
+          "mode": "name"
+        },
+        "options": {}
+      },
+      "id": "4",
+      "name": "Get Subscribers",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.2,
+      "position": [
+        600,
+        0
+      ]
+    },
+    {
+      "parameters": {
+        "batchSize": 50,
+        "options": {}
+      },
+      "id": "5",
+      "name": "Split In Batches",
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 2,
+      "position": [
+        800,
+        0
+      ]
+    },
+    {
+      "parameters": {
+        "values": {
+          "string": [
+            {
+              "name": "finalHtml",
+              "value": "={{ $node[\"Fetch HTML from GitHub\"].json.data.replace(/##UNSUBSCRIBE_LINK##/g, 'https://n8n.srv1257557.hstgr.cloud/webhook/unsubscribe?email=' + encodeURIComponent($json[\"Subscriber email\"])) }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "prepare-content",
+      "name": "Prepare Email Content",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.2,
+      "position": [
+        900,
+        -100
+      ]
+    },
+    {
+      "parameters": {
+        "resource": "message",
+        "operation": "send",
+        "to": "={{ $json[\"Subscriber email\"] }}",
+        "subject": "={{ $node[\"Edit Settings Here\"].json.emailSubject }}",
+        "text": "Please enable HTML to view this newsletter.",
+        "html": "={{ $node[\"Prepare Email Content\"].json.finalHtml }}",
+        "appendAttribution": false
+      },
+      "id": "6",
+      "name": "Send via Gmail",
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2,
+      "position": [
+        1100,
+        -100
+      ],
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "GMAIL_CREDENTIAL_ID",
+          "name": "Gmail OAuth2 account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "amount": 10,
+        "unit": "seconds"
+      },
+      "id": "7",
+      "name": "Wait (10s)",
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1,
+      "position": [
+        1200,
+        0
+      ]
+    }
+  ],
+  "connections": {
+    "Manual Trigger": {
+      "main": [
+        [
+          {
+            "node": "Edit Settings Here",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Settings Here": {
+      "main": [
+        [
+          {
+            "node": "Fetch HTML from GitHub",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Fetch HTML from GitHub": {
+      "main": [
+        [
+          {
+            "node": "Get Subscribers",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get Subscribers": {
+      "main": [
+        [
+          {
+            "node": "Split In Batches",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Split In Batches": {
+      "main": [
+        [
+          {
+            "node": "Prepare Email Content",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Prepare Email Content": {
+      "main": [
+        [
+          {
+            "node": "Send via Gmail",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Send via Gmail": {
+      "main": [
+        [
+          {
+            "node": "Wait (10s)",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait (10s)": {
+      "main": [
+        [
+          {
+            "node": "Split In Batches",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {}
+}
