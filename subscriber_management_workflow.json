@@ -5,6 +5,7 @@
       "parameters": {
         "httpMethod": "POST",
         "path": "subscribe",
+        "responseMode": "responseNode",
         "options": {}
       },
       "id": "webhook-subscribe",
@@ -46,6 +47,7 @@
     {
       "parameters": {
         "path": "unsubscribe",
+        "responseMode": "responseNode",
         "options": {}
       },
       "id": "webhook-unsubscribe",
