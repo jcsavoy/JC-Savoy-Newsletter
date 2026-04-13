@@ -30,6 +30,7 @@
           "mappingMode": "manual",
           "value": {
             "Subscriber email": "={{ $json.body.email }}",
+            "First Name": "={{ $json.body.first_name }}",
             "Location": "={{ $json.body.location || \"Website\" }}",
             "Date joined": "={{ $now.format(\"yyyy-MM-dd\") }}"
           }
