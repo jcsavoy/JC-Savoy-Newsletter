@@ -88,8 +88,15 @@
     },
     {
       "parameters": {
-        "options": {
-          "redirectUrl": "https://jcsavoy.com/thank-you.html"
+        "respondWith": "noData",
+        "responseCode": 302,
+        "responseHeaders": {
+          "entries": [
+            {
+              "name": "Location",
+              "value": "https://jcsavoy.com/thank-you.html"
+            }
+          ]
         }
       },
       "id": "respond-subscribe",
@@ -100,8 +107,15 @@
     },
     {
       "parameters": {
-        "options": {
-          "redirectUrl": "https://jcsavoy.com/unsubscribed.html"
+        "respondWith": "noData",
+        "responseCode": 302,
+        "responseHeaders": {
+          "entries": [
+            {
+              "name": "Location",
+              "value": "https://jcsavoy.com/unsubscribed.html"
+            }
+          ]
         }
       },
       "id": "respond-unsubscribe",
