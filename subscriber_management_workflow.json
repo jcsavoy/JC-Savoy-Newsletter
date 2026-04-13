@@ -88,16 +88,9 @@
     },
     {
       "parameters": {
-        "respondWith": "noData",
-        "responseCode": 302,
-        "responseHeaders": {
-          "entries": [
-            {
-              "name": "Location",
-              "value": "https://jcsavoy.com/thank-you.html"
-            }
-          ]
-        }
+        "respondWith": "text",
+        "responseBody": "<!DOCTYPE html><html><head><meta http-equiv=\"refresh\" content=\"0; url=https://jcsavoy.com/thank-you.html\"><script type=\"text/javascript\">window.location.href = \"https://jcsavoy.com/thank-you.html\";</script></head><body><p>Redirecting you to our thank you page...</p></body></html>",
+        "options": {}
       },
       "id": "respond-subscribe",
       "name": "Redirect to Thank You",
@@ -107,16 +100,9 @@
     },
     {
       "parameters": {
-        "respondWith": "noData",
-        "responseCode": 302,
-        "responseHeaders": {
-          "entries": [
-            {
-              "name": "Location",
-              "value": "https://jcsavoy.com/unsubscribed.html"
-            }
-          ]
-        }
+        "respondWith": "text",
+        "responseBody": "<!DOCTYPE html><html><head><meta http-equiv=\"refresh\" content=\"0; url=https://jcsavoy.com/unsubscribed.html\"><script type=\"text/javascript\">window.location.href = \"https://jcsavoy.com/unsubscribed.html\";</script></head><body><p>Redirecting...</p></body></html>",
+        "options": {}
       },
       "id": "respond-unsubscribe",
       "name": "Redirect to Unsubscribed",
