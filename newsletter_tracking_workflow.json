@@ -1,5 +1,5 @@
 {
-  "name": "JC Savoy Newsletter - TRACKING (LOOKUP-FIRST)",
+  "name": "JC Savoy Newsletter - PRODUCTION TRACKING (LINEAR)",
   "nodes": [
     {
       "parameters": {
@@ -12,10 +12,7 @@
       "name": "Webhook: Click Tracking",
       "type": "n8n-nodes-base.webhook",
       "typeVersion": 1,
-      "position": [
-        100,
-        200
-      ]
+      "position": [100, 150]
     },
     {
       "parameters": {
@@ -28,10 +25,7 @@
       "name": "Webhook: Open Tracking",
       "type": "n8n-nodes-base.webhook",
       "typeVersion": 1,
-      "position": [
-        100,
-        400
-      ]
+      "position": [100, 350]
     },
     {
       "parameters": {
@@ -44,10 +38,7 @@
       "name": "Webhook: Feedback Tracking",
       "type": "n8n-nodes-base.webhook",
       "typeVersion": 1,
-      "position": [
-        100,
-        600
-      ]
+      "position": [100, 550]
     },
     {
       "parameters": {
@@ -65,7 +56,7 @@
         "filters": {
           "conditions": [
             {
-              "column": "Subscriber email",
+              "columnName": "Subscriber email",
               "value": "={{ $json.query.email }}"
             }
           ]
@@ -76,24 +67,21 @@
       "name": "Google Sheets: Lookup Row",
       "type": "n8n-nodes-base.googleSheets",
       "typeVersion": 4,
-      "position": [
-        400,
-        400
-      ],
-      "alwaysOutputData": true
+      "position": [400, 350],
+      "alwaysOutputData": true,
+      "settings": {
+        "onError": "continue"
+      }
     },
     {
       "parameters": {
-        "jsCode": "const query = $node[\"Webhook: Click Tracking\"].json.query || \n              $node[\"Webhook: Open Tracking\"].json.query || \n              $node[\"Webhook: Feedback Tracking\"].json.query || {};\n\nlet type = \"feedback\";\nif (query.url) type = \"click\";\nelse if (!query.section) type = \"open\";\n\nlet col = \"\";\nif (type === \"click\") col = \"Clicked\";\nelse if (type === \"open\") col = \"Opened\";\nelse {\n    const section = String(query.section || \"\").toLowerCase();\n    const vote = String(query.vote || \"\").toLowerCase();\n    if (section === \"joke\") col = (vote === \"up\") ? \"Joke: Liked\" : \"Joke: Disliked\";\n    else if (section === \"gazette\") col = (vote === \"up\") ? \"Gazette: Liked\" : \"Gazette: Disliked\";\n    else if (section === \"recipe\") {\n        if (vote === \"going\") col = \"Recipe: Going to Try\";\n        else if (vote === \"liked\") col = \"Recipe: Liked\";\n        else if (vote === \"disliked\") col = \"Recipe: Disliked\";\n    }\n}\n\nconst output = { ...$json }; // Start with row from Lookup\nif (col) {\n    output[col] = (Number($json[col]) || 0) + 1; // Increment the targeted column\n}\n\noutput.type = type;\noutput.url = query.url || \"\";\noutput.targetEmail = query.email || $json[\"Subscriber email\"];\n\nreturn output;"
+        "jsCode": "/* UNIFIED COLLECTOR WITH INCREMENT LOGIC */\nconst query = $node[\"Webhook: Open Tracking\"].json.query || $node[\"Webhook: Click Tracking\"].json.query || $node[\"Webhook: Feedback Tracking\"].json.query || {};\nconst sheetData = $json; // This is the row from Google Sheets\n\nlet type = 'feedback';\nif (query.url) type = 'click';\nelse if (!query.section) type = 'open';\n\nlet col = '';\nif (type === 'click') {\n  col = 'Clicked';\n} else if (type === 'open') {\n  col = 'Opened';\n} else {\n  const section = String(query.section || '').toLowerCase();\n  const vote = String(query.vote || '').toLowerCase();\n\n  if (section === 'joke') {\n    col = (vote === 'up') ? 'Joke: Liked' : 'Joke: Disliked';\n  } else if (section === 'gazette') {\n    col = (vote === 'up') ? 'Gazette: Liked' : 'Gazette: Disliked';\n  } else if (section === 'recipe') {\n    if (vote === 'going') col = 'Recipe: Going to Try';\n    else if (vote === 'liked') col = 'Recipe: Liked';\n    else if (vote === 'disliked') col = 'Recipe: Disliked';\n  }\n}\n\n// MATH: Get the old value and add 1\nconst oldScore = Number(sheetData[col] || 0);\nconst newScore = oldScore + 1;\n\nconst redirectUrl = (type === 'click' && query.url)\n  ? decodeURIComponent(query.url)\n  : 'https://jcsavoy.com/newsletter-april-2026.html';\n\nreturn {\n  \"Subscriber email\": query.email || 'unknown@jcsavoy.com',\n  [col]: newScore, // This maps the dynamic column name to the new score\n  redirectUrl: redirectUrl\n};"
       },
       "id": "scoremaster",
       "name": "Math: Scoremaster",
       "type": "n8n-nodes-base.code",
       "typeVersion": 1,
-      "position": [
-        650,
-        400
-      ]
+      "position": [650, 350]
     },
     {
       "parameters": {
@@ -109,17 +97,17 @@
           "mode": "name"
         },
         "columnToMatch": "Subscriber email",
-        "valueToMatch": "={{ $json.targetEmail }}",
+        "valueToMatch": "={{ $json[\"Subscriber email\"] }}",
+        "fieldsToUpdate": {
+          "mappingMode": "auto"
+        },
         "options": {}
       },
       "id": "update-score",
       "name": "Google Sheets: Update Score",
       "type": "n8n-nodes-base.googleSheets",
       "typeVersion": 4,
-      "position": [
-        900,
-        400
-      ],
+      "position": [900, 350],
       "alwaysOutputData": true,
       "settings": {
         "onError": "continue"
@@ -127,90 +115,40 @@
     },
     {
       "parameters": {
+        "respondWith": "redirect",
+        "redirectUrl": "={{ $json.redirectUrl }}",
         "options": {
           "responseCode": 302
-        },
-        "responseBody": "={{ $json.type === 'click' ? $json.url : ($json.type === 'open' ? 'https://raw.githubusercontent.com/jcsavoy/JC-Savoy-Newsletter/main/header-april-2026.png' : 'https://jcsavoy.com/feedback-thanks.html') }}"
+        }
       },
       "id": "redirector",
       "name": "Universal Redirector",
       "type": "n8n-nodes-base.respondToWebhook",
       "typeVersion": 1,
-      "position": [
-        1150,
-        400
-      ]
+      "position": [1150, 350]
     }
   ],
   "connections": {
-    "webhook-click": {
-      "main": [
-        [
-          {
-            "node": "lookup-row",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
+    "Webhook: Click Tracking": {
+      "main": [[{ "node": "Lookup Row", "type": "main", "index": 0 }]]
     },
-    "webhook-open": {
-      "main": [
-        [
-          {
-            "node": "lookup-row",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
+    "Webhook: Open Tracking": {
+      "main": [[{ "node": "Lookup Row", "type": "main", "index": 0 }]]
     },
-    "webhook-feedback": {
-      "main": [
-        [
-          {
-            "node": "lookup-row",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
+    "Webhook: Feedback Tracking": {
+      "main": [[{ "node": "Lookup Row", "type": "main", "index": 0 }]]
     },
-    "lookup-row": {
-      "main": [
-        [
-          {
-            "node": "scoremaster",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
+    "Lookup Row": {
+      "main": [[{ "node": "Math: Scoremaster", "type": "main", "index": 0 }]]
     },
-    "scoremaster": {
-      "main": [
-        [
-          {
-            "node": "update-score",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
+    "Math: Scoremaster": {
+      "main": [[{ "node": "Update Score", "type": "main", "index": 0 }]]
     },
-    "update-score": {
-      "main": [
-        [
-          {
-            "node": "redirector",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
+    "Update Score": {
+      "main": [[{ "node": "Universal Redirector", "type": "main", "index": 0 }]]
     }
   },
-  "active": false,
+  "active": true,
   "settings": {
     "executionOrder": "v1"
   }

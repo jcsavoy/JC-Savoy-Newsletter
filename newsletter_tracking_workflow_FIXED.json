@@ -1,0 +1,124 @@
+{
+  "name": "JC Savoy Newsletter - FINAL TRACKING (LINEAR)",
+  "nodes": [
+    {
+      "parameters": {
+        "path": "click-tracking",
+        "options": {
+          "responseMode": "responseNode"
+        }
+      },
+      "id": "webhook-click",
+      "name": "Webhook: Click Tracking",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [100, 150]
+    },
+    {
+      "parameters": {
+        "path": "open-tracking",
+        "options": {
+          "responseMode": "responseNode"
+        }
+      },
+      "id": "webhook-open",
+      "name": "Webhook: Open Tracking",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [100, 350]
+    },
+    {
+      "parameters": {
+        "path": "feedback-tracking",
+        "options": {
+          "responseMode": "responseNode"
+        }
+      },
+      "id": "webhook-feedback",
+      "name": "Webhook: Feedback Tracking",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [100, 550]
+    },
+    {
+      "parameters": {
+        "jsCode": "/* UNIFIED COLLECTOR */\nconst query = $json.query || {};\n\nlet type = 'feedback';\nif (query.url) type = 'click';\nelse if (!query.section) type = 'open';\n\nlet col = '';\nif (type === 'click') {\n  col = 'Clicked';\n} else if (type === 'open') {\n  col = 'Opened';\n} else {\n  const section = String(query.section || '').toLowerCase();\n  const vote = String(query.vote || '').toLowerCase();\n\n  if (section === 'joke') {\n    col = (vote === 'up') ? 'Joke: Liked' : 'Joke: Disliked';\n  } else if (section === 'gazette') {\n    col = (vote === 'up') ? 'Gazette: Liked' : 'Gazette: Disliked';\n  } else if (section === 'recipe') {\n    if (vote === 'going') col = 'Recipe: Going to Try';\n    else if (vote === 'liked') col = 'Recipe: Liked';\n    else if (vote === 'disliked') col = 'Recipe: Disliked';\n  }\n}\n\nconst redirectUrl = (type === 'click' && query.url)\n  ? decodeURIComponent(query.url)\n  : 'https://jcsavoy.com/newsletter-april-2026.html';\n\nreturn {\n  email: query.email || 'unknown@jcsavoy.com',\n  colToUpdate: col,\n  type: type,\n  redirectUrl: redirectUrl\n};"
+      },
+      "id": "scoremaster",
+      "name": "Math: Scoremaster",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 1,
+      "position": [400, 350]
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "documentId": {
+          "__rl": true,
+          "value": "18KYRnnqYNCLaCpivRS5dXPm9Ryk7pngfvz5PoEhA44E",
+          "mode": "id"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "Subscribers",
+          "mode": "name"
+        },
+        "columnToMatch": "Subscriber email",
+        "valueToMatch": "={{ $json.email }}",
+        "fieldsToUpdate": {
+          "values": [
+            {
+              "column": "={{ $json.colToUpdate }}",
+              "value": "={{ 1 }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "update-score",
+      "name": "Google Sheets: Update Score",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4,
+      "position": [700, 350],
+      "alwaysOutputData": true,
+      "settings": {
+        "onError": "continue"
+      }
+    },
+    {
+      "parameters": {
+        "respondWith": "redirect",
+        "redirectUrl": "={{ $('Math: Scoremaster').item.json.redirectUrl }}",
+        "options": {
+          "responseCode": 302
+        }
+      },
+      "id": "redirector",
+      "name": "Universal Redirector",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1,
+      "position": [950, 350]
+    }
+  ],
+  "connections": {
+    "Webhook: Click Tracking": {
+      "main": [[{ "node": "Math: Scoremaster", "type": "main", "index": 0 }]]
+    },
+    "Webhook: Open Tracking": {
+      "main": [[{ "node": "Math: Scoremaster", "type": "main", "index": 0 }]]
+    },
+    "Webhook: Feedback Tracking": {
+      "main": [[{ "node": "Math: Scoremaster", "type": "main", "index": 0 }]]
+    },
+    "Math: Scoremaster": {
+      "main": [[{ "node": "Google Sheets: Update Score", "type": "main", "index": 0 }]]
+    },
+    "Google Sheets: Update Score": {
+      "main": [[{ "node": "Universal Redirector", "type": "main", "index": 0 }]]
+    }
+  },
+  "active": true,
+  "settings": {
+    "executionOrder": "v1"
+  }
+}
