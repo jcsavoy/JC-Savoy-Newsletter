@@ -18,7 +18,7 @@
           "string": [
             {
               "name": "newsletterUrl",
-              "value": "https://raw.githubusercontent.com/jcsavoy/JC-Savoy-Newsletter/main/newsletter-april-2026.html"
+              "value": "https://raw.githubusercontent.com/jcsavoy/JC-Savoy-Newsletter/main/newsletter-april-2026.html?v=1"
             },
             {
               "name": "emailSubject",
