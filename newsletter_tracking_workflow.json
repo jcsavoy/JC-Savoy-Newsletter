@@ -135,7 +135,7 @@
     {
       "parameters": {
         "respondWith": "redirect",
-        "redirectUrl": "={{ ($node[\"Math: Scoremaster\"].json.type === \"click\") ? $node[\"Math: Scoremaster\"].json.url : (($node[\"Math: Scoremaster\"].json.type === \"open\") ? \"https://raw.githubusercontent.com/jcsavoy/JC-Savoy-Newsletter/main/header-april-2026.png\" : \"https://jcsavoy.com/feedback-thanks\") }}",
+        "redirectUrl": "={{ ($node[\"Math: Scoremaster\"].json.type === \"click\") ? $node[\"Math: Scoremaster\"].json.url : (($node[\"Math: Scoremaster\"].json.type === \"open\") ? \"https://raw.githubusercontent.com/jcsavoy/JC-Savoy-Newsletter/main/header-april-2026.png\" : \"https://jcsavoy.com/feedback-thanks.html\") }}",
         "options": {
           "responseCode": 302
         }
