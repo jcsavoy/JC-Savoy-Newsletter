@@ -59,7 +59,7 @@
         },
         "sheetName": {
           "__rl": true,
-          "value": "Sheet1",
+          "value": "Subscribers",
           "mode": "name"
         },
         "filters": {
@@ -109,7 +109,7 @@
         },
         "sheetName": {
           "__rl": true,
-          "value": "Sheet1",
+          "value": "Subscribers",
           "mode": "name"
         },
         "columnToMatch": "Subscriber email",
