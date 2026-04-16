@@ -88,15 +88,36 @@
     },
     {
       "parameters": {
+        "resource": "message",
+        "operation": "send",
+        "to": "={{ $node[\"gsheets-subscribe\"].json[\"Subscriber email\"] }}",
+        "subject": "Welcome to the JC Savoy Family! (And your free book 📖)",
+        "text": "=Hi {{ $node[\"gsheets-subscribe\"].json[\"First Name\"] }},\n\nSo glad you're here! As promised, here is your free copy of [Book Title] via BookFunnel: [INSERT_BOOKFUNNEL_LINK_HERE]\n\nHappy reading!\n\nJC Savoy",
+        "appendAttribution": false
+      },
+      "id": "gmail-welcome",
+      "name": "Gmail: Send Welcome Email",
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2,
+      "position": [500, -100],
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "GMAIL_CREDENTIAL_ID",
+          "name": "Gmail OAuth2 account"
+        }
+      }
+    },
+    {
+      "parameters": {
         "respondWith": "text",
-        "responseBody": "<!DOCTYPE html><html><head><meta http-equiv=\"refresh\" content=\"0; url=https://jcsavoy.com/thank-you.html\"><script type=\"text/javascript\">window.location.href = \"https://jcsavoy.com/thank-you.html\";</script></head><body><p>Redirecting you to our thank you page...</p></body></html>",
+        "responseBody": "<!DOCTYPE html><html><head><meta http-equiv=\"refresh\" content=\"0; url=https://jcsavoy.com/thank-you.html\"><script type=\"text/javascript\">window.location.href = \"https://jcsavoy.com/thank-you.html\";</script></head><body><p>Welcome to the family! Redirecting you to your thank you page (where your book is waiting)...</p></body></html>",
         "options": {}
       },
       "id": "respond-subscribe",
       "name": "Redirect to Thank You",
       "type": "n8n-nodes-base.respondToWebhook",
       "typeVersion": 1,
-      "position": [500, 0]
+      "position": [750, 0]
     },
     {
       "parameters": {
@@ -116,7 +137,10 @@
       "main": [[{ "node": "Google Sheets: Add Subscriber", "type": "main", "index": 0 }]]
     },
     "Google Sheets: Add Subscriber": {
-      "main": [[{ "node": "Redirect to Thank You", "type": "main", "index": 0 }]]
+      "main": [
+        [{ "node": "Gmail: Send Welcome Email", "type": "main", "index": 0 }],
+        [{ "node": "Redirect to Thank You", "type": "main", "index": 0 }]
+      ]
     },
     "Webhook: Unsubscribe": {
       "main": [[{ "node": "Google Sheets: Remove Subscriber", "type": "main", "index": 0 }]]

@@ -1,5 +1,5 @@
 {
-  "name": "JC Savoy Newsletter - TRACKING (CLEAN SLATE)",
+  "name": "JC Savoy Newsletter - TRACKING (LOOKUP-FIRST)",
   "nodes": [
     {
       "parameters": {
@@ -51,19 +51,6 @@
     },
     {
       "parameters": {
-        "jsCode": "const query = $json.query || {};\nlet type = \"feedback\";\nif (query.url) type = \"click\";\nelse if (!query.section) type = \"open\";\n\nlet col = \"\";\nif (type === \"click\") col = \"Clicked\";\nelse if (type === \"open\") col = \"Opened\";\nelse {\n    const section = String(query.section || \"\").toLowerCase();\n    const vote = String(query.vote || \"\").toLowerCase();\n    if (section === \"joke\") col = (vote === \"up\") ? \"Joke: Liked\" : \"Joke: Disliked\";\n    else if (section === \"gazette\") col = (vote === \"up\") ? \"Gazette: Liked\" : \"Gazette: Disliked\";\n    else if (section === \"recipe\") {\n        if (vote === \"going\") col = \"Recipe: Going to Try\";\n        else if (vote === \"liked\") col = \"Recipe: Liked\";\n        else if (vote === \"disliked\") col = \"Recipe: Disliked\";\n    }\n}\n\nreturn { \n  email: query.email || \"\", \n  type, \n  url: query.url || \"\", \n  colToUpdate: col \n};"
-      },
-      "id": "scoremaster",
-      "name": "Math: Scoremaster",
-      "type": "n8n-nodes-base.code",
-      "typeVersion": 1,
-      "position": [
-        400,
-        400
-      ]
-    },
-    {
-      "parameters": {
         "operation": "getMany",
         "documentId": {
           "__rl": true,
@@ -79,7 +66,7 @@
           "conditions": [
             {
               "column": "Subscriber email",
-              "value": "={{ $json.email }}"
+              "value": "={{ $json.query.email }}"
             }
           ]
         },
@@ -90,10 +77,23 @@
       "type": "n8n-nodes-base.googleSheets",
       "typeVersion": 4,
       "position": [
-        600,
+        400,
         400
       ],
       "alwaysOutputData": true
+    },
+    {
+      "parameters": {
+        "jsCode": "const query = $node[\"Webhook: Click Tracking\"].json.query || \n              $node[\"Webhook: Open Tracking\"].json.query || \n              $node[\"Webhook: Feedback Tracking\"].json.query || {};\n\nlet type = \"feedback\";\nif (query.url) type = \"click\";\nelse if (!query.section) type = \"open\";\n\nlet col = \"\";\nif (type === \"click\") col = \"Clicked\";\nelse if (type === \"open\") col = \"Opened\";\nelse {\n    const section = String(query.section || \"\").toLowerCase();\n    const vote = String(query.vote || \"\").toLowerCase();\n    if (section === \"joke\") col = (vote === \"up\") ? \"Joke: Liked\" : \"Joke: Disliked\";\n    else if (section === \"gazette\") col = (vote === \"up\") ? \"Gazette: Liked\" : \"Gazette: Disliked\";\n    else if (section === \"recipe\") {\n        if (vote === \"going\") col = \"Recipe: Going to Try\";\n        else if (vote === \"liked\") col = \"Recipe: Liked\";\n        else if (vote === \"disliked\") col = \"Recipe: Disliked\";\n    }\n}\n\nconst output = { ...$json }; // Start with row from Lookup\nif (col) {\n    output[col] = (Number($json[col]) || 0) + 1; // Increment the targeted column\n}\n\noutput.type = type;\noutput.url = query.url || \"\";\noutput.targetEmail = query.email || $json[\"Subscriber email\"];\n\nreturn output;"
+      },
+      "id": "scoremaster",
+      "name": "Math: Scoremaster",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 1,
+      "position": [
+        650,
+        400
+      ]
     },
     {
       "parameters": {
@@ -109,15 +109,7 @@
           "mode": "name"
         },
         "columnToMatch": "Subscriber email",
-        "valueToMatch": "={{ $node[\"Math: Scoremaster\"].json.email }}",
-        "fieldsToUpdate": {
-          "values": [
-            {
-              "column": "={{ $node[\"Math: Scoremaster\"].json.colToUpdate }}",
-              "value": "={{ (Number($json[$node[\"Math: Scoremaster\"].json.colToUpdate]) || 0) + 1 }}"
-            }
-          ]
-        },
+        "valueToMatch": "={{ $json.targetEmail }}",
         "options": {}
       },
       "id": "update-score",
@@ -125,7 +117,7 @@
       "type": "n8n-nodes-base.googleSheets",
       "typeVersion": 4,
       "position": [
-        800,
+        900,
         400
       ],
       "alwaysOutputData": true,
@@ -138,14 +130,14 @@
         "options": {
           "responseCode": 302
         },
-        "responseBody": "={{ $node[\"Math: Scoremaster\"].json.type === 'click' ? $node[\"Math: Scoremaster\"].json.url : ($node[\"Math: Scoremaster\"].json.type === 'open' ? 'https://raw.githubusercontent.com/jcsavoy/JC-Savoy-Newsletter/main/header-april-2026.png' : 'https://jcsavoy.com/feedback-thanks.html') }}"
+        "responseBody": "={{ $json.type === 'click' ? $json.url : ($json.type === 'open' ? 'https://raw.githubusercontent.com/jcsavoy/JC-Savoy-Newsletter/main/header-april-2026.png' : 'https://jcsavoy.com/feedback-thanks.html') }}"
       },
       "id": "redirector",
       "name": "Universal Redirector",
       "type": "n8n-nodes-base.respondToWebhook",
       "typeVersion": 1,
       "position": [
-        1050,
+        1150,
         400
       ]
     }
@@ -155,7 +147,7 @@
       "main": [
         [
           {
-            "node": "scoremaster",
+            "node": "lookup-row",
             "type": "main",
             "index": 0
           }
@@ -166,7 +158,7 @@
       "main": [
         [
           {
-            "node": "scoremaster",
+            "node": "lookup-row",
             "type": "main",
             "index": 0
           }
@@ -174,17 +166,6 @@
       ]
     },
     "webhook-feedback": {
-      "main": [
-        [
-          {
-            "node": "scoremaster",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "scoremaster": {
       "main": [
         [
           {
@@ -196,6 +177,17 @@
       ]
     },
     "lookup-row": {
+      "main": [
+        [
+          {
+            "node": "scoremaster",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "scoremaster": {
       "main": [
         [
           {

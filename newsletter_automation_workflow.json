@@ -1,5 +1,5 @@
 {
-  "name": "JC Savoy Newsletter - DIRECT TEST",
+  "name": "JC Savoy Newsletter - SENDING (MAY READY)",
   "nodes": [
     {
       "parameters": {},
@@ -17,8 +17,8 @@
         "values": {
           "string": [
             {
-              "name": "newsletterUrl",
-              "value": "https://raw.githubusercontent.com/jcsavoy/JC-Savoy-Newsletter/main/newsletter-april-2026.html?v=1"
+              "name": "fileName",
+              "value": "newsletter-april-2026.html"
             },
             {
               "name": "emailSubject",
@@ -43,7 +43,7 @@
     },
     {
       "parameters": {
-        "url": "={{ $json.newsletterUrl }}",
+        "url": "=https://raw.githubusercontent.com/jcsavoy/JC-Savoy-Newsletter/main/{{ $json.fileName }}?v={{ Math.random() }}",
         "options": {}
       },
       "id": "3",
@@ -57,7 +57,7 @@
     },
     {
       "parameters": {
-        "jsCode": "const html = $json.data;\nconst baseUrl = 'https://n8n.srv1257557.hstgr.cloud/webhook';\n\nconst email = $json.email || \n              ($node[\"Get row(s) in sheet\"] ? $node[\"Get row(s) in sheet\"].json[\"Subscriber email\"] : \"\") || \n              ($node[\"Settings\"] ? $node[\"Settings\"].json.testEmail : \"\");\n\nlet finalHtml = html;\n\n// 1. HERO IMAGE TRACKING\nconst openUrl = `${baseUrl}/open-tracking?email=${encodeURIComponent(email)}`;\nconst headerImageUrl = \"https://raw.githubusercontent.com/jcsavoy/JC-Savoy-Newsletter/main/header-april-2026.png\";\nif (finalHtml.includes(headerImageUrl)) {\n  finalHtml = finalHtml.split(headerImageUrl).join(openUrl);\n}\n\n// 2. GAZETTE & JOKE BUTTONS (Anchor replacement)\nconst feedbackTracking = [\n  { anchor: '#gazette-up', section: 'Gazette', vote: 'up' },\n  { anchor: '#gazette-down', section: 'Gazette', vote: 'down' },\n  { anchor: '#joke-up', section: 'Joke', vote: 'up' },\n  { anchor: '#joke-down', section: 'Joke', vote: 'down' }\n];\n\nfeedbackTracking.forEach(f => {\n  const url = `${baseUrl}/feedback-tracking?email=${encodeURIComponent(email)}&section=${f.section}&vote=${f.vote}`;\n  finalHtml = finalHtml.split(f.anchor).join(url);\n});\n\n// 3. RECIPE BUTTONS (Anchor replacement)\nconst recipeOptions = [\n  { anchor: '#recipe-going', vote: 'going' },\n  { anchor: '#recipe-liked', vote: 'liked' },\n  { anchor: '#recipe-disliked', vote: 'disliked' }\n];\n\nrecipeOptions.forEach(r => {\n  const url = `${baseUrl}/feedback-tracking?email=${encodeURIComponent(email)}&section=Recipe&vote=${r.vote}`;\n  finalHtml = finalHtml.split(r.anchor).join(url);\n});\n\n// 4. CLICK TRACKING\nconst clickUrl = `${baseUrl}/click-tracking?email=${encodeURIComponent(email)}`;\nfinalHtml = finalHtml.replace(/<a\\s+(?:[^>]*?\\s+)?href=\"([^#][^\"]*)\"/gi, (match, url) => {\n  if (url.startsWith('http') && !url.includes('unsubscribe') && !url.includes('tracking')) {\n    return match.replace(url, `${clickUrl}&url=${encodeURIComponent(url)}`);\n  }\n  return match;\n});\n\n// 5. Update Unsubscribe Link\nconst unsubUrl = `${baseUrl}/unsubscribe?email=${encodeURIComponent(email)}`;\nfinalHtml = finalHtml.replace(/##UNSUBSCRIBE_LINK##/g, unsubUrl);\n\nreturn { finalHtml, email };"
+        "jsCode": "const html = $json.data;\nconst baseUrl = 'https://n8n.srv1257557.hstgr.cloud/webhook';\nconst githubBase = 'https://raw.githubusercontent.com/jcsavoy/JC-Savoy-Newsletter/main';\n\nconst email = $json.email || \n              ($node[\"Get row(s) in sheet\"] ? $node[\"Get row(s) in sheet\"].json[\"Subscriber email\"] : \"\") || \n              ($node[\"Settings\"] ? $node[\"Settings\"].json.testEmail : \"\");\n\nlet finalHtml = html;\n\n// 1. HERO IMAGE TRACKING\nconst openUrl = `${baseUrl}/open-tracking?email=${encodeURIComponent(email)}`;\n// Use a generic search/replace or targeted filename replacement if needed\n// For now, we assume the header image is constant across issues\nconst headerImageUrl = \"https://raw.githubusercontent.com/jcsavoy/JC-Savoy-Newsletter/main/header-april-2026.png\";\nif (finalHtml.includes(headerImageUrl)) {\n  finalHtml = finalHtml.split(headerImageUrl).join(openUrl);\n}\n\n// 2. GAZETTE & JOKE BUTTONS (Anchor replacement)\nconst feedbackTracking = [\n  { anchor: '#gazette-up', section: 'Gazette', vote: 'up' },\n  { anchor: '#gazette-down', section: 'Gazette', vote: 'down' },\n  { anchor: '#joke-up', section: 'Joke', vote: 'up' },\n  { anchor: '#joke-down', section: 'Joke', vote: 'down' }\n];\n\nfeedbackTracking.forEach(f => {\n  const url = `${baseUrl}/feedback-tracking?email=${encodeURIComponent(email)}&section=${f.section}&vote=${f.vote}`;\n  finalHtml = finalHtml.split(f.anchor).join(url);\n});\n\n// 3. RECIPE BUTTONS (Anchor replacement)\nconst recipeOptions = [\n  { anchor: '#recipe-going', vote: 'going' },\n  { anchor: '#recipe-liked', vote: 'liked' },\n  { anchor: '#recipe-disliked', vote: 'disliked' }\n];\n\nrecipeOptions.forEach(r => {\n  const url = `${baseUrl}/feedback-tracking?email=${encodeURIComponent(email)}&section=Recipe&vote=${r.vote}`;\n  finalHtml = finalHtml.split(r.anchor).join(url);\n});\n\n// 4. CLICK TRACKING\nconst clickUrl = `${baseUrl}/click-tracking?email=${encodeURIComponent(email)}`;\nfinalHtml = finalHtml.replace(/<a\\s+(?:[^>]*?\\s+)?href=\"([^#][^\"]*)\"/gi, (match, url) => {\n  if (url.startsWith('http') && !url.includes('unsubscribe') && !url.includes('tracking')) {\n    return match.replace(url, `${clickUrl}&url=${encodeURIComponent(url)}`);\n  }\n  return match;\n});\n\n// 5. Update Unsubscribe Link\nconst unsubUrl = `${baseUrl}/unsubscribe?email=${encodeURIComponent(email)}`;\nfinalHtml = finalHtml.replace(/##UNSUBSCRIBE_LINK##/g, unsubUrl);\n\nreturn { finalHtml, email };"
       },
       "id": "4",
       "name": "Prepare Test Content",
@@ -81,7 +81,7 @@
       "id": "5",
       "name": "Send Test Email",
       "type": "n8n-nodes-base.gmail",
-      "typeVersion": 2,
+      "typeVersion": 4,
       "position": [
         900,
         200
@@ -141,5 +141,7 @@
     }
   },
   "active": false,
-  "settings": {}
+  "settings": {
+    "executionOrder": "v1"
+  }
 }
