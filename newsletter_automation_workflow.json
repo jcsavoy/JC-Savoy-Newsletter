@@ -1,5 +1,5 @@
 {
-  "name": "JC Savoy Newsletter Automation",
+  "name": "JC Savoy Newsletter - DIRECT TEST",
   "nodes": [
     {
       "parameters": {},
@@ -8,8 +8,8 @@
       "type": "n8n-nodes-base.manualTrigger",
       "typeVersion": 1,
       "position": [
-        0,
-        0
+        100,
+        200
       ]
     },
     {
@@ -18,23 +18,27 @@
           "string": [
             {
               "name": "newsletterUrl",
-              "value": "https://raw.githubusercontent.com/jcsavoy/JC-Savoy-Newsletter/main/newsletter-march-2026.html"
+              "value": "https://raw.githubusercontent.com/jcsavoy/JC-Savoy-Newsletter/main/newsletter-april-2026.html"
             },
             {
               "name": "emailSubject",
-              "value": "JC Savoy Newsletter - Cozy Cowboy Coffee Cake Recipe Inside!"
+              "value": "DIRECT TEST - JC Savoy Newsletter"
+            },
+            {
+              "name": "testEmail",
+              "value": "velladayauthor@gmail.com"
             }
           ]
         },
         "options": {}
       },
       "id": "2",
-      "name": "Edit Settings Here",
+      "name": "Settings",
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.2,
       "position": [
-        200,
-        0
+        300,
+        200
       ]
     },
     {
@@ -43,90 +47,44 @@
         "options": {}
       },
       "id": "3",
-      "name": "Fetch HTML from GitHub",
+      "name": "Fetch HTML",
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.1,
       "position": [
-        400,
-        0
+        500,
+        200
       ]
     },
     {
       "parameters": {
-        "operation": "read",
-        "documentId": {
-          "__rl": true,
-          "value": "18KYRnngYNcLaCpivRS5dXPm9Ryk7pngfvz5PoEhA44E",
-          "mode": "id"
-        },
-        "sheetName": {
-          "__rl": true,
-          "value": "Subscribers",
-          "mode": "name"
-        },
-        "options": {}
+        "jsCode": "const html = $json.data;\nconst baseUrl = 'https://n8n.srv1257557.hstgr.cloud/webhook';\n\nconst email = $json.email || \n              ($node[\"Get row(s) in sheet\"] ? $node[\"Get row(s) in sheet\"].json[\"Subscriber email\"] : \"\") || \n              ($node[\"Settings\"] ? $node[\"Settings\"].json.testEmail : \"\");\n\nlet finalHtml = html;\n\n// 1. HERO IMAGE TRACKING\nconst openUrl = `${baseUrl}/open-tracking?email=${encodeURIComponent(email)}`;\nconst headerImageUrl = \"https://raw.githubusercontent.com/jcsavoy/JC-Savoy-Newsletter/main/header-april-2026.png\";\nif (finalHtml.includes(headerImageUrl)) {\n  finalHtml = finalHtml.split(headerImageUrl).join(openUrl);\n}\n\n// 2. GAZETTE & JOKE BUTTONS (Anchor replacement)\nconst feedbackTracking = [\n  { anchor: '#gazette-up', section: 'Gazette', vote: 'up' },\n  { anchor: '#gazette-down', section: 'Gazette', vote: 'down' },\n  { anchor: '#joke-up', section: 'Joke', vote: 'up' },\n  { anchor: '#joke-down', section: 'Joke', vote: 'down' }\n];\n\nfeedbackTracking.forEach(f => {\n  const url = `${baseUrl}/feedback-tracking?email=${encodeURIComponent(email)}&section=${f.section}&vote=${f.vote}`;\n  finalHtml = finalHtml.split(f.anchor).join(url);\n});\n\n// 3. RECIPE BUTTONS (Anchor replacement)\nconst recipeOptions = [\n  { anchor: '#recipe-going', vote: 'going' },\n  { anchor: '#recipe-liked', vote: 'liked' },\n  { anchor: '#recipe-disliked', vote: 'disliked' }\n];\n\nrecipeOptions.forEach(r => {\n  const url = `${baseUrl}/feedback-tracking?email=${encodeURIComponent(email)}&section=Recipe&vote=${r.vote}`;\n  finalHtml = finalHtml.split(r.anchor).join(url);\n});\n\n// 4. CLICK TRACKING\nconst clickUrl = `${baseUrl}/click-tracking?email=${encodeURIComponent(email)}`;\nfinalHtml = finalHtml.replace(/<a\\s+(?:[^>]*?\\s+)?href=\"([^#][^\"]*)\"/gi, (match, url) => {\n  if (url.startsWith('http') && !url.includes('unsubscribe') && !url.includes('tracking')) {\n    return match.replace(url, `${clickUrl}&url=${encodeURIComponent(url)}`);\n  }\n  return match;\n});\n\n// 5. Update Unsubscribe Link\nconst unsubUrl = `${baseUrl}/unsubscribe?email=${encodeURIComponent(email)}`;\nfinalHtml = finalHtml.replace(/##UNSUBSCRIBE_LINK##/g, unsubUrl);\n\nreturn { finalHtml, email };"
       },
       "id": "4",
-      "name": "Get Subscribers",
-      "type": "n8n-nodes-base.googleSheets",
-      "typeVersion": 4.2,
+      "name": "Prepare Test Content",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 1,
       "position": [
-        600,
-        0
-      ]
-    },
-    {
-      "parameters": {
-        "batchSize": 50,
-        "options": {}
-      },
-      "id": "5",
-      "name": "Split In Batches",
-      "type": "n8n-nodes-base.splitInBatches",
-      "typeVersion": 2,
-      "position": [
-        800,
-        0
-      ]
-    },
-    {
-      "parameters": {
-        "values": {
-          "string": [
-            {
-              "name": "finalHtml",
-              "value": "={{ $node[\"Fetch HTML from GitHub\"].json.data.replace(/##UNSUBSCRIBE_LINK##/g, 'https://n8n.srv1257557.hstgr.cloud/webhook/unsubscribe?email=' + encodeURIComponent($json[\"Subscriber email\"])) }}"
-            }
-          ]
-        },
-        "options": {}
-      },
-      "id": "prepare-content",
-      "name": "Prepare Email Content",
-      "type": "n8n-nodes-base.set",
-      "typeVersion": 3.2,
-      "position": [
-        900,
-        -100
+        700,
+        200
       ]
     },
     {
       "parameters": {
         "resource": "message",
         "operation": "send",
-        "to": "={{ $json[\"Subscriber email\"] }}",
-        "subject": "={{ $node[\"Edit Settings Here\"].json.emailSubject }}",
-        "text": "Please enable HTML to view this newsletter.",
-        "html": "={{ $node[\"Prepare Email Content\"].json.finalHtml }}",
+        "to": "={{ $json.email }}",
+        "subject": "={{ $node[\"Settings\"].json.emailSubject }}",
+        "emailType": "html",
+        "html": "={{ $json.finalHtml }}",
         "appendAttribution": false
       },
-      "id": "6",
-      "name": "Send via Gmail",
+      "id": "5",
+      "name": "Send Test Email",
       "type": "n8n-nodes-base.gmail",
       "typeVersion": 2,
       "position": [
-        1100,
-        -100
+        900,
+        200
       ],
       "credentials": {
         "gmailOAuth2": {
@@ -134,20 +92,6 @@
           "name": "Gmail OAuth2 account"
         }
       }
-    },
-    {
-      "parameters": {
-        "amount": 10,
-        "unit": "seconds"
-      },
-      "id": "7",
-      "name": "Wait (10s)",
-      "type": "n8n-nodes-base.wait",
-      "typeVersion": 1,
-      "position": [
-        1200,
-        0
-      ]
     }
   ],
   "connections": {
@@ -155,84 +99,40 @@
       "main": [
         [
           {
-            "node": "Edit Settings Here",
+            "node": "Settings",
             "type": "main",
             "index": 0
           }
         ]
       ]
     },
-    "Edit Settings Here": {
+    "Settings": {
       "main": [
         [
           {
-            "node": "Fetch HTML from GitHub",
+            "node": "Fetch HTML",
             "type": "main",
             "index": 0
           }
         ]
       ]
     },
-    "Fetch HTML from GitHub": {
+    "Fetch HTML": {
       "main": [
         [
           {
-            "node": "Get Subscribers",
+            "node": "Prepare Test Content",
             "type": "main",
             "index": 0
           }
         ]
       ]
     },
-    "Get Subscribers": {
+    "Prepare Test Content": {
       "main": [
         [
           {
-            "node": "Split In Batches",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Split In Batches": {
-      "main": [
-        [
-          {
-            "node": "Prepare Email Content",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Prepare Email Content": {
-      "main": [
-        [
-          {
-            "node": "Send via Gmail",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Send via Gmail": {
-      "main": [
-        [
-          {
-            "node": "Wait (10s)",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Wait (10s)": {
-      "main": [
-        [
-          {
-            "node": "Split In Batches",
+            "node": "Send Test Email",
             "type": "main",
             "index": 0
           }

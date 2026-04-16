@@ -158,9 +158,21 @@
       .toc-item { font-size: 12px !important; }
     }
 
-    /* Dark mode support */
-    @media (prefers-color-scheme: dark) {
-      .email-wrapper { background-color: #2a1e2e !important; }
+    /* === FEEDBACK BUTTONS === */
+    .feedback-container { padding: 10px 0 20px; text-align: center; }
+    .feedback-btn { 
+        display: inline-block; 
+        padding: 12px 24px; 
+        margin: 6px; 
+        border-radius: 30px; 
+        background-color: #ffffff; 
+        border: 1px solid #e8a8c0; 
+        color: #b06080 !important; 
+        font-family: 'Lato', Arial, sans-serif; 
+        font-size: 13px; 
+        font-weight: 700;
+        text-decoration: none !important;
+        box-shadow: 0 2px 8px rgba(176, 96, 128, 0.1);
     }
   </style>
 </head>
@@ -181,6 +193,8 @@
     <h1 class="header-title">JC <em>Savoy</em></h1>
     <p class="header-subtitle">Cowboys · Billionaires · Happily Ever Afters</p>
     <div class="header-rule" role="presentation" aria-hidden="true" style="width:60px;height:1px;background:linear-gradient(to right,transparent,#e8a8c0,transparent);margin:18px auto 0;"></div>
+    <!-- Tracking Pixel -->
+    <img src="header-april-2026.png" width="1" height="1" style="display:none !important;" />
   </td>
 </tr>
 
@@ -249,6 +263,11 @@
         <td style="padding:16px 20px 14px;">
           <p class="gazette-headline"><em>Harbormaster Stu Predicts "Romantic Turbulence" Through August; Pete's Bar Immediately Opens a Betting Pool</em></p>
           <p class="gazette-text">Cliffhaven's self-appointed romantic authority, Harbormaster Stu, announced this week that the harbor "has a feeling" about several unnamed local singles and their upcoming summers. "The tides don't lie," Stu reportedly declared to three tourists and a seagull on Tuesday. By Wednesday morning, Pete had already written the names on a chalkboard behind the bar and was accepting wagers at two-to-one odds. Residents are advised to proceed with their hearts as usual — and perhaps avoid eye contact with either man.</p>
+          <div class="feedback-container">
+            <p style="font-family:'Lato', sans-serif; font-size:11px; color:#7090a8; margin-bottom:8px;">Did you enjoy the Gazette this month?</p>
+            <a href="#gazette-up" class="feedback-btn">👍 Loved it!</a>
+            <a href="#gazette-down" class="feedback-btn">👎 Not for me</a>
+          </div>
           <p class="gazette-byline">— Your Correspondent on the Cliffhaven Docks</p>
         </td>
       </tr>
@@ -280,6 +299,11 @@
         </div>
         <p class="comedy-setup">I don't trust stairs.</p>
         <p class="comedy-punchline">"They're always up to something."</p>
+        <div class="feedback-container">
+          <p style="font-family:'Lato', sans-serif; font-size:11px; color:#c0a0b0; margin-bottom:8px;">Terrible joke? Or just terrible enough?</p>
+          <a href="#joke-up" class="feedback-btn">👍 Love it!</a>
+          <a href="#joke-down" class="feedback-btn">👎 Oh, JC...</a>
+        </div>
         <p class="comedy-footer">You're welcome. (Or I'm sorry. Possibly both.)</p>
       </td></tr>
     </table>
@@ -315,6 +339,12 @@
           <em>Streusel:</em> 1¼ cups light brown sugar &nbsp;·&nbsp; 1 tbsp ground cinnamon &nbsp;·&nbsp; ¼–⅓ cup unsalted butter (melted)
           <span class="recipe-section-head">To Make It</span>
           Preheat oven to 350°F. Grease a 9×13 pan. Whisk wet ingredients; in a separate bowl, whisk dry ingredients. Combine and pour half into the pan. Mix brown sugar and cinnamon; sprinkle half over batter. Layer the rest of the batter, then remaining sugar mix, and drizzle with melted butter. Bake 35–40 minutes.
+          <div class="feedback-container">
+            <p style="font-family:'Lato', sans-serif; font-size:11px; color:#7a9a70; margin-bottom:8px;">Thinking of making this?</p>
+            <a href="#recipe-going" class="feedback-btn">👩‍🍳 Going to Try</a>
+            <a href="#recipe-liked" class="feedback-btn">👍 Liked It</a>
+            <a href="#recipe-disliked" class="feedback-btn">👎 Disliked It</a>
+          </div>
         </div>
         <p class="recipe-note">This is the cake Zane Kingsley keeps finding on his porch every Sunday morning. He suspects Raven. He's not wrong. (Optional: Fold in 1½ cups of blueberries for an extra treat!)</p>
       </td></tr>
