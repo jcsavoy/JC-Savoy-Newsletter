@@ -1,12 +1,12 @@
 {
-  "name": "JC Savoy Newsletter - TRACKING & REDIRECTS (FINAL PRODUCTION)",
+  "name": "JC Savoy Newsletter - TRACKING (CLEAN SLATE)",
   "nodes": [
     {
       "parameters": {
-        "httpMethod": "GET",
         "path": "click-tracking",
-        "responseMode": "responseNode",
-        "options": {}
+        "options": {
+          "responseMode": "responseNode"
+        }
       },
       "id": "webhook-click",
       "name": "Webhook: Click Tracking",
@@ -19,10 +19,10 @@
     },
     {
       "parameters": {
-        "httpMethod": "GET",
         "path": "open-tracking",
-        "responseMode": "responseNode",
-        "options": {}
+        "options": {
+          "responseMode": "responseNode"
+        }
       },
       "id": "webhook-open",
       "name": "Webhook: Open Tracking",
@@ -35,10 +35,10 @@
     },
     {
       "parameters": {
-        "httpMethod": "GET",
         "path": "feedback-tracking",
-        "responseMode": "responseNode",
-        "options": {}
+        "options": {
+          "responseMode": "responseNode"
+        }
       },
       "id": "webhook-feedback",
       "name": "Webhook: Feedback Tracking",
@@ -47,6 +47,19 @@
       "position": [
         100,
         600
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "const query = $json.query || {};\nlet type = \"feedback\";\nif (query.url) type = \"click\";\nelse if (!query.section) type = \"open\";\n\nlet col = \"\";\nif (type === \"click\") col = \"Clicked\";\nelse if (type === \"open\") col = \"Opened\";\nelse {\n    const section = String(query.section || \"\").toLowerCase();\n    const vote = String(query.vote || \"\").toLowerCase();\n    if (section === \"joke\") col = (vote === \"up\") ? \"Joke: Liked\" : \"Joke: Disliked\";\n    else if (section === \"gazette\") col = (vote === \"up\") ? \"Gazette: Liked\" : \"Gazette: Disliked\";\n    else if (section === \"recipe\") {\n        if (vote === \"going\") col = \"Recipe: Going to Try\";\n        else if (vote === \"liked\") col = \"Recipe: Liked\";\n        else if (vote === \"disliked\") col = \"Recipe: Disliked\";\n    }\n}\n\nreturn { \n  email: query.email || \"\", \n  type, \n  url: query.url || \"\", \n  colToUpdate: col \n};"
+      },
+      "id": "scoremaster",
+      "name": "Math: Scoremaster",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 1,
+      "position": [
+        400,
+        400
       ]
     },
     {
@@ -66,38 +79,21 @@
           "conditions": [
             {
               "column": "Subscriber email",
-              "operator": "equal",
-              "value": "={{ $json.query.email }}"
+              "value": "={{ $json.email }}"
             }
           ]
         },
-        "options": {
-          "returnAll": false,
-          "limit": 1
-        }
+        "options": {}
       },
-      "id": "sheets-lookup",
+      "id": "lookup-row",
       "name": "Google Sheets: Lookup Row",
       "type": "n8n-nodes-base.googleSheets",
       "typeVersion": 4,
       "position": [
-        350,
+        600,
         400
       ],
       "alwaysOutputData": true
-    },
-    {
-      "parameters": {
-        "jsCode": "const query = $node[\"Webhook: Click Tracking\"].json.query || $node[\"Webhook: Open Tracking\"].json.query || $node[\"Webhook: Feedback Tracking\"].json.query;\nconst currentData = $json;\nconst result = { \n  \"Subscriber email\": query.email, \n  type: query.url ? \"click\" : (query.section ? \"feedback\" : \"open\"),\n  url: query.url || \"\"\n};\n\nif (currentData && currentData[\"Subscriber email\"]) {\n    let col = \"\";\n    if (result.type === \"click\") col = \"Clicked\";\n    else if (result.type === \"open\") col = \"Opened\";\n    else {\n      const section = query.section.toLowerCase();\n      const vote = query.vote.toLowerCase();\n      if (section === \"joke\") col = (vote === \"up\") ? \"Joke: Liked\" : \"Joke: Disliked\";\n      else if (section === \"gazette\") col = (vote === \"up\") ? \"Gazette: Liked\" : \"Gazette: Disliked\";\n      else if (section === \"recipe\") {\n        if (vote === \"going\") col = \"Recipe: Going to Try\";\n        else if (vote === \"liked\") col = \"Recipe: Liked\";\n        else if (vote === \"disliked\") col = \"Recipe: Disliked\";\n      }\n      if (col) result[col] = (Number(currentData[col]) || 0) + 1;\n    }\n}\n\nreturn result;"
-      },
-      "id": "math-scoremaster",
-      "name": "Math: Scoremaster",
-      "type": "n8n-nodes-base.code",
-      "typeVersion": 1,
-      "position": [
-        550,
-        400
-      ]
     },
     {
       "parameters": {
@@ -113,108 +109,108 @@
           "mode": "name"
         },
         "columnToMatch": "Subscriber email",
-        "valueToMatch": "={{ $json.email }}",
+        "valueToMatch": "={{ $node[\"Math: Scoremaster\"].json.email }}",
         "fieldsToUpdate": {
           "values": [
             {
-              "column": "={{ Object.keys($json.columnsToUpdate)[0] }}",
-              "value": "={{ Object.values($json.columnsToUpdate)[0] }}"
+              "column": "={{ $node[\"Math: Scoremaster\"].json.colToUpdate }}",
+              "value": "={{ (Number($json[$node[\"Math: Scoremaster\"].json.colToUpdate]) || 0) + 1 }}"
             }
           ]
         },
         "options": {}
       },
-      "id": "sheets-update",
+      "id": "update-score",
       "name": "Google Sheets: Update Score",
       "type": "n8n-nodes-base.googleSheets",
       "typeVersion": 4,
       "position": [
-        750,
+        800,
         400
       ],
+      "alwaysOutputData": true,
       "settings": {
         "onError": "continue"
       }
     },
     {
       "parameters": {
-        "respondWith": "redirect",
-        "redirectUrl": "={{ $node['Math: Scoremaster'].json.type === 'click' ? $node['Math: Scoremaster'].json.url : ($node['Math: Scoremaster'].json.type === 'open' ? 'https://raw.githubusercontent.com/jcsavoy/JC-Savoy-Newsletter/main/header-april-2026.png' : 'https://jcsavoy.com/feedback-thanks.html') }}",
         "options": {
           "responseCode": 302
-        }
+        },
+        "responseBody": "={{ $node[\"Math: Scoremaster\"].json.type === 'click' ? $node[\"Math: Scoremaster\"].json.url : ($node[\"Math: Scoremaster\"].json.type === 'open' ? 'https://raw.githubusercontent.com/jcsavoy/JC-Savoy-Newsletter/main/header-april-2026.png' : 'https://jcsavoy.com/feedback-thanks.html') }}"
       },
-      "id": "respond-all",
+      "id": "redirector",
       "name": "Universal Redirector",
       "type": "n8n-nodes-base.respondToWebhook",
       "typeVersion": 1,
       "position": [
-        950,
+        1050,
         400
       ]
     }
   ],
   "connections": {
-    "Webhook: Click Tracking": {
+    "webhook-click": {
       "main": [
         [
           {
-            "node": "Google Sheets: Lookup Row",
+            "node": "scoremaster",
             "type": "main",
             "index": 0
           }
         ]
       ]
     },
-    "Webhook: Open Tracking": {
+    "webhook-open": {
       "main": [
         [
           {
-            "node": "Google Sheets: Lookup Row",
+            "node": "scoremaster",
             "type": "main",
             "index": 0
           }
         ]
       ]
     },
-    "Webhook: Feedback Tracking": {
+    "webhook-feedback": {
       "main": [
         [
           {
-            "node": "Google Sheets: Lookup Row",
+            "node": "scoremaster",
             "type": "main",
             "index": 0
           }
         ]
       ]
     },
-    "Google Sheets: Lookup Row": {
+    "scoremaster": {
       "main": [
         [
           {
-            "node": "Math: Scoremaster",
+            "node": "lookup-row",
             "type": "main",
             "index": 0
           }
         ]
       ]
     },
-    "Math: Scoremaster": {
+    "lookup-row": {
       "main": [
         [
           {
-            "node": "Google Sheets: Update Score",
+            "node": "update-score",
             "type": "main",
             "index": 0
           }
         ]
       ]
     },
-    "Google Sheets: Update Score": {
+    "update-score": {
       "main": [
         [
           {
-            "node": "Universal Redirector",
+            "node": "redirector",
             "type": "main",
             "index": 0
           }
@@ -222,6 +218,8 @@
       ]
     }
   },
-  "active": true,
-  "settings": {}
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  }
 }
