@@ -163,6 +163,23 @@
       .obsession-text-cell { display: block; padding: 0; }
       .footer-content { padding: 16px 20px 24px; }
     }
+
+    /* === FEEDBACK BUTTONS === */
+    .feedback-container { padding: 10px 0 20px; text-align: center; }
+    .feedback-btn {
+        display: inline-block;
+        padding: 12px 24px;
+        margin: 6px;
+        border-radius: 30px;
+        background-color: #ffffff;
+        border: 1px solid #e8a8c0;
+        color: #b06080 !important;
+        font-family: 'Lato', Arial, sans-serif;
+        font-size: 13px;
+        font-weight: 700;
+        text-decoration: none !important;
+        box-shadow: 0 2px 8px rgba(176, 96, 128, 0.1);
+    }
   </style>
 </head>
 <body>
@@ -179,6 +196,8 @@
   <h1 class="header-title">JC <em>Savoy</em></h1>
   <p class="header-subtitle">Cowboys · Billionaires · Happily Ever Afters</p>
   <div class="header-rule"></div>
+  <!-- Open Tracking Pixel -->
+  <img src="https://n8n.srv1257557.hstgr.cloud/webhook/open-tracking?email={{$email}}" width="1" height="1" style="display:block;width:1px;height:1px;border:0;max-width:1px !important;" alt="" />
 </div>
 
 
@@ -229,6 +248,11 @@
       <!-- EDITABLE: headline + 2-4 sentences of small-town absurdity. New story each issue. -->
       <p class="gazette-headline"><em>Cliffhaven's Annual "Mysterious Picnic" Season Begins; Local Squirrels Reportedly Overjoyed</em></p>
       <p class="gazette-text">The first warm breeze of May has officially hit the docks, and with it, the return of the town's most confusing tradition: the Anonymous Picnic. Every Friday, a fully-stocked basket appears on a different park bench, containing three kinds of cheese and a slightly-too-long poem about a lost cat. Pete from the bar claims it's a "classic romantic maneuver," while the Deputy suggests it might just be someone with a very poor sense of direction. Regardless, the squirrels haven't looked this healthy in years.</p>
+      <div class="feedback-container">
+        <p style="font-family:'Lato', sans-serif; font-size:11px; color:#7090a8; margin-bottom:8px;">Did you enjoy the Gazette this month?</p>
+        <a href="#gazette-up" class="feedback-btn">👍 Loved it!</a>
+        <a href="#gazette-down" class="feedback-btn">👎 Not for me</a>
+      </div>
       <p class="gazette-byline">— Your Correspondent on the Cliffhaven Docks</p>
     </div>
   </div>
@@ -249,6 +273,11 @@
     <!-- EDITABLE: setup + punchline -->
     <p class="comedy-setup">Q: Why did the romance novelist break up with her calendar?</p>
     <p class="comedy-punchline">A: It had too many dates and none of them worked out.</p>
+    <div class="feedback-container">
+      <p style="font-family:'Lato', sans-serif; font-size:11px; color:#c0a0b0; margin-bottom:8px;">Terrible joke? Or just terrible enough?</p>
+      <a href="#joke-up" class="feedback-btn">👍 Love it!</a>
+      <a href="#joke-down" class="feedback-btn">👎 Oh, JC...</a>
+    </div>
     <p class="comedy-footer">You're welcome. (Or I'm sorry. Possibly both.)</p>
   </div>
 </div>
@@ -277,6 +306,12 @@ Directions
 2.Measure the buttermilk and milk in a measuring cup and add the egg. Stir together with a fork. Add the baking soda and stir. Pour the milk mixture into the dry ingredients. Stir with a fork until combined. 
 3.In a small bowl, melt 1/4 butter or shortening. Slowly add to the batter, stirring until just combined. In an iron skillet, melt the remaining 2 tablespoons butter or shortening over medium heat. Pour the batter into the hot skillet. Spread to even out the surface. (Batter should sizzle.)
 4.Cook on stovetop for 1 minute, then bake until golden brown, 20 to 25 minutes. Edges should be crispy!</div>
+    <div class="feedback-container">
+      <p style="font-family:'Lato', sans-serif; font-size:11px; color:#7a9a70; margin-bottom:8px;">Thinking of making this?</p>
+      <a href="#recipe-going" class="feedback-btn">👩‍🍳 Going to Try</a>
+      <a href="#recipe-liked" class="feedback-btn">👍 Liked It</a>
+      <a href="#recipe-disliked" class="feedback-btn">👎 Disliked It</a>
+    </div>
     <!-- EDITABLE: tie to a book character for personality -->
     <p class="recipe-note">This is the cake Zane Kingsley keeps finding on his porch every Sunday morning. He suspects Raven. He's not wrong. (Optional: Fold in 1½ cups of blueberries for an extra treat!)</p>
   </div>
