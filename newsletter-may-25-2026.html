@@ -163,6 +163,23 @@
       .obsession-text-cell { display: block; padding: 0; }
       .footer-content { padding: 16px 20px 24px; }
     }
+
+    /* === FEEDBACK BUTTONS === */
+    .feedback-container { padding: 10px 0 20px; text-align: center; }
+    .feedback-btn {
+        display: inline-block;
+        padding: 12px 24px;
+        margin: 6px;
+        border-radius: 30px;
+        background-color: #ffffff;
+        border: 1px solid #e8a8c0;
+        color: #b06080 !important;
+        font-family: 'Lato', Arial, sans-serif;
+        font-size: 13px;
+        font-weight: 700;
+        text-decoration: none !important;
+        box-shadow: 0 2px 8px rgba(176, 96, 128, 0.1);
+    }
   </style>
 </head>
 <body>
@@ -179,6 +196,8 @@
   <h1 class="header-title">JC <em>Savoy</em></h1>
   <p class="header-subtitle">Cowboys · Billionaires · Happily Ever Afters</p>
   <div class="header-rule"></div>
+  <!-- Open Tracking Pixel -->
+  <img src="https://n8n.srv1257557.hstgr.cloud/webhook/open-tracking?email={{$email}}" width="1" height="1" style="display:block;width:1px;height:1px;border:0;max-width:1px !important;" alt="" />
 </div>
 
 
@@ -209,7 +228,7 @@
      GREETING
 ════════════════════════════════════ -->
 <div class="greeting-band">
-  <p>Another month, another excuse to sit down together — even if we're miles apart. I've been writing, baking badly, and collecting small moments worth sharing. Consider this your invitation to slow down for five minutes. The rest of the world can wait.</p>
+  <p>Full disclosure: I almost sent this newsletter with the wrong subject line, burned the first batch of test scones, and wrote three opening paragraphs before deleting them all. What you're reading now is attempt four. It's the best one. Probably.</p>
 </div>
 
 
@@ -227,8 +246,14 @@
     <div class="gazette-rule"></div>
     <div class="gazette-body">
       <!-- EDITABLE: headline + 2-4 sentences of small-town absurdity. New story each issue. -->
-      <p class="gazette-headline"><em>Cliffhaven's Annual "Mysterious Picnic" Season Begins; Local Squirrels Reportedly Overjoyed</em></p>
-      <p class="gazette-text">The first warm breeze of May has officially hit the docks, and with it, the return of the town's most confusing tradition: the Anonymous Picnic. Every Friday, a fully-stocked basket appears on a different park bench, containing three kinds of cheese and a slightly-too-long poem about a lost cat. Pete from the bar claims it's a "classic romantic maneuver," while the Deputy suggests it might just be someone with a very poor sense of direction. Regardless, the squirrels haven't looked this healthy in years.</p>
+      <p class="gazette-headline"><em>Cliffhaven Diner Introduces "Tuesday Surprise"; Residents Baffled but Hungry</em></p>
+      <p class="gazette-text">Ruthie introduced a new special: the Tuesday Surprise. When asked what was in it, she said, "Whatever I felt like making." When asked if it would be the same next Tuesday, she said, "Probably not." When asked if there was a vegetarian option, she said, "There's always salad." The Tuesday Surprise sold out by 11 a.m.</p>
+      <p class="gazette-text" style="margin-top: 10px;">Ruthie has been feeding this town for 22 years. She knows your order, your mother's order, and exactly how you take your coffee even if you've only been in twice. She will not be taking questions about the pie. The pie is gone. Come earlier next time.</p>
+      <div class="feedback-container">
+        <p style="font-family:'Lato', sans-serif; font-size:11px; color:#7090a8; margin-bottom:8px;">Did you enjoy the Gazette this month?</p>
+        <a href="#gazette-up" class="feedback-btn">👍 Loved it!</a>
+        <a href="#gazette-down" class="feedback-btn">👎 Not for me</a>
+      </div>
       <p class="gazette-byline">— Your Correspondent on the Cliffhaven Docks</p>
     </div>
   </div>
@@ -247,8 +272,13 @@
   <div class="comedy-inner">
     <div class="comedy-warning">⚠️ &nbsp; Warning: Bad Dad Joke &nbsp; ⚠️</div>
     <!-- EDITABLE: setup + punchline -->
-    <p class="comedy-setup">Q: Why did the romance novelist break up with her calendar?</p>
-    <p class="comedy-punchline">A: It had too many dates and none of them worked out.</p>
+    <p class="comedy-setup">Q: Why don't small-town secrets stay secret?</p>
+    <p class="comedy-punchline">A: Because everyone knows the butcher, the baker, and the candlestick maker — and the candlestick maker talks.</p>
+    <div class="feedback-container">
+      <p style="font-family:'Lato', sans-serif; font-size:11px; color:#c0a0b0; margin-bottom:8px;">Terrible joke? Or just terrible enough?</p>
+      <a href="#joke-up" class="feedback-btn">👍 Love it!</a>
+      <a href="#joke-down" class="feedback-btn">👎 Oh, JC...</a>
+    </div>
     <p class="comedy-footer">You're welcome. (Or I'm sorry. Possibly both.)</p>
   </div>
 </div>
@@ -266,19 +296,31 @@
   <div class="recipe-inner">
     <div class="recipe-emoji">☕</div>
     <!-- EDITABLE: recipe name, subtitle, body -->
-    <h3 class="recipe-title">SOUTHERN CORNBREAD: </h3>
-    <p class="recipe-subtitle">A Kingsley Family Favorite</p>
+    <h3 class="recipe-title">RIDGE KINGSLEY'S FLANK STEAK</h3>
+    <p class="recipe-subtitle">Citrus-Garlic Marinade</p>
     <div class="recipe-rule"></div>
-    <div class="recipe-body">Ingredients 1 cup yellow cornmeal 1/2 cup all-purpose flour 1 tsp. salt 1 Tbsp. baking powder 1 cup buttermilk 1/2 cup milk 1 egg 1/2 tsp. baking soda 1/4 cup plus 2 tablespoons butter or shortening, divided
-
-Directions
-
-1.Preheat the oven to 450°F. In a bowl, combine the cornmeal, flour, salt, and baking powder. Stir together.
-2.Measure the buttermilk and milk in a measuring cup and add the egg. Stir together with a fork. Add the baking soda and stir. Pour the milk mixture into the dry ingredients. Stir with a fork until combined. 
-3.In a small bowl, melt 1/4 butter or shortening. Slowly add to the batter, stirring until just combined. In an iron skillet, melt the remaining 2 tablespoons butter or shortening over medium heat. Pour the batter into the hot skillet. Spread to even out the surface. (Batter should sizzle.)
-4.Cook on stovetop for 1 minute, then bake until golden brown, 20 to 25 minutes. Edges should be crispy!</div>
-    <!-- EDITABLE: tie to a book character for personality -->
-    <p class="recipe-note">This is the cake Zane Kingsley keeps finding on his porch every Sunday morning. He suspects Raven. He's not wrong. (Optional: Fold in 1½ cups of blueberries for an extra treat!)</p>
+    <div class="recipe-body">
+      <span class="recipe-section-head">Ingredients</span>
+      • 1 1/2 Tbsp. grated orange zest plus 1/3 cup orange juice<br/>
+      • 1 Tbsp. grated lime zest plus 2 Tbsp lime juice<br/>
+      • 2 Tbsp. olive oil<br/>
+      • 1 1/2 tsp. cumin seeds<br/>
+      • 2 cloves garlic, finely chopped<br/>
+      • 1 1/2- to 2-lb beef flank steak<br/>
+      • Kosher salt and pepper
+      
+      <span class="recipe-section-head">Directions</span>
+      1. Combine all ingredients in a resealable plastic bag. Add steak, seal and turn to coat. Let sit at least 30 minutes or refrigerate up to 2 hours.<br/>
+      2. Heat grill to medium-high. Remove steak from marinade, scraping off any large bits. Season with 1/2 teaspoon each salt and pepper and grill, covered, 4 minutes.<br/>
+      3. Turn and grill, covered, to desired doneness, 3 to 5 minutes more for medium-rare (135°F). Transfer to a cutting board and let rest 10 minutes before slicing.
+    </div>
+    <div class="feedback-container">
+      <p style="font-family:'Lato', sans-serif; font-size:11px; color:#7a9a70; margin-bottom:8px;">Thinking of making this?</p>
+      <a href="#recipe-going" class="feedback-btn">👩‍🍳 Going to Try</a>
+      <a href="#recipe-liked" class="feedback-btn">👍 Liked It</a>
+      <a href="#recipe-disliked" class="feedback-btn">👎 Disliked It</a>
+    </div>
+    <p class="recipe-note">Serve with Orange-Spiked Chimichurri and Grilled Broccoli if desired. Ridge says the secret is actually letting it rest — patience is a virtue, even for a Kingsley.</p>
   </div>
 </div>
 
@@ -297,7 +339,7 @@ Directions
     <td class="obsession-text-cell">
       <p class="obsession-label">What JC Can't Stop Watching / Doing / Eating</p>
       <!-- EDITABLE: one honest sentence — show, podcast, hobby, food, anything -->
-      <p class="obsession-text">I'm learning to play frisbee golf and drag my husband out to play every day</p>
+      <p class="obsession-text">I'm hooked on Hallmark Romance Movies. The problem is finding one I haven't seen!</p>
     </td>
   </tr></table>
 </div>
@@ -317,14 +359,14 @@ Directions
     <div class="spotlight-content">
       <!-- EDITABLE: cover image URL, series, title, book number, blurb, Amazon link -->
       <div class="spotlight-cover-wrap">
-        <img class="spotlight-cover" src="https://jcsavoy.com/media/newsletter-images/the-great-christmas-disaster.jpg" alt="Walk With Me Cowboy" width="180"/>
+        <img class="spotlight-cover" src="https://jcsavoy.com/media/newsletter-images/borrowed-hearts.jpg" alt="Borrowed Hearts" width="180"/>
       </div>
-      <p class="spotlight-series">The Legacy Billionaires:</p>
-      <h2 class="spotlight-title"><em>The Great Christmas Disaster</em></h2>
-      <p class="spotlight-booknum">Book 7 in the Series</p>
+      <p class="spotlight-series">Whispering Falls:</p>
+      <h2 class="spotlight-title"><em>Borrowed Hearts</em></h2>
+      <p class="spotlight-booknum">Book 13 in the Series</p>
       <div class="spotlight-divider"></div>
-      <p class="spotlight-blurb">She came back to Cottonwood Ridge to sell the ranch and leave. He's the one person who makes her want to stay. Hunter Kingsley never planned on a second chance — but love has a way of showing up right when you've stopped looking for it.</p>
-      <div class="btn-center"><a href="https://amzn.to/4lC4RWH" class="btn-primary">Read It Now →</a></div>
+      <p class="spotlight-blurb">Fake boyfriend needed. Real feelings included. Cat-induced chaos guaranteed. When Heather's high school reunion looms, she convinces her ridiculously attractive neighbor to be her fake boyfriend. But the real problem isn't her sociopathic cat Vincent—it's that her fake feelings are starting to feel dangerously real.</p>
+      <div class="btn-center"><a href="https://amzn.to/47Em9wq" class="btn-primary">Read It Now →</a></div>
     </div>
   </div>
 </div>
@@ -341,23 +383,23 @@ Directions
 <div class="upcoming">
   <table class="upcoming-grid" role="presentation"><tr>
     <tr><td class="upcoming-book">
-      <img class="upcoming-cover" src="https://jcsavoy.com/media/newsletter-images/borrowed-hearts.jpg" alt="Borrowed Hearts" width="130"/>
-      <p class="upcoming-series"></p>
-      <p class="upcoming-title">Borrowed Hearts</p>
-      <p class="upcoming-date">Coming May 2026</p>
-      <a href="https://amzn.to/47Em9wq" class="btn-small">Pre-Order</a>
-    </td><td class="upcoming-book">
-      <img class="upcoming-cover" src="https://jcsavoy.com/media/newsletter-images/tidal-rivals.jpg" alt="Tidal Rivals" width="130"/>
-      <p class="upcoming-series"></p>
+      <img class="upcoming-cover" src="https://jcsavoy.com/media/newsletter-images/Tidal%20Rivals.jpeg" alt="Tidal Rivals" width="130"/>
+      <p class="upcoming-series">Love Only #2</p>
       <p class="upcoming-title">Tidal Rivals</p>
       <p class="upcoming-date">Coming June 2026</p>
-      <a href="https://amzn.to/4sFdp1K" class="btn-small">Pre-Order</a>
+      <a href="https://amzn.to/4cE1avE" class="btn-small">Pre-Order</a>
     </td><td class="upcoming-book">
-      <img class="upcoming-cover" src="https://jcsavoy.com/media/newsletter-images/high-tide-high-jinks.jpg" alt="High Tide High Jinks" width="130"/>
-      <p class="upcoming-series"></p>
+      <img class="upcoming-cover" src="https://jcsavoy.com/media/newsletter-images/High%20Tide%20High%20Jinks.jpg" alt="High Tide High Jinks" width="130"/>
+      <p class="upcoming-series">Love Only #3</p>
       <p class="upcoming-title">High Tide High Jinks</p>
       <p class="upcoming-date">Coming July 2026</p>
-      <a href="https://amzn.to/4bEUWMJ" class="btn-small">Pre-Order</a>
+      <a href="https://amzn.to/4mwX6la" class="btn-small">Pre-Order</a>
+    </td><td class="upcoming-book">
+      <img class="upcoming-cover" src="https://jcsavoy.com/media/newsletter-images/The%20Wedding%20Fakers.jpeg" alt="The Wedding Fakers" width="130"/>
+      <p class="upcoming-series">Love Only #4</p>
+      <p class="upcoming-title">The Wedding Fakers</p>
+      <p class="upcoming-date">Coming July 20th</p>
+      <a href="https://amzn.to/4chQAeO" class="btn-small">Pre-Order</a>
     </td></tr></table>
 </div>
 
@@ -375,9 +417,9 @@ Directions
     <!-- EDITABLE: icon, series name, description, link — rotate each issue -->
     <div class="series-spot-icon">🔍</div>
     <p class="series-spot-label">Have You Discovered This Series?</p>
-    <h3 class="series-spot-name">Legacy Billionaires</h3>
-    <p class="series-spot-desc">Wealthy men with guarded hearts and the extraordinary women who break through their walls. Big money, bigger feelings.</p>
-    <a href="https://jcsavoy.com/legacy-billionaires-series-page.html" class="btn-outline-green">Explore the Series →</a>
+    <h3 class="series-spot-name">Whispering Falls</h3>
+    <p class="series-spot-desc">Welcome to Whispering Falls, a small town where everyone knows your name — and your love life. Contemporary romance at its warmest. Twelve books of heartwarming second chances and small-town charm.</p>
+    <a href="https://jcsavoy.com/whispering-falls-series-page.html" class="btn-outline-green">Explore the Series →</a>
   </div>
 </div>
 
@@ -394,7 +436,7 @@ Directions
   <div class="vote-inner">
     <p class="vote-label">Your Opinion Matters!</p>
     <!-- EDITABLE: question, sub-text, Google Form link -->
-    <p class="vote-question">Where do you do most of your reading? — In bed / On the couch / Outside / Wherever I can steal five minutes</p>
+    <p class="vote-question">How do you pick your next book? — Cover / Blurb / Friend recommendation / Just vibes</p>
     <p class="vote-sub">I'm taking notes. This is important research. (It may or may not affect what I write next.) One click, ten seconds — that's it!</p>
     <a href="https://forms.gle/tYkCDN2Xy5S7h6SZA" class="btn-vote">Cast Your Vote →</a>
   </div>
