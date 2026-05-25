@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Thank You — JC Savoy</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Lato:wght@300;400;700&display=swap');
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Lato', Georgia, serif;
+      background-color: #f0eaf4;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+    }
+
+    .card {
+      background-color: #fdfaff;
+      max-width: 440px;
+      width: 100%;
+      border-radius: 2px;
+      box-shadow: 0 4px 32px rgba(160, 120, 180, 0.16);
+      overflow: hidden;
+      text-align: center;
+    }
+
+    .card-header {
+      background: linear-gradient(160deg, #4a2d4e 0%, #3a2240 100%);
+      padding: 32px 40px 26px;
+    }
+
+    .diamond {
+      display: inline-block;
+      width: 10px;
+      height: 10px;
+      background-color: #e8a8c0;
+      transform: rotate(45deg);
+      margin-bottom: 14px;
+    }
+
+    .tagline {
+      font-family: 'Lato', sans-serif;
+      font-size: 10px;
+      font-weight: 300;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: #e8a8c0;
+    }
+
+    .card-body { padding: 36px 40px 40px; }
+
+    .heart { font-size: 40px; margin-bottom: 16px; }
+
+    .title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 34px;
+      font-weight: 400;
+      color: #3a2240;
+      line-height: 1.2;
+      margin-bottom: 12px;
+    }
+
+    .title em { font-style: italic; color: #a04060; }
+
+    .message {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 18px;
+      font-style: italic;
+      color: #7a4a5e;
+      line-height: 1.6;
+      margin-bottom: 28px;
+    }
+
+    .rule {
+      width: 50px;
+      height: 1px;
+      background: linear-gradient(to right, transparent, #e8a8c0, transparent);
+      margin: 0 auto 24px;
+    }
+
+    .sig {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 16px;
+      font-style: italic;
+      color: #9a7888;
+      margin-bottom: 24px;
+    }
+
+    .close-note {
+      font-family: 'Lato', sans-serif;
+      font-size: 13px;
+      font-weight: 300;
+      color: #7a6a82;
+      line-height: 1.6;
+      letter-spacing: 0.3px;
+      margin-bottom: 26px;
+    }
+
+    .home-link {
+      display: inline-block;
+      margin-top: 18px;
+      font-family: 'Lato', sans-serif;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: #b06080;
+      text-decoration: none;
+      border-bottom: 1px solid #e0b8cc;
+      padding-bottom: 4px;
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <div class="card-header">
+      <div class="diamond"></div>
+      <p class="tagline">Sweet &amp; Clean Romance</p>
+    </div>
+    <div class="card-body">
+      <div class="heart">🤍</div>
+      <h1 class="title">Thank you for <em>letting me know!</em></h1>
+      <p class="message">Your feedback helps me make every issue a little better.</p>
+      <p class="close-note">This tab will try to close itself in a moment. If it doesn't, just click your back button to return to the newsletter.</p>
+      <div class="rule"></div>
+      <p class="sig">— JC</p>
+      <a class="home-link" href="https://jcsavoy.com">Visit jcsavoy.com</a>
+    </div>
+  </div>
+
+  <script>
+    // Try to auto-close after 2.5 seconds. Browsers only allow this for
+    // tabs opened by a link (target="_blank"), so it works for feedback
+    // clicks. If the browser blocks it, the friendly message and link remain.
+    setTimeout(function () {
+      window.close();
+    }, 2500);
+  </script>
+</body>
+</html>
