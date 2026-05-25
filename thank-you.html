@@ -126,7 +126,7 @@
       <div class="heart">🤍</div>
       <h1 class="title">Thank you for <em>letting me know!</em></h1>
       <p class="message">Your feedback helps me make every issue a little better.</p>
-      <p class="close-note">This tab will try to close itself in a moment. If it doesn't, just click your back button to return to the newsletter.</p>
+      <p class="close-note">Just click your back button to return to the newsletter — or close this tab if it opened in a new one.</p>
       <div class="rule"></div>
       <p class="sig">— JC</p>
       <a class="home-link" href="https://jcsavoy.com">Visit jcsavoy.com</a>
@@ -134,12 +134,10 @@
   </div>
 
   <script>
-    // Try to auto-close after 2.5 seconds. Browsers only allow this for
-    // tabs opened by a link (target="_blank"), so it works for feedback
-    // clicks. If the browser blocks it, the friendly message and link remain.
-    setTimeout(function () {
-      window.close();
-    }, 2500);
+    // Auto-close intentionally disabled. For newsletters whose feedback
+    // buttons open this page in the same tab, closing would also close the
+    // newsletter. Instead, the reader sees the message and uses the back
+    // button (or closes the new tab, when target="_blank" is used) to return.
   </script>
 </body>
 </html>
