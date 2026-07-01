@@ -63,6 +63,18 @@
     },
     {
       "parameters": {
+        "respondWith": "text",
+        "responseBody": "<!DOCTYPE html><html><head><meta http-equiv=\"refresh\" content=\"0; url=https://jcsavoy.com/thank-you.html\"><script type=\"text/javascript\">window.location.href = \"https://jcsavoy.com/thank-you.html\";</script></head><body><p>Welcome to the family! Redirecting...</p></body></html>",
+        "options": {}
+      },
+      "id": "respond-subscribe",
+      "name": "Redirect to Thank You",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1,
+      "position": [600, 0]
+    },
+    {
+      "parameters": {
         "httpMethod": "GET",
         "path": "unsubscribe",
         "responseMode": "responseNode",
@@ -76,17 +88,7 @@
     },
     {
       "parameters": {
-        "jsCode": "const email = $input.first().json.query?.email || '';\nif (!email) throw new Error('No email in query string');\nreturn [{ json: { email } }];"
-      },
-      "id": "code-extract-email",
-      "name": "Extract Email",
-      "type": "n8n-nodes-base.code",
-      "typeVersion": 2,
-      "position": [220, 300]
-    },
-    {
-      "parameters": {
-        "operation": "update",
+        "operation": "delete",
         "documentId": {
           "__rl": true,
           "value": "18KYRnngYNcLaCpivRS5dXPm9Ryk7pngfvz5PoEhA44E",
@@ -97,72 +99,34 @@
           "value": "Subscribers",
           "mode": "name"
         },
-        "columns": {
-          "mappingMode": "manual",
-          "value": {
-            "unsubscribed": "={{ $now.format(\"yyyy-MM-dd\") }}"
-          }
-        },
-        "where": {
-          "values": [
+        "filters": {
+          "conditions": [
             {
-              "column": "Subscriber email",
-              "value": "={{ $json.email }}"
+              "leftHandSide": "Subscriber email",
+              "operator": "equal",
+              "rightHandSide": "={{ $json.query.email }}"
             }
           ]
         },
         "options": {}
       },
       "id": "gsheets-unsubscribe",
-      "name": "Google Sheets: Mark Unsubscribed",
+      "name": "Google Sheets: Remove Subscriber",
       "type": "n8n-nodes-base.googleSheets",
       "typeVersion": 4.2,
-      "position": [440, 300]
+      "position": [250, 300]
     },
     {
       "parameters": {
         "respondWith": "text",
-        "responseBody": "<!DOCTYPE html><html><head><meta http-equiv=\"refresh\" content=\"0; url=https://jcsavoy.com/unsubscribed.html\"><script type=\"text/javascript\">window.location.href = \"https://jcsavoy.com/unsubscribed.html\";</script></head><body><p>You have been unsubscribed. Redirecting...</p></body></html>",
+        "responseBody": "<!DOCTYPE html><html><head><meta http-equiv=\"refresh\" content=\"0; url=https://jcsavoy.com/unsubscribed.html\"><script type=\"text/javascript\">window.location.href = \"https://jcsavoy.com/unsubscribed.html\";</script></head><body><p>Redirecting...</p></body></html>",
         "options": {}
       },
       "id": "respond-unsubscribe",
       "name": "Redirect to Unsubscribed",
       "type": "n8n-nodes-base.respondToWebhook",
       "typeVersion": 1,
-      "position": [660, 300]
-    },
-    {
-      "parameters": {
-        "resource": "message",
-        "operation": "send",
-        "to": "={{ $node[\"gsheets-subscribe\"].json[\"Subscriber email\"] }}",
-        "subject": "Welcome to the JC Savoy Family! (And your free book 📖)",
-        "text": "=Hi {{ $node[\"gsheets-subscribe\"].json[\"First Name\"] }},\n\nSo glad you're here! As promised, here is your free copy of [Book Title] via BookFunnel: [INSERT_BOOKFUNNEL_LINK_HERE]\n\nHappy reading!\n\nJC Savoy",
-        "appendAttribution": false
-      },
-      "id": "gmail-welcome",
-      "name": "Gmail: Send Welcome Email",
-      "type": "n8n-nodes-base.gmail",
-      "typeVersion": 2,
-      "position": [650, -150],
-      "credentials": {
-        "gmailOAuth2": {
-          "id": "GMAIL_CREDENTIAL_ID",
-          "name": "Gmail OAuth2 account"
-        }
-      }
-    },
-    {
-      "parameters": {
-        "respondWith": "text",
-        "responseBody": "<!DOCTYPE html><html><head><meta http-equiv=\"refresh\" content=\"0; url=https://jcsavoy.com/thank-you.html\"><script type=\"text/javascript\">window.location.href = \"https://jcsavoy.com/thank-you.html\";</script></head><body><p>Welcome to the family! Redirecting you to your thank you page (where your book is waiting)...</p></body></html>",
-        "options": {}
-      },
-      "id": "respond-subscribe",
-      "name": "Redirect to Thank You",
-      "type": "n8n-nodes-base.respondToWebhook",
-      "typeVersion": 1,
-      "position": [650, 50]
+      "position": [500, 300]
     }
   ],
   "connections": {
@@ -176,21 +140,13 @@
       ]
     },
     "Google Sheets: Add Subscriber": {
-      "main": [
-        [
-          { "node": "Gmail: Send Welcome Email", "type": "main", "index": 0 },
-          { "node": "Redirect to Thank You", "type": "main", "index": 0 }
-        ]
-      ]
+      "main": [[{ "node": "Redirect to Thank You", "type": "main", "index": 0 }]]
     },
-    "Webhook: Unsubscribe (MailerLite)": {
-      "main": [[{ "node": "Extract Email", "type": "main", "index": 0 }]]
+    "Webhook: Unsubscribe": {
+      "main": [[{ "node": "Google Sheets: Remove Subscriber", "type": "main", "index": 0 }]]
     },
-    "Extract Email": {
-      "main": [[{ "node": "Google Sheets: Mark Unsubscribed", "type": "main", "index": 0 }]]
-    },
-    "Google Sheets: Mark Unsubscribed": {
-      "main": [[{ "node": "Respond OK", "type": "main", "index": 0 }]]
+    "Google Sheets: Remove Subscriber": {
+      "main": [[{ "node": "Redirect to Unsubscribed", "type": "main", "index": 0 }]]
     }
   }
 }
