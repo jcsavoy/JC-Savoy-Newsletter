@@ -16,6 +16,23 @@
     },
     {
       "parameters": {
+        "conditions": {
+          "string": [
+            {
+              "value1": "={{ $json.body.website_url }}",
+              "operation": "isEmpty"
+            }
+          ]
+        }
+      },
+      "id": "if-honeypot",
+      "name": "Honeypot Check",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [200, 0]
+    },
+    {
+      "parameters": {
         "operation": "append",
         "documentId": {
           "__rl": true,
@@ -42,23 +59,34 @@
       "name": "Google Sheets: Add Subscriber",
       "type": "n8n-nodes-base.googleSheets",
       "typeVersion": 4.2,
-      "position": [250, 0]
+      "position": [400, -100]
     },
     {
       "parameters": {
-        "path": "unsubscribe",
-        "responseMode": "responseNode",
+        "httpMethod": "POST",
+        "path": "mailerlite-unsubscribe",
+        "responseMode": "lastNode",
         "options": {}
       },
       "id": "webhook-unsubscribe",
-      "name": "Webhook: Unsubscribe",
+      "name": "Webhook: Unsubscribe (MailerLite)",
       "type": "n8n-nodes-base.webhook",
       "typeVersion": 1,
-      "position": [0, 200]
+      "position": [0, 300]
     },
     {
       "parameters": {
-        "operation": "delete",
+        "jsCode": "// MailerLite sends subscriber email at: data.subscriber.email\nconst body = $input.first().json.body;\nconst email = body?.data?.subscriber?.email || body?.email || '';\nif (!email) throw new Error('No email found in webhook payload');\nreturn [{ json: { email } }];"
+      },
+      "id": "code-extract-email",
+      "name": "Extract Email",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [220, 300]
+    },
+    {
+      "parameters": {
+        "operation": "update",
         "documentId": {
           "__rl": true,
           "value": "18KYRnngYNcLaCpivRS5dXPm9Ryk7pngfvz5PoEhA44E",
@@ -69,22 +97,41 @@
           "value": "Subscribers",
           "mode": "name"
         },
-        "filters": {
-          "conditions": [
+        "columns": {
+          "mappingMode": "manual",
+          "value": {
+            "unsubscribed": "={{ $now.format(\"yyyy-MM-dd\") }}"
+          }
+        },
+        "where": {
+          "values": [
             {
-              "leftHandSide": "Subscriber email",
-              "operator": "equal",
-              "rightHandSide": "={{ $json.query.email }}"
+              "column": "Subscriber email",
+              "value": "={{ $json.email }}"
             }
           ]
         },
         "options": {}
       },
       "id": "gsheets-unsubscribe",
-      "name": "Google Sheets: Remove Subscriber",
+      "name": "Google Sheets: Mark Unsubscribed",
       "type": "n8n-nodes-base.googleSheets",
       "typeVersion": 4.2,
-      "position": [250, 200]
+      "position": [440, 300]
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={{ JSON.stringify({ success: true }) }}",
+        "options": {
+          "responseCode": 200
+        }
+      },
+      "id": "respond-unsubscribe",
+      "name": "Respond OK",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1,
+      "position": [660, 300]
     },
     {
       "parameters": {
@@ -99,7 +146,7 @@
       "name": "Gmail: Send Welcome Email",
       "type": "n8n-nodes-base.gmail",
       "typeVersion": 2,
-      "position": [500, -100],
+      "position": [650, -150],
       "credentials": {
         "gmailOAuth2": {
           "id": "GMAIL_CREDENTIAL_ID",
@@ -117,36 +164,35 @@
       "name": "Redirect to Thank You",
       "type": "n8n-nodes-base.respondToWebhook",
       "typeVersion": 1,
-      "position": [750, 0]
-    },
-    {
-      "parameters": {
-        "respondWith": "text",
-        "responseBody": "<!DOCTYPE html><html><head><meta http-equiv=\"refresh\" content=\"0; url=https://jcsavoy.com/unsubscribed.html\"><script type=\"text/javascript\">window.location.href = \"https://jcsavoy.com/unsubscribed.html\";</script></head><body><p>Redirecting...</p></body></html>",
-        "options": {}
-      },
-      "id": "respond-unsubscribe",
-      "name": "Redirect to Unsubscribed",
-      "type": "n8n-nodes-base.respondToWebhook",
-      "typeVersion": 1,
-      "position": [500, 200]
+      "position": [650, 50]
     }
   ],
   "connections": {
     "Webhook: Subscribe": {
-      "main": [[{ "node": "Google Sheets: Add Subscriber", "type": "main", "index": 0 }]]
+      "main": [[{ "node": "Honeypot Check", "type": "main", "index": 0 }]]
     },
-    "Google Sheets: Add Subscriber": {
+    "Honeypot Check": {
       "main": [
-        [{ "node": "Gmail: Send Welcome Email", "type": "main", "index": 0 }],
+        [{ "node": "Google Sheets: Add Subscriber", "type": "main", "index": 0 }],
         [{ "node": "Redirect to Thank You", "type": "main", "index": 0 }]
       ]
     },
-    "Webhook: Unsubscribe": {
-      "main": [[{ "node": "Google Sheets: Remove Subscriber", "type": "main", "index": 0 }]]
+    "Google Sheets: Add Subscriber": {
+      "main": [
+        [
+          { "node": "Gmail: Send Welcome Email", "type": "main", "index": 0 },
+          { "node": "Redirect to Thank You", "type": "main", "index": 0 }
+        ]
+      ]
     },
-    "Google Sheets: Remove Subscriber": {
-      "main": [[{ "node": "Redirect to Unsubscribed", "type": "main", "index": 0 }]]
+    "Webhook: Unsubscribe (MailerLite)": {
+      "main": [[{ "node": "Extract Email", "type": "main", "index": 0 }]]
+    },
+    "Extract Email": {
+      "main": [[{ "node": "Google Sheets: Mark Unsubscribed", "type": "main", "index": 0 }]]
+    },
+    "Google Sheets: Mark Unsubscribed": {
+      "main": [[{ "node": "Respond OK", "type": "main", "index": 0 }]]
     }
   }
 }
