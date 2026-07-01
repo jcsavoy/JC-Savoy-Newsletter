@@ -88,7 +88,7 @@
     },
     {
       "parameters": {
-        "operation": "delete",
+        "operation": "update",
         "documentId": {
           "__rl": true,
           "value": "18KYRnngYNcLaCpivRS5dXPm9Ryk7pngfvz5PoEhA44E",
@@ -99,19 +99,18 @@
           "value": "Subscribers",
           "mode": "name"
         },
-        "filters": {
-          "conditions": [
-            {
-              "leftHandSide": "Subscriber email",
-              "operator": "equal",
-              "rightHandSide": "={{ $json.query.email }}"
-            }
-          ]
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Subscriber email": "={{ $json.query.email }}",
+            "Unsubscribed": 1
+          },
+          "matchingColumns": ["Subscriber email"]
         },
         "options": {}
       },
       "id": "gsheets-unsubscribe",
-      "name": "Google Sheets: Remove Subscriber",
+      "name": "Google Sheets: Mark Unsubscribed",
       "type": "n8n-nodes-base.googleSheets",
       "typeVersion": 4.2,
       "position": [250, 300]
