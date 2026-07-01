@@ -63,20 +63,20 @@
     },
     {
       "parameters": {
-        "httpMethod": "POST",
-        "path": "mailerlite-unsubscribe",
-        "responseMode": "lastNode",
+        "httpMethod": "GET",
+        "path": "unsubscribe",
+        "responseMode": "responseNode",
         "options": {}
       },
       "id": "webhook-unsubscribe",
-      "name": "Webhook: Unsubscribe (MailerLite)",
+      "name": "Webhook: Unsubscribe",
       "type": "n8n-nodes-base.webhook",
       "typeVersion": 1,
       "position": [0, 300]
     },
     {
       "parameters": {
-        "jsCode": "// MailerLite sends subscriber email at: data.subscriber.email\nconst body = $input.first().json.body;\nconst email = body?.data?.subscriber?.email || body?.email || '';\nif (!email) throw new Error('No email found in webhook payload');\nreturn [{ json: { email } }];"
+        "jsCode": "const email = $input.first().json.query?.email || '';\nif (!email) throw new Error('No email in query string');\nreturn [{ json: { email } }];"
       },
       "id": "code-extract-email",
       "name": "Extract Email",
@@ -121,14 +121,12 @@
     },
     {
       "parameters": {
-        "respondWith": "json",
-        "responseBody": "={{ JSON.stringify({ success: true }) }}",
-        "options": {
-          "responseCode": 200
-        }
+        "respondWith": "text",
+        "responseBody": "<!DOCTYPE html><html><head><meta http-equiv=\"refresh\" content=\"0; url=https://jcsavoy.com/unsubscribed.html\"><script type=\"text/javascript\">window.location.href = \"https://jcsavoy.com/unsubscribed.html\";</script></head><body><p>You have been unsubscribed. Redirecting...</p></body></html>",
+        "options": {}
       },
       "id": "respond-unsubscribe",
-      "name": "Respond OK",
+      "name": "Redirect to Unsubscribed",
       "type": "n8n-nodes-base.respondToWebhook",
       "typeVersion": 1,
       "position": [660, 300]
