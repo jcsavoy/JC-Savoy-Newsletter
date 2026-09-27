@@ -199,7 +199,7 @@
 
 @media only screen and (max-width: 480px) {
       .header, .toc-band, .greeting-band, .section-label, .gazette, .comedy, .recipe,
-      .obsession, .spotlight, .upcoming, .series-spot, .vote, .personal-note { padding-left: 20px !important; padding-right: 20px !important }
+      .obsession, .favorite, .spotlight, .upcoming, .series-spot, .vote, .personal-note { padding-left: 20px !important; padding-right: 20px !important }
       .header-title { font-size: 32px !important }
       .upcoming-grid { display: block !important }
       .upcoming-book { display: block !important; width: 100% !important; padding: 0 0 20px !important }
@@ -365,6 +365,28 @@
       <p class="obsession-text" style="margin:0; padding:0; font-family:'Cormorant Garamond', serif; font-size:17px; font-style:italic; color:#4a3060; line-height:1.6;">Since we're hoping to move to Idaho this year, I need to get in shape for those mountain trails — so my newest habit is the treadmill with the elevation cranked up. Always taking exercise suggestions. Wish me luck!</p>
     </td>
   </tr></table>
+</div>
+
+<div class="ornament-divider" style="padding:6px 48px; text-align:center;"><table role="presentation" align="center" cellpadding="0" cellspacing="0" border="0" style="margin:0 auto;border-collapse:collapse;"><tr><td valign="middle" style="width:80px;padding:0;font-size:0;line-height:0;"><div style="height:1px;font-size:0;line-height:0;background-color:#e0b8cc;">&nbsp;</div></td><td style="padding:0 12px;font-size:11px;line-height:1;color:#e8a8c0;font-family:Georgia,serif;">&#9670;</td><td valign="middle" style="width:80px;padding:0;font-size:0;line-height:0;"><div style="height:1px;font-size:0;line-height:0;background-color:#e0b8cc;">&nbsp;</div></td></tr></table></div>
+
+
+<!-- ════════════════════════════════════
+     FAVORITE SECTION (one-tap poll - tracked as section=favorite in n8n)
+     Sits between Fun Stuff and Books & More: readers have seen every fun
+     section, and haven't yet hit the book promos where skimmers drop off.
+════════════════════════════════════ -->
+<div class="favorite" style="padding:8px 48px 28px;">
+  <div class="favorite-inner" style="padding:22px 20px 16px; background-color:#fdf0f5; border:1px solid #e0b8d0; border-radius:2px; text-align:center;">
+    <p style="margin:0; padding:0; font-family:'Lato', sans-serif; font-size:9px; font-weight:700; letter-spacing:3px; text-transform:uppercase; color:#b06080; margin-bottom:8px;">Quick Question</p>
+    <p style="margin:0; padding:0; font-family:'Cormorant Garamond', serif; font-size:22px; font-weight:500; color:#3a2240; line-height:1.3; margin-bottom:6px;">Which part did you enjoy most today?</p>
+    <p style="margin:0; padding:0; font-family:'Lato', sans-serif; font-size:12px; font-weight:300; color:#7a5870; line-height:1.7; margin-bottom:12px;">One tap is all it takes. It helps me know what to keep bringing you.</p>
+    <div style="text-align:center;">
+      <a href="https://n8n.srv1257557.hstgr.cloud/webhook/feedback-tracking?email={{$email}}&section=favorite&vote=gazette" class="feedback-btn" target="_blank" style="margin:5px; padding:10px 18px; text-decoration:none !important; display:inline-block; border-radius:30px; background-color:#ffffff; border:1px solid #e8a8c0; color:#b06080 !important; font-family:'Lato', Arial, sans-serif; font-size:13px; font-weight:700; box-shadow:0 2px 8px rgba(176, 96, 128, 0.1);">🗞️ The Gazette</a>
+      <a href="https://n8n.srv1257557.hstgr.cloud/webhook/feedback-tracking?email={{$email}}&section=favorite&vote=joke" class="feedback-btn" target="_blank" style="margin:5px; padding:10px 18px; text-decoration:none !important; display:inline-block; border-radius:30px; background-color:#ffffff; border:1px solid #e8a8c0; color:#b06080 !important; font-family:'Lato', Arial, sans-serif; font-size:13px; font-weight:700; box-shadow:0 2px 8px rgba(176, 96, 128, 0.1);">😄 The Joke</a>
+      <a href="https://n8n.srv1257557.hstgr.cloud/webhook/feedback-tracking?email={{$email}}&section=favorite&vote=recipe" class="feedback-btn" target="_blank" style="margin:5px; padding:10px 18px; text-decoration:none !important; display:inline-block; border-radius:30px; background-color:#ffffff; border:1px solid #e8a8c0; color:#b06080 !important; font-family:'Lato', Arial, sans-serif; font-size:13px; font-weight:700; box-shadow:0 2px 8px rgba(176, 96, 128, 0.1);">🍴 The Recipe</a>
+      <a href="https://n8n.srv1257557.hstgr.cloud/webhook/feedback-tracking?email={{$email}}&section=favorite&vote=obsession" class="feedback-btn" target="_blank" style="margin:5px; padding:10px 18px; text-decoration:none !important; display:inline-block; border-radius:30px; background-color:#ffffff; border:1px solid #e8a8c0; color:#b06080 !important; font-family:'Lato', Arial, sans-serif; font-size:13px; font-weight:700; box-shadow:0 2px 8px rgba(176, 96, 128, 0.1);">🏔️ JC's Obsession</a>
+    </div>
+  </div>
 </div>
 
 <div class="ornament-divider" style="padding:6px 48px; text-align:center;"><table role="presentation" align="center" cellpadding="0" cellspacing="0" border="0" style="margin:0 auto;border-collapse:collapse;"><tr><td valign="middle" style="width:80px;padding:0;font-size:0;line-height:0;"><div style="height:1px;font-size:0;line-height:0;background-color:#e0b8cc;">&nbsp;</div></td><td style="padding:0 12px;font-size:11px;line-height:1;color:#e8a8c0;font-family:Georgia,serif;">&#9670;</td><td valign="middle" style="width:80px;padding:0;font-size:0;line-height:0;"><div style="height:1px;font-size:0;line-height:0;background-color:#e0b8cc;">&nbsp;</div></td></tr></table></div>
