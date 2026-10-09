@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+  <title>JC Savoy Newsletter – December 14, 2026</title>
+  <style>@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Lato:wght@300;400;700&display=swap');
+
+    
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { margin: 0; padding: 0; background-color: #f0eaf4; font-family: 'Lato', Georgia, serif; -webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; }
+    table { border-collapse: collapse; mso-table-lspace: 0pt; mso-table-rspace: 0pt; }
+    img { border: 0; outline: none; text-decoration: none; display: block; -ms-interpolation-mode: bicubic; }
+    a { text-decoration: none; }
+
+    .email-wrapper { background-color: #f0eaf4; padding: 32px 16px; }
+    .email-container { max-width: 620px; margin: 0 auto; background-color: #fdfaff; border-radius: 2px; overflow: hidden; box-shadow: 0 4px 32px rgba(160,120,180,0.12); }
+
+    
+    .header { background: linear-gradient(160deg, #4a2d4e 0%, #3a2240 100%); padding: 36px 48px 28px; text-align: center; }
+    .header-diamond { display: inline-block; width: 10px; height: 10px; background-color: #e8a8c0; transform: rotate(45deg); margin-bottom: 14px; }
+    .header-tagline { font-family: 'Lato', sans-serif; font-size: 10px; font-weight: 300; letter-spacing: 3px; text-transform: uppercase; color: #e8a8c0; margin-bottom: 10px; }
+    .header-title { font-family: 'Cormorant Garamond', serif; font-size: 42px; font-weight: 300; color: #fdfaff; letter-spacing: 2px; line-height: 1; }
+    .header-title em { font-style: italic; color: #f2c4d8; }
+    .header-subtitle { font-family: 'Cormorant Garamond', serif; font-size: 14px; font-style: italic; color: rgba(253,250,255,0.5); margin-top: 8px; }
+    .header-rule { width: 60px; height: 1px; background: linear-gradient(to right, transparent, #e8a8c0, transparent); margin: 18px auto 0; }
+
+    
+    .toc-band { background-color: #fdf0f5; padding: 18px 48px; border-bottom: 1px solid #f0d0e0; }
+    .toc-label { font-family: 'Lato', sans-serif; font-size: 9px; font-weight: 700; letter-spacing: 2.5px; text-transform: uppercase; color: #b06080; margin-bottom: 8px; }
+    .toc-item { font-family: 'Lato', sans-serif; font-size: 12px; font-weight: 300; color: #5a3a50; line-height: 2.1; }
+    .toc-item::before { content: "✦  "; color: #e8a8c0; font-size: 8px; }
+
+    
+    .greeting-band { background-color: #fdf0f5; padding: 22px 48px; text-align: center; border-bottom: 1px solid #f0d0e0; }
+    .greeting-band p { font-family: 'Cormorant Garamond', serif; font-size: 17px; font-style: italic; color: #7a4a5e; line-height: 1.7; }
+
+    
+    .section-label { text-align: center; padding: 28px 48px 6px; }
+    .section-label span { display: inline-block; font-family: 'Lato', sans-serif; font-size: 9px; font-weight: 700; letter-spacing: 3.5px; text-transform: uppercase; color: #b06080; border-bottom: 1px solid #e0b8cc; padding-bottom: 6px; }
+
+    
+    .gazette { padding: 16px 48px 30px; }
+    .gazette-inner { background: linear-gradient(135deg, #f0f7ff 0%, #e8f2fa 100%); border: 1px solid #b8d4e8; border-radius: 2px; overflow: hidden; }
+    .gazette-masthead { background: linear-gradient(to right, #2e6080, #1e4860); padding: 10px 20px; }
+    .gazette-name { font-family: 'Cormorant Garamond', serif; font-size: 19px; font-weight: 600; color: #fdfaff; letter-spacing: 3px; text-transform: uppercase; display: inline; }
+    .gazette-date { font-family: 'Lato', sans-serif; font-size: 9px; font-weight: 300; color: rgba(253,250,255,0.6); letter-spacing: 1px; float: right; line-height: 2.4; }
+    .gazette-rule { height: 1px; background: linear-gradient(to right, #2e6080, #a8c8e0, #2e6080); }
+    .gazette-body { padding: 16px 20px 14px; }
+    .gazette-headline { font-family: 'Cormorant Garamond', serif; font-size: 17px; font-weight: 600; color: #1e4060; margin-bottom: 8px; line-height: 1.35; }
+    .gazette-headline em { font-style: italic; }
+    .gazette-text { font-family: 'Lato', sans-serif; font-size: 13px; font-weight: 300; color: #3a4a5a; line-height: 1.8; }
+    .gazette-byline { font-family: 'Cormorant Garamond', serif; font-size: 11px; font-style: italic; color: #7090a8; margin-top: 10px; }
+
+    
+    .gazette-inner.ridge { background: linear-gradient(135deg, #faf5ea 0%, #f2e8d4 100%); border-color: #d4bc94; }
+    .ridge .gazette-masthead { background: linear-gradient(to right, #6b4326, #4a2c18); }
+    .ridge .gazette-rule { background: linear-gradient(to right, #6b4326, #d4bc94, #6b4326); }
+    .ridge .gazette-headline { color: #5a3a1e; }
+    .ridge .gazette-text { color: #4e4034; }
+    .ridge .gazette-byline { color: #9a7a52; }
+    .ridge .feedback-container p { color: #9a7a52 !important; }
+    .ridge .feedback-btn { border-color: #d4bc94; color: #8a5f30 !important; box-shadow: 0 2px 8px rgba(122, 90, 50, 0.12); }
+
+    
+    .comedy { padding: 16px 48px 30px; }
+    .comedy-inner { border: 2px dashed #f2c4d8; border-radius: 4px; padding: 24px; text-align: center; background: #fffafc; }
+    .comedy-warning { display: inline-block; background-color: #e05070; color: white; font-family: 'Lato', sans-serif; font-size: 9px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; padding: 5px 14px; border-radius: 2px; margin-bottom: 16px; }
+    .comedy-setup { font-family: 'Lato', sans-serif; font-size: 15px; font-weight: 400; color: #4a3050; line-height: 1.6; margin-bottom: 10px; }
+    .comedy-punchline { font-family: 'Cormorant Garamond', serif; font-size: 22px; font-style: italic; font-weight: 600; color: #a04060; line-height: 1.4; }
+    .comedy-footer { font-family: 'Lato', sans-serif; font-size: 10px; color: #c0a0b0; margin-top: 12px; }
+
+    
+    .recipe { padding: 16px 48px 30px; }
+    .recipe-inner { background: linear-gradient(135deg, #f5faf0 0%, #edf5e8 100%); border: 1px solid #b8d4a8; border-radius: 2px; padding: 24px; }
+    .recipe-emoji { font-size: 28px; text-align: center; margin-bottom: 10px; }
+    .recipe-title { font-family: 'Cormorant Garamond', serif; font-size: 24px; font-weight: 500; color: #2e4a28; text-align: center; margin-bottom: 4px; }
+    .recipe-subtitle { font-family: 'Lato', sans-serif; font-size: 10px; font-weight: 300; color: #7a9a70; text-align: center; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 14px; }
+    .recipe-rule { width: 40px; height: 1px; background: linear-gradient(to right, transparent, #a0c890, transparent); margin: 0 auto 14px; }
+    .recipe-body { font-family: 'Lato', sans-serif; font-size: 13px; font-weight: 300; color: #3e5038; line-height: 1.85; }
+    .recipe-section-head { font-family: 'Lato', sans-serif; font-size: 9px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: #527040; display: block; margin: 12px 0 5px; }
+    .recipe-note { font-family: 'Cormorant Garamond', serif; font-size: 14px; font-style: italic; color: #7a9a70; margin-top: 14px; border-left: 2px solid #b0d0a0; padding-left: 12px; line-height: 1.6; }
+
+    
+    .obsession { padding: 0 48px 28px; }
+    .obsession-inner { border: 1px solid #ddd0ec; border-radius: 2px; padding: 18px 20px; background: #fdf8ff; display: table; width: 100%; }
+    .obsession-icon-cell { display: table-cell; width: 44px; vertical-align: middle; font-size: 30px; }
+    .obsession-text-cell { display: table-cell; vertical-align: middle; padding-left: 14px; }
+    .obsession-label { font-family: 'Lato', sans-serif; font-size: 9px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; color: #8a60a0; margin-bottom: 5px; }
+    .obsession-text { font-family: 'Cormorant Garamond', serif; font-size: 17px; font-style: italic; color: #4a3060; line-height: 1.6; }
+
+    
+    .spotlight { padding: 16px 48px 30px; }
+    .spotlight-inner { border: 1px solid #e8d0dc; border-radius: 2px; overflow: hidden; }
+    .spotlight-badge { background: linear-gradient(to right, #c4688a, #a05878); text-align: center; padding: 9px; font-family: 'Lato', sans-serif; font-size: 9px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; color: #fdfaff; }
+    .spotlight-content { padding: 28px 28px 24px; }
+    .spotlight-cover-wrap { text-align: center; margin-bottom: 22px; }
+    .spotlight-cover { max-width: 180px; margin: 0 auto; border-radius: 2px; box-shadow: 0 8px 28px rgba(160,80,120,0.18); }
+    .spotlight-series { font-family: 'Lato', sans-serif; font-size: 9px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; color: #b06080; text-align: center; margin-bottom: 6px; }
+    .spotlight-title { font-family: 'Cormorant Garamond', serif; font-size: 30px; font-weight: 400; color: #3a2240; text-align: center; line-height: 1.15; margin-bottom: 4px; }
+    .spotlight-title em { font-style: italic; }
+    .spotlight-booknum { font-family: 'Cormorant Garamond', serif; font-size: 13px; font-style: italic; color: #9a7888; text-align: center; margin-bottom: 18px; }
+    .spotlight-divider { width: 40px; height: 1px; background: linear-gradient(to right, transparent, #e8a8c0, transparent); margin: 0 auto 18px; }
+    .spotlight-blurb { font-family: 'Lato', sans-serif; font-size: 14px; font-weight: 300; color: #4a3050; line-height: 1.8; text-align: center; margin-bottom: 22px; }
+    .btn-center { text-align: center; }
+    .btn-primary { display: inline-block; background: linear-gradient(to right, #c4688a, #a05878); color: #fdfaff !important; font-family: 'Lato', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 2.5px; text-transform: uppercase; padding: 14px 32px; border-radius: 1px; }
+
+    
+    .upcoming { padding: 0 48px 30px; }
+    .upcoming-grid { display: table; width: 100%; }
+    .upcoming-book { display: table-cell; width: 33.33%; padding: 0 10px; vertical-align: top; text-align: center; }
+    .upcoming-book:first-child { padding-left: 0; }
+    .upcoming-book:last-child { padding-right: 0; }
+    .upcoming-grid.two .upcoming-book { width: 50%; }
+    .upcoming-cover { width: 100%; max-width: 130px; margin: 0 auto 10px; border-radius: 2px; box-shadow: 0 4px 14px rgba(160,80,120,0.14); }
+    .upcoming-series { font-family: 'Lato', sans-serif; font-size: 8px; font-weight: 700; letter-spacing: 2.5px; text-transform: uppercase; color: #7a9a7a; margin-bottom: 4px; }
+    .upcoming-title { font-family: 'Cormorant Garamond', serif; font-size: 15px; font-weight: 500; color: #3a2240; line-height: 1.2; margin-bottom: 4px; }
+    .upcoming-date { font-family: 'Lato', sans-serif; font-size: 11px; font-weight: 300; color: #9a7888; font-style: italic; margin-bottom: 10px; }
+    .btn-small { display: inline-block; border: 1px solid #7a9a7a; color: #527052 !important; font-family: 'Lato', sans-serif; font-size: 9px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; padding: 8px 16px; border-radius: 1px; }
+
+    
+    .series-spot { padding: 0 48px 30px; }
+    .series-spot-inner { background: linear-gradient(135deg, #f5efe6 0%, #efe4d4 100%); border: 1px solid #d8c4a0; border-radius: 2px; padding: 26px; text-align: center; }
+    .series-spot-icon { font-size: 28px; margin-bottom: 10px; }
+    .series-spot-label { font-family: 'Lato', sans-serif; font-size: 9px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; color: #9a7040; margin-bottom: 6px; }
+    .series-spot-name { font-family: 'Cormorant Garamond', serif; font-size: 26px; font-weight: 400; color: #5a3e1e; margin-bottom: 10px; line-height: 1.2; }
+    .series-spot-desc { font-family: 'Lato', sans-serif; font-size: 13px; font-weight: 300; color: #4e3e28; line-height: 1.8; margin-bottom: 20px; }
+    .btn-outline-green { display: inline-block; border: 1px solid #9a7040; color: #7a5a2e !important; font-family: 'Lato', sans-serif; font-size: 10px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; padding: 10px 24px; border-radius: 1px; }
+
+    
+    .series-spot-inner.falls { background: linear-gradient(135deg, #eef7f8 0%, #dfeff2 100%); border-color: #a8cfd6; }
+    .falls .series-spot-label { color: #3f7f8a; }
+    .falls .series-spot-name { color: #1e535e; }
+    .falls .series-spot-desc { color: #2c4e56; }
+    .falls .btn-outline-green { border-color: #3f7f8a; color: #2b6a74 !important; }
+
+    
+    .series-spot-inner.legacy { background: linear-gradient(135deg, #f3eef8 0%, #e7dcf1 100%); border-color: #cbb6dd; }
+    .legacy .series-spot-label { color: #7a4a98; }
+    .legacy .series-spot-name { color: #3a2240; }
+    .legacy .series-spot-desc { color: #46385a; }
+    .legacy .btn-outline-green { border-color: #7a4a98; color: #5f3a86 !important; }
+
+    
+    .vote { padding: 0 48px 30px; }
+    .vote-inner { background: linear-gradient(135deg, #fdf0f5, #f8e8f2); border: 1px solid #e0b8d0; border-radius: 2px; padding: 24px; text-align: center; }
+    .vote-label { font-family: 'Lato', sans-serif; font-size: 9px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; color: #b06080; margin-bottom: 8px; }
+    .vote-question { font-family: 'Cormorant Garamond', serif; font-size: 22px; font-weight: 500; color: #3a2240; margin-bottom: 8px; line-height: 1.3; }
+    .vote-sub { font-family: 'Lato', sans-serif; font-size: 12px; font-weight: 300; color: #7a5870; line-height: 1.7; margin-bottom: 18px; }
+    .btn-vote { display: inline-block; background: linear-gradient(to right, #9b6fba, #7a4a98); color: #fdfaff !important; font-family: 'Lato', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 2.5px; text-transform: uppercase; padding: 14px 32px; border-radius: 1px; }
+
+    
+    .personal-note { padding: 0 48px 30px; }
+    .personal-note-inner { border-left: 3px solid #a8c4d8; padding: 6px 0 6px 22px; background: linear-gradient(to right, #f0f6fa 0%, transparent 80%); }
+    .note-label { font-family: 'Lato', sans-serif; font-size: 9px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; color: #5a7a98; margin-bottom: 10px; }
+    .note-text { font-family: 'Cormorant Garamond', serif; font-size: 18px; font-style: italic; color: #3a4e60; line-height: 1.75; margin-bottom: 12px; }
+    .note-sig { font-family: 'Cormorant Garamond', serif; font-size: 15px; font-style: italic; color: #7a9aaa; }
+
+    
+    .ornament-divider { text-align: center; padding: 6px 48px; }
+    .ornament-divider-inner { display: inline-flex; align-items: center; gap: 12px; }
+    .ornament-line { width: 80px; height: 1px; background: linear-gradient(to right, transparent, #e0b8cc); }
+    .ornament-line.r { background: linear-gradient(to left, transparent, #e0b8cc); }
+    .ornament-diamond { width: 6px; height: 6px; background-color: #e8a8c0; transform: rotate(45deg); flex-shrink: 0; }
+
+    
+    .flower-footer { background-color: #4a2d4e; padding: 0; line-height: 0; }
+    .flower-footer svg { display: block; width: 100%; }
+    .footer-content { background-color: #4a2d4e; padding: 20px 48px 32px; text-align: center; }
+    .footer-title { font-family: 'Cormorant Garamond', serif; font-size: 20px; font-weight: 300; color: #fdfaff; letter-spacing: 2px; margin-bottom: 6px; }
+    .footer-title em { font-style: italic; color: #f2c4d8; }
+    .footer-tagline { font-family: 'Cormorant Garamond', serif; font-size: 13px; font-style: italic; color: rgba(253,250,255,0.45); margin-bottom: 18px; }
+    .footer-links { margin-bottom: 18px; }
+    .footer-links a { font-family: 'Lato', sans-serif; font-size: 10px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: #e8a8c0 !important; margin: 0 12px; }
+    .footer-rule { width: 40px; height: 1px; background: linear-gradient(to right, transparent, rgba(232,168,192,0.4), transparent); margin: 0 auto 14px; }
+    .footer-legal { font-family: 'Lato', sans-serif; font-size: 10px; font-weight: 300; color: rgba(253,250,255,0.30); line-height: 1.7; }
+    .footer-legal a { color: rgba(232,168,192,0.6) !important; }
+
+    
+
+    
+    .feedback-container { padding: 10px 0 20px; text-align: center; }
+    .feedback-btn {
+        display: inline-block;
+        padding: 12px 24px;
+        margin: 6px;
+        border-radius: 30px;
+        background-color: #ffffff;
+        border: 1px solid #e8a8c0;
+        color: #b06080 !important;
+        font-family: 'Lato', Arial, sans-serif;
+        font-size: 13px;
+        font-weight: 700;
+        text-decoration: none !important;
+        box-shadow: 0 2px 8px rgba(176, 96, 128, 0.1);
+    }
+
+@media only screen and (max-width: 480px) {
+      .toc-band, .greeting-band, .section-label, .gazette, .comedy, .recipe,
+      .obsession, .favorite, .spotlight, .upcoming, .series-spot, .vote, .personal-note { padding-left: 20px !important; padding-right: 20px !important }
+      .header-title { font-size: 32px !important }
+      .upcoming-grid { display: block !important }
+      .upcoming-book { display: block !important; width: 100% !important; padding: 0 0 20px !important }
+      .obsession-inner { display: block !important }
+      .obsession-icon-cell { display: block !important; text-align: center !important; padding-bottom: 8px !important }
+      .obsession-text-cell { display: block !important; padding: 0 !important }
+      .footer-content { padding: 16px 20px 24px !important }
+    }
+  </style>
+</head>
+<body style="background-color:#f0eaf4; font-family:'Lato', Georgia, serif;">
+<div class="email-wrapper" style="padding:32px 16px; background-color:#f0eaf4;">
+<div class="email-container" style="margin:0 auto; max-width:620px; background-color:#fdfaff; border-radius:2px; overflow:hidden; box-shadow:0 4px 32px rgba(160,120,180,0.12);">
+
+
+<!-- ════════════════════════════════════
+     HEADER
+════════════════════════════════════ -->
+<div class="header" style="padding:0; background-color:#452646; text-align:center;">
+  <img src="https://jcsavoy.com/media/newsletter-images/header-banner.jpg" alt="JC Savoy &ndash; Sweet &amp; Clean Romance &ndash; Cowboys, Rom-Coms, Happily Ever Afters" width="620" style="display:block; width:100%; max-width:620px; height:auto; border:0; outline:none; text-decoration:none; color:#f2c4d8; font-family:Georgia, serif; font-size:18px; font-style:italic;"/>
+  <!-- Open Tracking Pixel -->
+  <img src="https://n8n.srv1257557.hstgr.cloud/webhook/open-tracking?email={{$email}}&issue=2026-12-14" width="1" height="1" style="border:0; outline:none; text-decoration:none; display:block; display:block;width:1px;height:1px;border:0;max-width:1px !important;" alt="" />
+</div>
+
+<!-- ════════════════════════════════════
+     TABLE OF CONTENTS
+════════════════════════════════════ -->
+<div class="toc-band" style="padding:18px 48px; background-color:#fdf0f5; border-bottom:1px solid #f0d0e0;">
+  <table role="presentation" width="100%" style="border-collapse:collapse; mso-table-lspace:0pt; mso-table-rspace:0pt;"><tr>
+    <td width="50%" valign="top" style="padding-right:16px;">
+      <p class="toc-label" style="margin:0; padding:0; font-family:'Lato', sans-serif; font-size:9px; font-weight:700; letter-spacing:2.5px; text-transform:uppercase; color:#b06080; margin-bottom:8px;">Fun Stuff</p>
+      <p class="toc-item" style="margin:0; padding:0; font-family:'Lato', sans-serif; font-size:12px; font-weight:300; color:#5a3a50; line-height:2.1;"><span style="color:#e8a8c0;font-size:8px">✦&nbsp;&nbsp;</span>🗞️ &nbsp;Cottonwood Ridge Chronicles</p>
+      <p class="toc-item" style="margin:0; padding:0; font-family:'Lato', sans-serif; font-size:12px; font-weight:300; color:#5a3a50; line-height:2.1;"><span style="color:#e8a8c0;font-size:8px">✦&nbsp;&nbsp;</span>😄 &nbsp;Comedy Corner</p>
+      <p class="toc-item" style="margin:0; padding:0; font-family:'Lato', sans-serif; font-size:12px; font-weight:300; color:#5a3a50; line-height:2.1;"><span style="color:#e8a8c0;font-size:8px">✦&nbsp;&nbsp;</span>🍴 &nbsp;Recipe Corner</p>
+      <p class="toc-item" style="margin:0; padding:0; font-family:'Lato', sans-serif; font-size:12px; font-weight:300; color:#5a3a50; line-height:2.1;"><span style="color:#e8a8c0;font-size:8px">✦&nbsp;&nbsp;</span>🏈 &nbsp;JC's Current Obsession</p>
+    </td>
+    <td width="50%" valign="top" style="padding-left:16px;">
+      <p class="toc-label" style="margin:0; padding:0; font-family:'Lato', sans-serif; font-size:9px; font-weight:700; letter-spacing:2.5px; text-transform:uppercase; color:#b06080; margin-bottom:8px;">Books &amp; More</p>
+      <p class="toc-item" style="margin:0; padding:0; font-family:'Lato', sans-serif; font-size:12px; font-weight:300; color:#5a3a50; line-height:2.1;"><span style="color:#e8a8c0;font-size:8px">✦&nbsp;&nbsp;</span>📖 &nbsp;New Release</p>
+      <p class="toc-item" style="margin:0; padding:0; font-family:'Lato', sans-serif; font-size:12px; font-weight:300; color:#5a3a50; line-height:2.1;"><span style="color:#e8a8c0;font-size:8px">✦&nbsp;&nbsp;</span>📅 &nbsp;Coming Soon</p>
+      <p class="toc-item" style="margin:0; padding:0; font-family:'Lato', sans-serif; font-size:12px; font-weight:300; color:#5a3a50; line-height:2.1;"><span style="color:#e8a8c0;font-size:8px">✦&nbsp;&nbsp;</span>🔍 &nbsp;Series Spotlight</p>
+      <p class="toc-item" style="margin:0; padding:0; font-family:'Lato', sans-serif; font-size:12px; font-weight:300; color:#5a3a50; line-height:2.1;"><span style="color:#e8a8c0;font-size:8px">✦&nbsp;&nbsp;</span>🗳️ &nbsp;Reader Vote</p>
+    </td>
+  </tr></table>
+</div>
+
+
+<!-- ════════════════════════════════════
+     GREETING  (EDITABLE — Jean fills in each issue)
+════════════════════════════════════ -->
+<div class="greeting-band" style="padding:22px 48px; background-color:#fdf0f5; text-align:center; border-bottom:1px solid #f0d0e0;">
+  <p style="margin:0; padding:0; font-family:'Cormorant Garamond', serif; font-size:17px; font-style:italic; color:#7a4a5e; line-height:1.7;">Friends — it's here: today brings the tenth Kingsleys story, <em>Going Once, Cowboy</em>. Jude Kingsley has spent thirty-four years being the easiest man in Cottonwood Ridge to like, which turns out to be a very effective way of making sure nobody ever looks closer. Bobbie Mansfield runs the Bottle Barn, is a winter's worth of hay short, and is far too stubborn to say so. Then his sister Delaney organised a bachelor auction, and Bobbie bid on him — with money she does not have, on the man whose cheque she had just handed back. I loved every minute of these two.</p>
+</div>
+
+
+<!-- ════════════════════════════════════
+     COTTONWOOD RIDGE CHRONICLES  (Ridge brown — colours INLINED, never via .ridge)
+════════════════════════════════════ -->
+<div class="section-label" style="padding:28px 48px 6px; text-align:center;"><span style="display:inline-block; font-family:'Lato', sans-serif; font-size:9px; font-weight:700; letter-spacing:3.5px; text-transform:uppercase; color:#b06080; border-bottom:1px solid #e0b8cc; padding-bottom:6px;">🗞️ &nbsp; The Cottonwood Ridge Chronicles &nbsp; 🗞️</span></div>
+<div class="gazette" style="padding:16px 48px 30px;">
+  <div class="gazette-inner ridge" style="background-color:#faf5ea; border:1px solid #d4bc94; border-radius:2px; overflow:hidden;">
+    <div class="gazette-masthead" style="padding:10px 20px; background-color:#6b4326;"><table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="border-collapse:collapse;"><tr><td align="left" valign="middle" width="99%" style="font-family:'Cormorant Garamond', serif; font-size:19px; font-weight:600; color:#fdfaff; letter-spacing:3px; text-transform:uppercase; ">The Cottonwood Ridge Chronicles</td><td align="right" valign="middle" style="white-space:nowrap;font-family:'Lato', sans-serif; font-size:9px; font-weight:300; color:#fdfaff; letter-spacing:1px; line-height:2.4;">December 2026 &nbsp;·&nbsp; Serving the Ridge</td></tr></table></div>
+    <div class="gazette-rule" style="height:1px; background-color:#6b4326;"></div>
+    <div class="gazette-body" style="padding:16px 20px 14px;">
+      <p class="gazette-headline" style="margin:0; padding:0; font-family:'Cormorant Garamond', serif; font-size:17px; font-weight:600; color:#5a3a1e; margin-bottom:8px; line-height:1.35;"><em style="font-style:italic;">Fire Department Bachelors Go on the Block at Grange Hall; Chief Bergen, Married Twenty-Nine Years, Objects to Own Ineligibility</em></p>
+      <p class="gazette-text" style="margin:0; padding:0; font-family:'Lato', sans-serif; font-size:13px; font-weight:300; color:#4e4034; line-height:1.8;">COTTONWOOD RIDGE — The Cottonwood Fire Department will auction its bachelors Saturday at the Grange Hall, and organizer Delaney Kingsley has set out all two hundred folding chairs. She expects to need more.</p>
+      <p class="gazette-text" style="margin:0; padding:0; font-family:'Lato', sans-serif; font-size:13px; font-weight:300; color:#4e4034; line-height:1.8; margin-top: 10px;">Firefighter Wes signed the sheet first. He is twenty-four and could not explain why. Firefighter Halvorsen has since drawn up a list of who will bring the highest bid and placed Jude Kingsley at the top, citing the department calendar, on which Mr. Kingsley is January. The calendar sold eleven hundred copies. The photographer spent two hours arranging lights so the picture would appear to be an accident, then told Mr. Kingsley to gaze at the water tower. He did.</p>
+      <p class="gazette-text" style="margin:0; padding:0; font-family:'Lato', sans-serif; font-size:13px; font-weight:300; color:#4e4034; line-height:1.8; margin-top: 10px;">Chief Bergen is not eligible and has said so to anyone who pauses long enough. He plans to sit in the front row with money he is not allowed to spend. Mrs. Bergen has been informed.</p>
+      <p class="gazette-text" style="margin:0; padding:0; font-family:'Lato', sans-serif; font-size:13px; font-weight:300; color:#4e4034; line-height:1.8; margin-top: 10px;">There will be a pie table.</p>
+      <p class="gazette-text" style="margin:0; padding:0; font-family:'Lato', sans-serif; font-size:13px; font-weight:300; color:#4e4034; line-height:1.8; margin-top: 10px;">Proceeds benefit The Bottle Barn, the animal rescue on the west side of town. Reached in the feed room, owner Bobbie Mansfield said she was fine. She said this before the question was finished. Doris, the barn's dairy goat, was present and disapproves of the whole thing.</p>
+      <p class="gazette-text" style="margin:0; padding:0; font-family:'Lato', sans-serif; font-size:13px; font-weight:300; color:#4e4034; line-height:1.8; margin-top: 10px;">Asked for comment, Mr. Kingsley said he had a shift Saturday. The department schedule shows he does not. It does show one barn on the west side of town that he has inspected more often than the code requires.</p>
+      <div class="feedback-container" style="padding:10px 0 20px; text-align:center;">
+        <p style="margin:0; padding:0; font-family:'Lato', sans-serif; font-size:11px; color:#9a7a52; margin-bottom:8px;">Did you enjoy the Chronicles this month?</p>
+        <a href="https://n8n.srv1257557.hstgr.cloud/webhook/feedback-tracking?email={{$email}}&issue=2026-12-14&section=gazette&vote=up" class="feedback-btn" target="_blank" style="margin:6px; padding:12px 24px; text-decoration:none !important; display:inline-block; border-radius:30px; background-color:#ffffff; border:1px solid #e8a8c0; color:#b06080 !important; font-family:'Lato', Arial, sans-serif; font-size:13px; font-weight:700; box-shadow:0 2px 8px rgba(176, 96, 128, 0.1);">👍 Loved it!</a>
+        <a href="https://n8n.srv1257557.hstgr.cloud/webhook/feedback-tracking?email={{$email}}&issue=2026-12-14&section=gazette&vote=down" class="feedback-btn" target="_blank" style="margin:6px; padding:12px 24px; text-decoration:none !important; display:inline-block; border-radius:30px; background-color:#ffffff; border:1px solid #e8a8c0; color:#b06080 !important; font-family:'Lato', Arial, sans-serif; font-size:13px; font-weight:700; box-shadow:0 2px 8px rgba(176, 96, 128, 0.1);">👎 Not for me</a>
+      </div>
+      <p class="gazette-byline" style="margin:0; padding:0; font-family:'Cormorant Garamond', serif; font-size:11px; font-style:italic; color:#9a7a52; margin-top:10px;">— Your Correspondent at the Cottonwood Café Counter</p>
+    </div>
+  </div>
+</div>
+
+<div class="ornament-divider" style="padding:6px 48px; text-align:center;"><table role="presentation" align="center" cellpadding="0" cellspacing="0" border="0" style="margin:0 auto;border-collapse:collapse;"><tr><td valign="middle" style="width:80px;padding:0;font-size:0;line-height:0;"><div style="height:1px;font-size:0;line-height:0;background-color:#e0b8cc;">&nbsp;</div></td><td style="padding:0 12px;font-size:11px;line-height:1;color:#e8a8c0;font-family:Georgia,serif;">&#9670;</td><td valign="middle" style="width:80px;padding:0;font-size:0;line-height:0;"><div style="height:1px;font-size:0;line-height:0;background-color:#e0b8cc;">&nbsp;</div></td></tr></table></div>
+
+
+<!-- ════════════════════════════════════
+     COMEDY CORNER
+════════════════════════════════════ -->
+<div class="section-label" style="padding:28px 48px 6px; text-align:center;"><span style="display:inline-block; font-family:'Lato', sans-serif; font-size:9px; font-weight:700; letter-spacing:3.5px; text-transform:uppercase; color:#b06080; border-bottom:1px solid #e0b8cc; padding-bottom:6px;">😄 &nbsp; Comedy Corner &nbsp; 😄</span></div>
+<div class="comedy" style="padding:16px 48px 30px;">
+  <div class="comedy-inner" style="padding:24px; border:2px dashed #f2c4d8; border-radius:4px; text-align:center; background:#fffafc;">
+    <img src="https://jcsavoy.com/media/newsletter-images/joke-dec-14-2026.jpg" alt="Warning: Bad Dad Joke. Why did the cowboy bid on himself at the bachelor auction? He wanted to be sure he went to a good home." width="476" style="display:block; width:100%; max-width:476px; height:auto; margin:0 auto 14px; border:0; outline:none; text-decoration:none; border-radius:3px;"/>
+    <div class="feedback-container" style="padding:10px 0 20px; text-align:center;">
+      <p style="margin:0; padding:0; font-family:'Lato', sans-serif; font-size:11px; color:#c0a0b0; margin-bottom:8px;">Terrible joke? Or just terrible enough?</p>
+      <a href="https://n8n.srv1257557.hstgr.cloud/webhook/feedback-tracking?email={{$email}}&issue=2026-12-14&section=joke&vote=up" class="feedback-btn" target="_blank" style="margin:6px; padding:12px 24px; text-decoration:none !important; display:inline-block; border-radius:30px; background-color:#ffffff; border:1px solid #e8a8c0; color:#b06080 !important; font-family:'Lato', Arial, sans-serif; font-size:13px; font-weight:700; box-shadow:0 2px 8px rgba(176, 96, 128, 0.1);">👍 Love it!</a>
+      <a href="https://n8n.srv1257557.hstgr.cloud/webhook/feedback-tracking?email={{$email}}&issue=2026-12-14&section=joke&vote=down" class="feedback-btn" target="_blank" style="margin:6px; padding:12px 24px; text-decoration:none !important; display:inline-block; border-radius:30px; background-color:#ffffff; border:1px solid #e8a8c0; color:#b06080 !important; font-family:'Lato', Arial, sans-serif; font-size:13px; font-weight:700; box-shadow:0 2px 8px rgba(176, 96, 128, 0.1);">👎 Oh, JC...</a>
+    </div>
+  </div>
+</div>
+
+<div class="ornament-divider" style="padding:6px 48px; text-align:center;"><table role="presentation" align="center" cellpadding="0" cellspacing="0" border="0" style="margin:0 auto;border-collapse:collapse;"><tr><td valign="middle" style="width:80px;padding:0;font-size:0;line-height:0;"><div style="height:1px;font-size:0;line-height:0;background-color:#e0b8cc;">&nbsp;</div></td><td style="padding:0 12px;font-size:11px;line-height:1;color:#e8a8c0;font-family:Georgia,serif;">&#9670;</td><td valign="middle" style="width:80px;padding:0;font-size:0;line-height:0;"><div style="height:1px;font-size:0;line-height:0;background-color:#e0b8cc;">&nbsp;</div></td></tr></table></div>
+
+
+<!-- ════════════════════════════════════
+     RECIPE CORNER
+════════════════════════════════════ -->
+<div class="section-label" style="padding:28px 48px 6px; text-align:center;"><span style="display:inline-block; font-family:'Lato', sans-serif; font-size:9px; font-weight:700; letter-spacing:3.5px; text-transform:uppercase; color:#b06080; border-bottom:1px solid #e0b8cc; padding-bottom:6px;">🍴 &nbsp; Recipe Corner &nbsp; 🍴</span></div>
+<div class="recipe" style="padding:16px 48px 30px;">
+  <div class="recipe-inner" style="padding:24px; background-color:#f5faf0; border:1px solid #b8d4a8; border-radius:2px;">
+    <img src="https://jcsavoy.com/media/newsletter-images/recipe-dec-14-2026.jpg" alt="Healthy Black Bean Brownies — 2 cans black beans, 4 eggs, 6 Tbsp cocoa powder, half a cup of honey, 2 tsp vanilla, chocolate chips and raisins. Blend, pour into a lined pan, bake at 350F for 35 minutes." width="476" style="display:block; width:100%; max-width:476px; height:auto; margin:0 auto 14px; border:0; outline:none; text-decoration:none; border-radius:3px;"/>
+    <div class="feedback-container" style="padding:10px 0 20px; text-align:center;">
+      <p style="margin:0; padding:0; font-family:'Lato', sans-serif; font-size:11px; color:#7a9a70; margin-bottom:8px;">Thinking of making this?</p>
+      <a href="https://n8n.srv1257557.hstgr.cloud/webhook/feedback-tracking?email={{$email}}&issue=2026-12-14&section=recipe&vote=going" class="feedback-btn" target="_blank" style="margin:6px; padding:12px 24px; text-decoration:none !important; display:inline-block; border-radius:30px; background-color:#ffffff; border:1px solid #e8a8c0; color:#b06080 !important; font-family:'Lato', Arial, sans-serif; font-size:13px; font-weight:700; box-shadow:0 2px 8px rgba(176, 96, 128, 0.1);">👩‍🍳 Going to Try</a>
+      <a href="https://n8n.srv1257557.hstgr.cloud/webhook/feedback-tracking?email={{$email}}&issue=2026-12-14&section=recipe&vote=liked" class="feedback-btn" target="_blank" style="margin:6px; padding:12px 24px; text-decoration:none !important; display:inline-block; border-radius:30px; background-color:#ffffff; border:1px solid #e8a8c0; color:#b06080 !important; font-family:'Lato', Arial, sans-serif; font-size:13px; font-weight:700; box-shadow:0 2px 8px rgba(176, 96, 128, 0.1);">👍 Liked It</a>
+      <a href="https://n8n.srv1257557.hstgr.cloud/webhook/feedback-tracking?email={{$email}}&issue=2026-12-14&section=recipe&vote=disliked" class="feedback-btn" target="_blank" style="margin:6px; padding:12px 24px; text-decoration:none !important; display:inline-block; border-radius:30px; background-color:#ffffff; border:1px solid #e8a8c0; color:#b06080 !important; font-family:'Lato', Arial, sans-serif; font-size:13px; font-weight:700; box-shadow:0 2px 8px rgba(176, 96, 128, 0.1);">👎 Disliked It</a>
+    </div>
+    <p class="recipe-note" style="margin:0; padding:0; font-family:'Cormorant Garamond', serif; font-size:14px; font-style:italic; color:#7a9a70; margin-top:14px; border-left:2px solid #b0d0a0; padding-left:12px; line-height:1.6;">Two cans of black beans and a blender, and nobody has to know. I make these when I want something sweet and still want to feel sensible about it. Bobbie would eat three standing at the counter and tell you she was fine. Jude would notice she hadn't had lunch, and would not say so out loud.</p>
+  </div>
+</div>
+
+<div class="ornament-divider" style="padding:6px 48px; text-align:center;"><table role="presentation" align="center" cellpadding="0" cellspacing="0" border="0" style="margin:0 auto;border-collapse:collapse;"><tr><td valign="middle" style="width:80px;padding:0;font-size:0;line-height:0;"><div style="height:1px;font-size:0;line-height:0;background-color:#e0b8cc;">&nbsp;</div></td><td style="padding:0 12px;font-size:11px;line-height:1;color:#e8a8c0;font-family:Georgia,serif;">&#9670;</td><td valign="middle" style="width:80px;padding:0;font-size:0;line-height:0;"><div style="height:1px;font-size:0;line-height:0;background-color:#e0b8cc;">&nbsp;</div></td></tr></table></div>
+
+
+<!-- ════════════════════════════════════
+     JC'S CURRENT OBSESSION  (EDITABLE — Jean fills in each issue)
+════════════════════════════════════ -->
+<div class="section-label" style="padding:28px 48px 6px; text-align:center;"><span style="display:inline-block; font-family:'Lato', sans-serif; font-size:9px; font-weight:700; letter-spacing:3.5px; text-transform:uppercase; color:#b06080; border-bottom:1px solid #e0b8cc; padding-bottom:6px;">🏈 &nbsp; JC's Current Obsession &nbsp; 🏈</span></div>
+<div class="obsession" style="padding:0 48px 28px;">
+  <table class="obsession-inner" role="presentation" style="padding:18px 20px; border-collapse:collapse; mso-table-lspace:0pt; mso-table-rspace:0pt; border:1px solid #ddd0ec; border-radius:2px; background:#fdf8ff; display:table; width:100%;"><tr>
+    <td class="obsession-icon-cell" style="display:table-cell; width:44px; vertical-align:middle; font-size:30px;">🏈</td>
+    <td class="obsession-text-cell" style="display:table-cell; vertical-align:middle; padding-left:14px;">
+      <p class="obsession-label" style="margin:0; padding:0; font-family:'Lato', sans-serif; font-size:9px; font-weight:700; letter-spacing:3px; text-transform:uppercase; color:#8a60a0; margin-bottom:5px;">What JC Can't Stop Watching / Doing / Eating</p>
+      <p class="obsession-text" style="margin:0; padding:0; font-family:'Cormorant Garamond', serif; font-size:17px; font-style:italic; color:#4a3060; line-height:1.6;">I'm even deeper into football than last month. Yes, I love reading — but I like sports too, and I'm not sorry.</p>
+    </td>
+  </tr></table>
+</div>
+
+<div class="ornament-divider" style="padding:6px 48px; text-align:center;"><table role="presentation" align="center" cellpadding="0" cellspacing="0" border="0" style="margin:0 auto;border-collapse:collapse;"><tr><td valign="middle" style="width:80px;padding:0;font-size:0;line-height:0;"><div style="height:1px;font-size:0;line-height:0;background-color:#e0b8cc;">&nbsp;</div></td><td style="padding:0 12px;font-size:11px;line-height:1;color:#e8a8c0;font-family:Georgia,serif;">&#9670;</td><td valign="middle" style="width:80px;padding:0;font-size:0;line-height:0;"><div style="height:1px;font-size:0;line-height:0;background-color:#e0b8cc;">&nbsp;</div></td></tr></table></div>
+
+
+<!-- ════════════════════════════════════
+     FAVORITE SECTION (one-tap poll - tracked as section=favorite in n8n)
+     Sits between Fun Stuff and Books & More: readers have seen every fun
+     section, and haven't yet hit the book promos where skimmers drop off.
+════════════════════════════════════ -->
+<div class="favorite" style="padding:8px 48px 28px;">
+  <div class="favorite-inner" style="padding:22px 20px 16px; background-color:#fdf0f5; border:1px solid #e0b8d0; border-radius:2px; text-align:center;">
+    <p style="margin:0; padding:0; font-family:'Lato', sans-serif; font-size:9px; font-weight:700; letter-spacing:3px; text-transform:uppercase; color:#b06080; margin-bottom:8px;">Quick Question</p>
+    <p style="margin:0; padding:0; font-family:'Cormorant Garamond', serif; font-size:22px; font-weight:500; color:#3a2240; line-height:1.3; margin-bottom:6px;">Which part did you enjoy most today?</p>
+    <p style="margin:0; padding:0; font-family:'Lato', sans-serif; font-size:12px; font-weight:300; color:#7a5870; line-height:1.7; margin-bottom:12px;">One tap is all it takes. It helps me know what to keep bringing you.</p>
+    <div style="text-align:center;">
+      <a href="https://n8n.srv1257557.hstgr.cloud/webhook/feedback-tracking?email={{$email}}&issue=2026-12-14&section=favorite&vote=gazette" class="feedback-btn" target="_blank" style="margin:5px; padding:10px 18px; text-decoration:none !important; display:inline-block; border-radius:30px; background-color:#ffffff; border:1px solid #e8a8c0; color:#b06080 !important; font-family:'Lato', Arial, sans-serif; font-size:13px; font-weight:700; box-shadow:0 2px 8px rgba(176, 96, 128, 0.1);">🗞️ The Chronicles</a>
+      <a href="https://n8n.srv1257557.hstgr.cloud/webhook/feedback-tracking?email={{$email}}&issue=2026-12-14&section=favorite&vote=joke" class="feedback-btn" target="_blank" style="margin:5px; padding:10px 18px; text-decoration:none !important; display:inline-block; border-radius:30px; background-color:#ffffff; border:1px solid #e8a8c0; color:#b06080 !important; font-family:'Lato', Arial, sans-serif; font-size:13px; font-weight:700; box-shadow:0 2px 8px rgba(176, 96, 128, 0.1);">😄 The Joke</a>
+      <a href="https://n8n.srv1257557.hstgr.cloud/webhook/feedback-tracking?email={{$email}}&issue=2026-12-14&section=favorite&vote=recipe" class="feedback-btn" target="_blank" style="margin:5px; padding:10px 18px; text-decoration:none !important; display:inline-block; border-radius:30px; background-color:#ffffff; border:1px solid #e8a8c0; color:#b06080 !important; font-family:'Lato', Arial, sans-serif; font-size:13px; font-weight:700; box-shadow:0 2px 8px rgba(176, 96, 128, 0.1);">🍴 The Recipe</a>
+      <a href="https://n8n.srv1257557.hstgr.cloud/webhook/feedback-tracking?email={{$email}}&issue=2026-12-14&section=favorite&vote=obsession" class="feedback-btn" target="_blank" style="margin:5px; padding:10px 18px; text-decoration:none !important; display:inline-block; border-radius:30px; background-color:#ffffff; border:1px solid #e8a8c0; color:#b06080 !important; font-family:'Lato', Arial, sans-serif; font-size:13px; font-weight:700; box-shadow:0 2px 8px rgba(176, 96, 128, 0.1);">🏡 JC's Obsession</a>
+    </div>
+  </div>
+</div>
+
+<div class="ornament-divider" style="padding:6px 48px; text-align:center;"><table role="presentation" align="center" cellpadding="0" cellspacing="0" border="0" style="margin:0 auto;border-collapse:collapse;"><tr><td valign="middle" style="width:80px;padding:0;font-size:0;line-height:0;"><div style="height:1px;font-size:0;line-height:0;background-color:#e0b8cc;">&nbsp;</div></td><td style="padding:0 12px;font-size:11px;line-height:1;color:#e8a8c0;font-family:Georgia,serif;">&#9670;</td><td valign="middle" style="width:80px;padding:0;font-size:0;line-height:0;"><div style="height:1px;font-size:0;line-height:0;background-color:#e0b8cc;">&nbsp;</div></td></tr></table></div>
+
+
+<!-- ════════════════════════════════════
+     NEW RELEASE
+════════════════════════════════════ -->
+<div class="section-label" style="padding:28px 48px 6px; text-align:center;"><span style="display:inline-block; font-family:'Lato', sans-serif; font-size:9px; font-weight:700; letter-spacing:3.5px; text-transform:uppercase; color:#b06080; border-bottom:1px solid #e0b8cc; padding-bottom:6px;">📖 &nbsp; New Release &nbsp; 📖</span></div>
+<div class="spotlight" style="padding:16px 48px 30px;">
+  <div class="spotlight-inner" style="border:1px solid #e8d0dc; border-radius:2px; overflow:hidden;">
+    <div class="spotlight-badge" style="padding:9px; background-color:#c4688a; text-align:center; font-family:'Lato', sans-serif; font-size:9px; font-weight:700; letter-spacing:3px; text-transform:uppercase; color:#fdfaff;">✨ &nbsp; New Release &nbsp; ✨</div>
+    <div class="spotlight-content" style="padding:28px 28px 24px;">
+      <div class="spotlight-cover-wrap" style="text-align:center; margin-bottom:22px;">
+        <img class="spotlight-cover" src="https://jcsavoy.com/media/newsletter-images/Going%20Once%2C%20Cowboy.jpg" alt="Going Once, Cowboy" width="180" style="margin:0 auto; border:0; outline:none; text-decoration:none; display:block; max-width:180px; border-radius:2px; box-shadow:0 8px 28px rgba(160,80,120,0.18);"/>
+      </div>
+      <p class="spotlight-series" style="margin:0; padding:0; font-family:'Lato', sans-serif; font-size:9px; font-weight:700; letter-spacing:3px; text-transform:uppercase; color:#b06080; text-align:center; margin-bottom:6px;">The Kingsleys of Cottonwood Ridge:</p>
+      <h2 class="spotlight-title" style="margin:0; padding:0; font-family:'Cormorant Garamond', serif; font-size:30px; font-weight:400; color:#3a2240; text-align:center; line-height:1.15; margin-bottom:4px;"><em style="font-style:italic;">Going Once, Cowboy</em></h2>
+      <p class="spotlight-booknum" style="margin:0; padding:0; font-family:'Cormorant Garamond', serif; font-size:13px; font-style:italic; color:#9a7888; text-align:center; margin-bottom:18px;">Book 10 in the Series</p>
+      <div class="spotlight-divider" style="margin:0 auto 18px; width:40px; height:1px; background-color:#e8a8c0;"></div>
+      <p class="spotlight-blurb" style="margin:0; padding:0; font-family:'Lato', sans-serif; font-size:14px; font-weight:300; color:#4a3050; line-height:1.8; text-align:center; margin-bottom:22px;">He's been looked at his whole life. She's the first one who ever really saw him. Jude Kingsley is a firefighter, a Kingsley, and the easiest man in Cottonwood Ridge to like — which is exactly how he's kept everyone at arm's length for thirty-four years. Bobbie Mansfield runs the Bottle Barn, a rescue full of bottle kids, foundered mares and one dairy goat with strong opinions. She's short a winter's worth of hay and too stubborn to say so, and when Jude turns up with a cheque that would fix it, she hands it straight back. Which leaves his sister Delaney to do what Delaney does best: a bachelor auction. Bobbie has no intention of bidding. She bids anyway.</p>
+      <div class="btn-center" style="text-align:center;"><a href="https://n8n.srv1257557.hstgr.cloud/webhook/click-tracking?email={{$email}}&issue=2026-12-14&url=https%3A//amzn.to/4689WiD" class="btn-primary" style="padding:14px 32px; text-decoration:none; display:inline-block; background-color:#c4688a; color:#fdfaff !important; font-family:'Lato', sans-serif; font-size:11px; font-weight:700; letter-spacing:2.5px; text-transform:uppercase; border-radius:1px;">Read It Now →</a></div>
+    </div>
+  </div>
+</div>
+
+<div class="ornament-divider" style="padding:6px 48px; text-align:center;"><table role="presentation" align="center" cellpadding="0" cellspacing="0" border="0" style="margin:0 auto;border-collapse:collapse;"><tr><td valign="middle" style="width:80px;padding:0;font-size:0;line-height:0;"><div style="height:1px;font-size:0;line-height:0;background-color:#e0b8cc;">&nbsp;</div></td><td style="padding:0 12px;font-size:11px;line-height:1;color:#e8a8c0;font-family:Georgia,serif;">&#9670;</td><td valign="middle" style="width:80px;padding:0;font-size:0;line-height:0;"><div style="height:1px;font-size:0;line-height:0;background-color:#e0b8cc;">&nbsp;</div></td></tr></table></div>
+
+
+<!-- ════════════════════════════════════
+     COMING SOON
+════════════════════════════════════ -->
+<div class="section-label" style="padding:28px 48px 6px; text-align:center;"><span style="display:inline-block; font-family:'Lato', sans-serif; font-size:9px; font-weight:700; letter-spacing:3.5px; text-transform:uppercase; color:#b06080; border-bottom:1px solid #e0b8cc; padding-bottom:6px;">📅 &nbsp; Coming Soon &nbsp; 📅</span></div>
+<div class="upcoming" style="padding:0 48px 30px;">
+  <table class="upcoming-grid" role="presentation" style="border-collapse:collapse; mso-table-lspace:0pt; mso-table-rspace:0pt; display:table; width:100%;"><tr>
+    <td class="upcoming-book" style="padding:0 10px; display:table-cell; width:100%; vertical-align:top; text-align:center;">
+      <img class="upcoming-cover" src="https://jcsavoy.com/media/newsletter-images/Blaze%20Backfire.jpg" alt="Blaze Backfire" width="130" style="margin:0 auto 10px; border:0; outline:none; text-decoration:none; display:block; width:100%; max-width:130px; border-radius:2px; box-shadow:0 4px 14px rgba(160,80,120,0.14);"/>
+      <p class="upcoming-series" style="margin:0; padding:0; font-family:'Lato', sans-serif; font-size:8px; font-weight:700; letter-spacing:2.5px; text-transform:uppercase; color:#7a9a7a; margin-bottom:4px;">Love Only #8</p>
+      <p class="upcoming-title" style="margin:0; padding:0; font-family:'Cormorant Garamond', serif; font-size:15px; font-weight:500; color:#3a2240; line-height:1.2; margin-bottom:4px;">Blaze Backfire</p>
+      <p class="upcoming-date" style="margin:0; padding:0; font-family:'Lato', sans-serif; font-size:11px; font-weight:300; color:#9a7888; font-style:italic; margin-bottom:10px;">Coming January 11th</p>
+      <a href="https://n8n.srv1257557.hstgr.cloud/webhook/click-tracking?email={{$email}}&issue=2026-12-14&url=https%3A//link.amazon/B0gPJXLMF" class="btn-small" style="padding:8px 16px; text-decoration:none; display:inline-block; border:1px solid #7a9a7a; color:#527052 !important; font-family:'Lato', sans-serif; font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; border-radius:1px;">Pre-Order</a>
+    </td>
+  </tr></table>
+</div>
+
+<div class="ornament-divider" style="padding:6px 48px; text-align:center;"><table role="presentation" align="center" cellpadding="0" cellspacing="0" border="0" style="margin:0 auto;border-collapse:collapse;"><tr><td valign="middle" style="width:80px;padding:0;font-size:0;line-height:0;"><div style="height:1px;font-size:0;line-height:0;background-color:#e0b8cc;">&nbsp;</div></td><td style="padding:0 12px;font-size:11px;line-height:1;color:#e8a8c0;font-family:Georgia,serif;">&#9670;</td><td valign="middle" style="width:80px;padding:0;font-size:0;line-height:0;"><div style="height:1px;font-size:0;line-height:0;background-color:#e0b8cc;">&nbsp;</div></td></tr></table></div>
+
+
+<!-- ════════════════════════════════════
+     SERIES SPOTLIGHT  (Love Only — coastal blue, colours INLINED not via a class)
+════════════════════════════════════ -->
+<div class="section-label" style="padding:28px 48px 6px; text-align:center;"><span style="display:inline-block; font-family:'Lato', sans-serif; font-size:9px; font-weight:700; letter-spacing:3.5px; text-transform:uppercase; color:#b06080; border-bottom:1px solid #e0b8cc; padding-bottom:6px;">🔍 &nbsp; Series Spotlight &nbsp; 🔍</span></div>
+<div class="series-spot" style="padding:0 48px 30px;">
+  <div class="series-spot-inner coast" style="padding:26px; background-color:#f0f7ff; border:1px solid #b8d4e8; border-radius:2px; text-align:center;">
+    <div class="series-spot-icon" style="font-size:28px; margin-bottom:10px;">🌊</div>
+    <p class="series-spot-label" style="margin:0; padding:0; font-family:'Lato', sans-serif; font-size:9px; font-weight:700; letter-spacing:3px; text-transform:uppercase; color:#3f7f8a; margin-bottom:6px;">Have You Discovered This Series?</p>
+    <h3 class="series-spot-name" style="margin:0; padding:0; font-family:'Cormorant Garamond', serif; font-size:26px; font-weight:400; color:#1e4060; margin-bottom:10px; line-height:1.2;">Love Only</h3>
+    <p class="series-spot-desc" style="margin:0; padding:0; font-family:'Lato', sans-serif; font-size:13px; font-weight:300; color:#2c4e56; line-height:1.8; margin-bottom:20px;">Swap the Montana snow for salt air. Love Only is my Maine harbour town — Cliffhaven, where the baker delivers opinions with the scones, the harbormaster forecasts weather with his elbow, and nobody has boundaries worth speaking of. Eight stories so far, from a Christmas disaster to a parade float that nearly needed Coast Guard intervention. Sweet, clean, and very funny about small towns. Start anywhere.</p>
+    <a href="https://n8n.srv1257557.hstgr.cloud/webhook/click-tracking?email={{$email}}&issue=2026-12-14&url=https%3A//jcsavoy.com/love-only-series-page.html" class="btn-outline-green" style="padding:10px 24px; text-decoration:none; display:inline-block; border:1px solid #3f7f8a; color:#2b6a74 !important; font-family:'Lato', sans-serif; font-size:10px; font-weight:700; letter-spacing:2px; text-transform:uppercase; border-radius:1px;">Explore the Series →</a>
+  </div>
+</div>
+
+<div class="ornament-divider" style="padding:6px 48px; text-align:center;"><table role="presentation" align="center" cellpadding="0" cellspacing="0" border="0" style="margin:0 auto;border-collapse:collapse;"><tr><td valign="middle" style="width:80px;padding:0;font-size:0;line-height:0;"><div style="height:1px;font-size:0;line-height:0;background-color:#e0b8cc;">&nbsp;</div></td><td style="padding:0 12px;font-size:11px;line-height:1;color:#e8a8c0;font-family:Georgia,serif;">&#9670;</td><td valign="middle" style="width:80px;padding:0;font-size:0;line-height:0;"><div style="height:1px;font-size:0;line-height:0;background-color:#e0b8cc;">&nbsp;</div></td></tr></table></div>
+
+
+<!-- ════════════════════════════════════
+     READER VOTE
+════════════════════════════════════ -->
+<div class="section-label" style="padding:28px 48px 6px; text-align:center;"><span style="display:inline-block; font-family:'Lato', sans-serif; font-size:9px; font-weight:700; letter-spacing:3.5px; text-transform:uppercase; color:#b06080; border-bottom:1px solid #e0b8cc; padding-bottom:6px;">🗳️ &nbsp; Reader Vote &nbsp; 🗳️</span></div>
+<div class="vote" style="padding:0 48px 30px;">
+  <div class="vote-inner" style="padding:24px; background-color:#fdf0f5; border:1px solid #e0b8d0; border-radius:2px; text-align:center;">
+    <p class="vote-label" style="margin:0; padding:0; font-family:'Lato', sans-serif; font-size:9px; font-weight:700; letter-spacing:3px; text-transform:uppercase; color:#b06080; margin-bottom:8px;">Your Opinion Matters!</p>
+    <p class="vote-question" style="margin:0; padding:0; font-family:'Cormorant Garamond', serif; font-size:22px; font-weight:500; color:#3a2240; margin-bottom:8px; line-height:1.3;">Where would you rather spend a weekend?</p>
+    <p class="vote-sub" style="margin:0; padding:0; font-family:'Lato', sans-serif; font-size:12px; font-weight:300; color:#7a5870; line-height:1.7; margin-bottom:18px;">A Montana ranch, a Maine coastal town, a New York penthouse, or a cosy small-town inn? I write all four, so I genuinely want to know where you'd rather wake up. One tap.</p>
+    <a href="https://n8n.srv1257557.hstgr.cloud/webhook/click-tracking?email={{$email}}&issue=2026-12-14&url=https%3A//forms.gle/6S5v4Gb7Ex7tcSfC7" class="btn-vote" style="padding:14px 32px; text-decoration:none; display:inline-block; background-color:#9b6fba; color:#fdfaff !important; font-family:'Lato', sans-serif; font-size:11px; font-weight:700; letter-spacing:2.5px; text-transform:uppercase; border-radius:1px;">Cast Your Vote →</a>
+  </div>
+</div>
+
+<div class="ornament-divider" style="padding:6px 48px; text-align:center;"><table role="presentation" align="center" cellpadding="0" cellspacing="0" border="0" style="margin:0 auto;border-collapse:collapse;"><tr><td valign="middle" style="width:80px;padding:0;font-size:0;line-height:0;"><div style="height:1px;font-size:0;line-height:0;background-color:#e0b8cc;">&nbsp;</div></td><td style="padding:0 12px;font-size:11px;line-height:1;color:#e8a8c0;font-family:Georgia,serif;">&#9670;</td><td valign="middle" style="width:80px;padding:0;font-size:0;line-height:0;"><div style="height:1px;font-size:0;line-height:0;background-color:#e0b8cc;">&nbsp;</div></td></tr></table></div>
+
+
+<!-- ════════════════════════════════════
+     PERSONAL NOTE  (EDITABLE — Jean fills in each issue)
+════════════════════════════════════ -->
+<div class="section-label" style="padding:28px 48px 6px; text-align:center;"><span style="display:inline-block; font-family:'Lato', sans-serif; font-size:9px; font-weight:700; letter-spacing:3.5px; text-transform:uppercase; color:#b06080; border-bottom:1px solid #e0b8cc; padding-bottom:6px;">💌 &nbsp; A Note from JC &nbsp; 💌</span></div>
+<div class="personal-note" style="padding:0 48px 30px;">
+  <div class="personal-note-inner" style="padding:6px 0 6px 22px; border-left:3px solid #a8c4d8; background-color:#f0f6fa;">
+    <p class="note-label" style="margin:0; padding:0; font-family:'Lato', sans-serif; font-size:9px; font-weight:700; letter-spacing:3px; text-transform:uppercase; color:#5a7a98; margin-bottom:10px;">From My Desk to Yours</p>
+    <!-- EDITABLE: Jean fills in each issue -->
+    <p class="note-text" style="margin:0; padding:0; font-family:'Cormorant Garamond', serif; font-size:18px; font-style:italic; color:#3a4e60; line-height:1.75; margin-bottom:12px;">"Jude is the kind of man everybody likes and nobody knows, and that is a lonelier thing than it looks from the outside. Bobbie sees him on about day three and never once makes a fuss about it. That is the whole book, really. Here is to the people who look past the easy version of us — and to whoever is keeping a barn full of animals fed this winter without telling a soul they are struggling."</p>
+    <p class="note-sig" style="margin:0; padding:0; font-family:'Cormorant Garamond', serif; font-size:15px; font-style:italic; color:#7a9aaa;">— JC 🤍</p>
+  </div>
+</div>
+
+
+<!-- ════════════════════════════════════
+     WILDFLOWER FOOTER
+════════════════════════════════════ -->
+<div class="flower-footer" style="background-color:#4a2d4e; line-height:0;">
+  <img src="https://jcsavoy.com/media/newsletter-images/flower-footer.png" alt="" width="620" style="display:block;width:100%;max-width:620px;height:auto;border:0;" />
+</div>
+<div class="footer-content" style="padding:20px 48px 32px; background-color:#4a2d4e; text-align:center;">
+  <p class="footer-title" style="margin:0; padding:0; font-family:'Cormorant Garamond', serif; font-size:20px; font-weight:300; color:#fdfaff; letter-spacing:2px; margin-bottom:6px;">JC <em style="font-style:italic; color:#f2c4d8;">Savoy</em></p>
+  <p class="footer-tagline" style="margin:0; padding:0; font-family:'Cormorant Garamond', serif; font-size:13px; font-style:italic; color:#9b899e; margin-bottom:18px;">Where every story ends with love</p>
+  <div class="footer-links" style="margin-bottom:18px;">
+    <a href="https://n8n.srv1257557.hstgr.cloud/webhook/click-tracking?email={{$email}}&issue=2026-12-14&url=https%3A//www.amazon.com/stores/JC-Savoy/author/B0D2V26K3W" style="margin:0 12px; text-decoration:none; font-family:'Lato', sans-serif; font-size:10px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:#e8a8c0 !important;">Amazon</a>
+    <a href="https://n8n.srv1257557.hstgr.cloud/webhook/click-tracking?email={{$email}}&issue=2026-12-14&url=https%3A//www.bookbub.com/authors/jc-savoy" style="margin:0 12px; text-decoration:none; font-family:'Lato', sans-serif; font-size:10px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:#e8a8c0 !important;">BookBub</a>
+    <a href="https://n8n.srv1257557.hstgr.cloud/webhook/click-tracking?email={{$email}}&issue=2026-12-14&url=https%3A//www.youtube.com/%40jcsavoyauthor" style="margin:0 12px; text-decoration:none; font-family:'Lato', sans-serif; font-size:10px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:#e8a8c0 !important;">YouTube</a>
+    <a href="https://n8n.srv1257557.hstgr.cloud/webhook/click-tracking?email={{$email}}&issue=2026-12-14&url=https%3A//jcsavoy.com" style="margin:0 12px; text-decoration:none; font-family:'Lato', sans-serif; font-size:10px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:#e8a8c0 !important;">Website</a>
+  </div>
+  <div class="footer-rule" style="margin:0 auto 14px; width:40px; height:1px; background-color:#895e7c;"></div>
+  <p class="footer-legal" style="margin:0; padding:0; font-family:'Lato', sans-serif; font-size:10px; font-weight:300; color:#806a83; line-height:1.7;">
+    © 2026 JC Savoy · Escape With Love Publishing<br/>
+    1400 Village Square Blvd, Suite #3 #84202 Tallahassee, FL 32312<br/>
+    You're receiving this because you signed up at jcsavoy.com<br/>
+   <a href="https://n8n.srv1257557.hstgr.cloud/webhook/unsubscribe?email={{$email}}" style="text-decoration:none; color:#a97792 !important;">Unsubscribe</a>
+  </p>
+</div>
+
+
+</div><!-- /email-container -->
+</div><!-- /email-wrapper -->
+</body>
+</html>
